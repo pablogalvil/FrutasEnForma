@@ -23,7 +23,7 @@ public class PanelPrincipal extends GridPane {
 		chbElige.getItems().addAll("Lista de dietas", "Elige tu fruta", "Registro de dietas", "Calculadora de calorias",
 				"Nuestros productos", "Recetas", "Manual de ayuda");
 
-		String valor = chbElige.getValue().toString();
+		String valor = (String)chbElige.getValue();
 
 		Label informacion = new Label("");
 	}
