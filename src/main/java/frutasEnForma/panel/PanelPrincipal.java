@@ -16,25 +16,6 @@ public class PanelPrincipal extends GridPane {
 	public String valor;
 
 	public PanelPrincipal() {
-<<<<<<< HEAD
-=======
-		Label lblElige = new Label("Elige una opción");
-
-		ChoiceBox chbElige = new ChoiceBox();
-
-		chbElige.getItems().addAll("Lista de dietas", "Elige tu fruta", "Registro de dietas", "Calculadora de calorias",
-				"Nuestros productos", "Recetas", "Manual de ayuda");
-
-		String valor = (String)chbElige.getValue();
-
-		Label informacion = new Label("");
-	}
-
-	public void sesion() {
-
-		VBox panelVertical = new VBox();
-
->>>>>>> cc0d6c8cbbdc6cc7fce18dd105a75c9231225b87
 		Button inicioSesion = new Button("Sign in");
 		Button registro = new Button("Sign up");
 
