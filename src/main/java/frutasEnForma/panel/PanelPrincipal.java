@@ -12,7 +12,6 @@ public class PanelPrincipal extends GridPane {
 
 	public TextField usuario;
 	public TextField contrasenia;
-	public TextField confContrasenia;
 	public String valor;
 
 	public PanelPrincipal() {
@@ -23,68 +22,16 @@ public class PanelPrincipal extends GridPane {
 		this.add(registro, 1, 0);
 
 		inicioSesion.setOnAction(event -> {
+			inicioSesion.setVisible(false);
+			registro.setVisible(false);
 			inSesion();
 		});
 
 		registro.setOnAction(event -> {
+			inicioSesion.setVisible(false);
+			registro.setVisible(false);
 			upSesion();
 		});
-	}
-
-	public void panPrin() {
-		Label lblElige = new Label("Elige una opción");
-
-		ChoiceBox chbElige = new ChoiceBox();
-
-		chbElige.getItems().addAll("Lista de dietas", "Elige tu fruta", "Registro de dietas", "Calculadora de calorias",
-				"Nuestros productos", "Recetas", "Manual de ayuda");
-
-		this.add(lblElige, 0, 0);
-		this.add(chbElige, 1, 0);
-
-		chbElige.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				valor = (String) chbElige.getValue();
-			}
-		});
-
-		Label informacion;
-
-		switch (valor) {
-		case "Lista de dietas":
-			informacion = new Label(
-					"Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		case "Elige tu fruta":
-			informacion = new Label(
-					"Aqui podrás ver la  de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		case "Registro de dietas":
-			informacion = new Label(
-					"Aqui podrás ver la lista deisponible, así como sugerir nuevas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		case "Calculadora de calorias":
-			informacion = new Label("Aqui podrás ver la lista  disponible, así como suas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		case "Nuestros productos":
-			informacion = new Label("Aqui podrás ver la lista de dieomo sugerir nuevas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		case "Recetas":
-			informacion = new Label("Aqui podrás ver la lisasí como sugerir nuevas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		case "Manual de ayuda":
-			informacion = new Label("Aqui podrás vle, así como sugerir nuevas dietas a la aplicación");
-			this.add(informacion, 0, 1);
-			break;
-		}
 	}
 
 	public void inSesion() {
@@ -104,6 +51,11 @@ public class PanelPrincipal extends GridPane {
 
 		// Añadimos un evento al boton del formulario
 		confirmar.setOnAction(e -> {
+			lblUsuario.setVisible(false);
+			usuario.setVisible(false);
+			lblContrasenia.setVisible(false);
+			contrasenia.setVisible(false);
+			confirmar.setVisible(false);
 			panPrin();
 		});
 	}
@@ -111,11 +63,9 @@ public class PanelPrincipal extends GridPane {
 	public void upSesion() {
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
-		Label lblConfContrasenia = new Label("Confirma la contraseña");
 
 		usuario = new TextField();
 		contrasenia = new TextField();
-		confContrasenia = new TextField();
 
 		Button confirmar = new Button("Confirm");
 
@@ -123,14 +73,65 @@ public class PanelPrincipal extends GridPane {
 		this.add(usuario, 1, 0);
 		this.add(lblContrasenia, 0, 1);
 		this.add(contrasenia, 1, 1);
-		this.add(lblConfContrasenia, 0, 2);
-		this.add(confContrasenia, 1, 2);
 		this.add(confirmar, 0, 3);
 
 		// Añadimos un evento al boton del formulario
 		confirmar.setOnAction(e -> {
+			lblUsuario.setVisible(false);
+			usuario.setVisible(false);
+			lblContrasenia.setVisible(false);
+			contrasenia.setVisible(false);
+			confirmar.setVisible(false);
 			panPrin();
 		});
+	}
+	
+	public void panPrin() {
+		Label lblElige = new Label("Elige una opción");
+		Button ir = new Button("Ir a la página");
+
+		ChoiceBox<String> chbElige = new ChoiceBox<String>();
+
+		chbElige.getItems().addAll("Lista de dietas", "Elige tu fruta", "Registro de dietas", "Calculadora de calorias",
+				"Nuestros productos", "Recetas", "Manual de ayuda");
+
+		this.add(lblElige, 0, 0);
+		this.add(chbElige, 1, 0);
+
+		Label informacion = new Label("");
+		
+		chbElige.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				valor = (String) chbElige.getValue();
+				switch (valor) {
+				case "Lista de dietas":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				case "Elige tu fruta":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				case "Registro de dietas":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				case "Calculadora de calorias":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				case "Nuestros productos":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				case "Recetas":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				case "Manual de ayuda":
+					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
+					break;
+				}
+			}
+		});
+		this.add(informacion, 0, 1);
+		this.add(ir, 0, 2);
 	}
 
 }
