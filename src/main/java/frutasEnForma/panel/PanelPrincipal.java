@@ -10,9 +10,9 @@ import javafx.scene.layout.GridPane;
 
 public class PanelPrincipal extends GridPane {
 
-	public TextField usuario;
-	public TextField contrasenia;
-	public String valor;
+	private TextField usuario;
+	private TextField contrasenia;
+	private String valor;
 
 	public PanelPrincipal() {
 		Button inicioSesion = new Button("Sign in");
