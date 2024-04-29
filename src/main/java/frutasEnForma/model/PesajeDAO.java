@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.stage.Popup;
+
 public class PesajeDAO {
 
 	public static double calculoImc(int id, Connection con) {
@@ -53,6 +55,31 @@ public class PesajeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static int calculoCalorias(int id, Connection con) {
+		try {
+			Popup asd = new Popup();
+			String query = "SELECT PESO, ALTURA, EDAD, SEXO FROM PESAJE WHERE IDUSUARIO = ?";
+
+			PreparedStatement pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+			
+			rs.next();
+			
+			double peso = rs.getDouble(1);
+			int altura = rs.getInt(2);
+			int edad = rs.getInt(3);
+			char sexo = rs.getString(4).charAt(0);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 1;
 	}
 
 }

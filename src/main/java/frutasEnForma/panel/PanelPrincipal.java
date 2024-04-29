@@ -1,9 +1,6 @@
 package frutasEnForma.panel;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -12,6 +9,10 @@ public class PanelPrincipal extends GridPane {
 
 	private TextField usuario;
 	private TextField contrasenia;
+	private TextField peso;
+	private TextField altura;
+	private TextField edad;
+	private TextField sexo;
 	private String valor;
 
 	public PanelPrincipal() {
@@ -35,9 +36,10 @@ public class PanelPrincipal extends GridPane {
 	}
 
 	public void inSesion() {
+		
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
-
+		
 		usuario = new TextField();
 		contrasenia = new TextField();
 
@@ -63,9 +65,17 @@ public class PanelPrincipal extends GridPane {
 	public void upSesion() {
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
+		Label lblPeso = new Label("Peso");
+		Label lblAltura = new Label("Altura");
+		Label lblEdad = new Label("Edad");
+		Label lblSexo = new Label("Sexo");
 
 		usuario = new TextField();
 		contrasenia = new TextField();
+		peso = new TextField();
+		altura = new TextField();
+		edad = new TextField();
+		sexo = new TextField();
 
 		Button confirmar = new Button("Confirm");
 
@@ -73,7 +83,15 @@ public class PanelPrincipal extends GridPane {
 		this.add(usuario, 1, 0);
 		this.add(lblContrasenia, 0, 1);
 		this.add(contrasenia, 1, 1);
-		this.add(confirmar, 0, 3);
+		this.add(lblPeso, 0, 2);
+		this.add(peso, 1, 2);
+		this.add(lblAltura, 0, 3);
+		this.add(altura, 1, 3);
+		this.add(lblEdad, 0, 4);
+		this.add(edad, 1, 4);
+		this.add(lblSexo, 0, 5);
+		this.add(sexo, 1, 5);
+		this.add(confirmar, 0, 6);
 
 		// Añadimos un evento al boton del formulario
 		confirmar.setOnAction(e -> {
@@ -81,57 +99,23 @@ public class PanelPrincipal extends GridPane {
 			usuario.setVisible(false);
 			lblContrasenia.setVisible(false);
 			contrasenia.setVisible(false);
+			lblPeso.setVisible(false);
+			peso.setVisible(false);
+			lblAltura.setVisible(false);
+			altura.setVisible(false);
+			lblEdad.setVisible(false);
+			edad.setVisible(false);
+			lblSexo.setVisible(false);
+			sexo.setVisible(false);
 			confirmar.setVisible(false);
 			panPrin();
 		});
 	}
 	
 	public void panPrin() {
-		Label lblElige = new Label("Elige una opción");
-		Button ir = new Button("Ir a la página");
-
-		ChoiceBox<String> chbElige = new ChoiceBox<String>();
-
-		chbElige.getItems().addAll("Lista de dietas", "Elige tu fruta", "Registro de dietas", "Calculadora de calorias",
-				"Nuestros productos", "Recetas", "Manual de ayuda");
-
-		this.add(lblElige, 0, 0);
-		this.add(chbElige, 1, 0);
-
-		Label informacion = new Label("");
+		Label lblInicio = new Label("Bienvenido");
 		
-		chbElige.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				valor = (String) chbElige.getValue();
-				switch (valor) {
-				case "Lista de dietas":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				case "Elige tu fruta":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				case "Registro de dietas":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				case "Calculadora de calorias":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				case "Nuestros productos":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				case "Recetas":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				case "Manual de ayuda":
-					informacion.setText("Aqui podrás ver la lista de dietas disponible, así como sugerir nuevas dietas a la aplicación");
-					break;
-				}
-			}
-		});
-		this.add(informacion, 0, 1);
-		this.add(ir, 0, 2);
+		this.add(lblInicio, 0, 0);
 	}
 
 }

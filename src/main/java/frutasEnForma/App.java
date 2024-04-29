@@ -12,9 +12,9 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) {
-
+		
 		Scene scene = new Scene(new PanelPrincipal(), 640, 480);
-
+		
 		stage.setTitle("FrutasEnForma");
 		stage.setScene(scene);
 		stage.show();
