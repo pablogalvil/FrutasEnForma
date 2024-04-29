@@ -68,7 +68,7 @@ public class PanelPrincipal extends GridPane {
 		Label lblPeso = new Label("Peso");
 		Label lblAltura = new Label("Altura");
 		Label lblEdad = new Label("Edad");
-		Label lblSexo = new Label("Sexo");
+		Label lblSexo = new Label("Sexo (H/M)");
 
 		usuario = new TextField();
 		contrasenia = new TextField();
