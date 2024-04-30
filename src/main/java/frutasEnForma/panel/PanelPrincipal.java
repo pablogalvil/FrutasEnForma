@@ -1,5 +1,7 @@
 package frutasEnForma.panel;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -111,14 +113,47 @@ public class PanelPrincipal extends GridPane {
 			sexo.setVisible(false);
 			confirmar.setVisible(false);
 
-			panPrin();
+			inSesion();
 		});
 	}
 
 	public void panPrin() {
 		Label lblInicio = new Label("Bienvenido");
 
+		Button acercaDe = new Button("Acerca de");
+		Button listaDietas = new Button ("Ver Dietas");
+		Button calculadoraImc = new Button ("Calcular imc");
+		
 		this.add(lblInicio, 0, 0);
+		this.add(acercaDe, 0, 1);
+		this.add(listaDietas, 0, 2);
+		this.add(calculadoraImc, 0, 3);
+		
+		acercaDe.setOnAction(e -> {
+			acercaDe();
+		});
+		listaDietas.setOnAction(e -> {
+			PanelListaDietas Registro = new PanelListaDietas();
+		});
+		calculadoraImc.setOnAction(e -> {
+			PanelCalculadoraImc calculoImc = new PanelCalculadoraImc();
+		});
+		
+	}
+	
+	/**
+	 * Panel de la opcion de ayuda acerca de
+	 */
+	public void acercaDe() {
+		AlertType tipoAlerta = Alert.AlertType.INFORMATION;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Acerca de");
+		infoAlert.setHeaderText("©FrutasEnForma");
+		
+		String url = "https://github.com/pablogalvil/FrutasEnForma";
+		
+		infoAlert.setContentText(url);
+		infoAlert.showAndWait();
 	}
 
 }

@@ -6,13 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ListaDietasDAO {
+	
+	public static int id;
+	public static String nombre;
+	public static int numCom;
 
-	public static ResultSet getListaDietas(Connection con, int idListaDietas) {
+	public static void getListaDietas(Connection con, int idListaDietas) {
 
 		try {
 
 			// Creamos la sentencia a ejecutar
-			String query = "SELECT * FROM CLIENTE WHERE idCliente=?";
+			String query = "SELECT * FROM listaDietas WHERE idListaDietas=?";
 
 			// Primer paso creo un statement
 			PreparedStatement pstmt = con.prepareStatement(query);
@@ -24,20 +28,24 @@ public class ListaDietasDAO {
 			// Ejecutamos la query y los resultados
 			// quedan en el resulset
 			ResultSet rs = pstmt.executeQuery();
-
-			// devolvemos el resulset
-			return rs;
+			
+			rs.next();
+			
+			id = rs.getInt(1);
+			nombre = rs.getString(2);
+			numCom = rs.getInt(3);
+			
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 
 		}
 
 	}
 
-	public static boolean añadirLista(Connection con, ListaDietasDO dietas) {
+	public static boolean AniadirLista(Connection con, ListaDietasDO dietas) {
 
 		try {
 			int numAff = -1;
