@@ -36,10 +36,10 @@ public class PanelPrincipal extends GridPane {
 	}
 
 	public void inSesion() {
-		
+
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
-		
+
 		usuario = new TextField();
 		contrasenia = new TextField();
 
@@ -77,6 +77,8 @@ public class PanelPrincipal extends GridPane {
 		edad = new TextField();
 		sexo = new TextField();
 
+		// int edadUsuario = Integer.valueOf(edad.getText());
+
 		Button confirmar = new Button("Confirm");
 
 		this.add(lblUsuario, 0, 0);
@@ -108,13 +110,14 @@ public class PanelPrincipal extends GridPane {
 			lblSexo.setVisible(false);
 			sexo.setVisible(false);
 			confirmar.setVisible(false);
+
 			panPrin();
 		});
 	}
-	
+
 	public void panPrin() {
 		Label lblInicio = new Label("Bienvenido");
-		
+
 		this.add(lblInicio, 0, 0);
 	}
 
