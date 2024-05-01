@@ -16,7 +16,6 @@ public class PanelListaDietas extends GridPane{
  	public static int InsCom;
 	public static int InsId;
 	
-	
 	public PanelListaDietas(){
 		Stage ventanaEmergente = new Stage();
 
@@ -55,8 +54,7 @@ public class PanelListaDietas extends GridPane{
 		ventanaEmergente.setScene(scene);
 		ventanaEmergente.setTitle("Regristro Dieta");
 		ventanaEmergente.show();
-
-}
+	}
 
 	public void AniadirLista(){
 		
@@ -97,46 +95,39 @@ public class PanelListaDietas extends GridPane{
 		ventanaEmergente.setScene(scene);
 		ventanaEmergente.setTitle("Añadir Dieta");
 		ventanaEmergente.show();
-		
-		
-}
+	}
 
-public void BorarDietas(){
-		
-		Stage ventanaEmergente = new Stage();
-
-		GridPane panelListaBorrar = new GridPane();
-		
-		Label lblInsId = new Label("Inserta el Id de la dieta");
-		
-		TextField txtInsId = new TextField();
-		
-		InsId = Integer.valueOf(txtInsId.getText());
-		
-		Button Confirmar = new Button("Confirm");
-		Button Salir = new Button("Salir");
-		
-		panelListaBorrar.add(lblInsId, 0, 0);
-		panelListaBorrar.add(txtInsId, 1, 0);
-		panelListaBorrar.add(Confirmar, 0,2);
-		panelListaBorrar.add(Salir, 1,2);
-		
-		panelListaBorrar.setMargin(lblInsId, new Insets(5, 10, 5, 10));
-
-		panelListaBorrar.setMargin(txtInsId, new Insets(5, 10, 5, 10));
-
-		panelListaBorrar.setMargin(Confirmar, new Insets(5, 10, 5, 10));
-		panelListaBorrar.setMargin(Salir, new Insets(5, 10, 5, 10));
-		
-		Scene scene = new Scene(panelListaBorrar, 600, 600);
-
-		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Borrar Dieta");
-		ventanaEmergente.show();
-		
-		
-}
-
-
-
+	public void BorrarDietas(){
+			
+			Stage ventanaEmergente = new Stage();
+	
+			GridPane panelListaBorrar = new GridPane();
+			
+			Label lblInsId = new Label("Inserta el Id de la dieta");
+			
+			TextField txtInsId = new TextField();
+			
+			InsId = Integer.valueOf(txtInsId.getText());
+			
+			Button Confirmar = new Button("Confirm");
+			Button Salir = new Button("Salir");
+			
+			panelListaBorrar.add(lblInsId, 0, 0);
+			panelListaBorrar.add(txtInsId, 1, 0);
+			panelListaBorrar.add(Confirmar, 0,2);
+			panelListaBorrar.add(Salir, 1,2);
+			
+			panelListaBorrar.setMargin(lblInsId, new Insets(5, 10, 5, 10));
+	
+			panelListaBorrar.setMargin(txtInsId, new Insets(5, 10, 5, 10));
+	
+			panelListaBorrar.setMargin(Confirmar, new Insets(5, 10, 5, 10));
+			panelListaBorrar.setMargin(Salir, new Insets(5, 10, 5, 10));
+			
+			Scene scene = new Scene(panelListaBorrar, 600, 600);
+	
+			ventanaEmergente.setScene(scene);
+			ventanaEmergente.setTitle("Borrar Dieta");
+			ventanaEmergente.show();
+	}
 }
