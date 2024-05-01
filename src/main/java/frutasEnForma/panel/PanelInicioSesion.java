@@ -1,5 +1,7 @@
 package frutasEnForma.panel;
 
+import frutasEnForma.App;
+import frutasEnForma.model.UsuarioDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,20 +9,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class PanelInicioSesion extends GridPane{
-	
+public class PanelInicioSesion extends GridPane {
+
 	private TextField usuario;
 	private TextField contrasenia;
 	private TextField peso;
 	private TextField altura;
 	private TextField edad;
 	private TextField sexo;
-	
+
 	public PanelInicioSesion() {
 		Stage sesionStage = new Stage();
 
 		GridPane panelSesion = new GridPane();
-		
+
 		Button inicioSesion = new Button("Sign in");
 		Button registro = new Button("Sign up");
 
@@ -32,7 +34,7 @@ public class PanelInicioSesion extends GridPane{
 		sesionStage.setScene(scene);
 		sesionStage.setTitle("Inicio de sesion");
 		sesionStage.show();
-		
+
 		inicioSesion.setOnAction(event -> {
 			sesionStage.close();
 			inSesion();
@@ -43,13 +45,13 @@ public class PanelInicioSesion extends GridPane{
 			upSesion();
 		});
 	}
-	
+
 	public void inSesion() {
 
 		Stage inicioStage = new Stage();
 
 		GridPane panelInicio = new GridPane();
-		
+
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
 
@@ -63,7 +65,7 @@ public class PanelInicioSesion extends GridPane{
 		panelInicio.add(lblContrasenia, 0, 1);
 		panelInicio.add(contrasenia, 1, 1);
 		panelInicio.add(confirmar, 0, 2);
-		
+
 		Scene scene = new Scene(panelInicio, 600, 600);
 
 		inicioStage.setScene(scene);
@@ -72,16 +74,20 @@ public class PanelInicioSesion extends GridPane{
 
 		// Añadimos un evento al boton del formulario
 		confirmar.setOnAction(e -> {
+			String txtUsuario = usuario.getText();
+			String txtContrasenia = contrasenia.getText();
+			UsuarioDAO.login(txtUsuario, txtContrasenia, App.con);
+
 			inicioStage.close();
 		});
 	}
 
 	public void upSesion() {
-		
+
 		Stage registroStage = new Stage();
 
 		GridPane panelRegistro = new GridPane();
-		
+
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
 		Label lblPeso = new Label("Peso");
@@ -113,7 +119,7 @@ public class PanelInicioSesion extends GridPane{
 		panelRegistro.add(lblSexo, 0, 5);
 		panelRegistro.add(sexo, 1, 5);
 		panelRegistro.add(confirmar, 0, 6);
-		
+
 		Scene scene = new Scene(panelRegistro, 600, 600);
 
 		registroStage.setScene(scene);

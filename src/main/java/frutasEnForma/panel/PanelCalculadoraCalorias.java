@@ -2,7 +2,7 @@ package frutasEnForma.panel;
 
 import java.sql.Connection;
 
-import frutasEnForma.model.PesajeDAO;
+import frutasEnForma.model.UsuarioDAO;
 import frutasEnForma.utils.UtilsFEF;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -23,7 +23,7 @@ public class PanelCalculadoraCalorias extends GridPane {
 				"Hemos calculado sus calorias diarias usando el peso, la altura, la edad y el sexo previamente introducida al registrarse");
 		Label lblNota = new Label(
 				"(Tenga en cuenta que si no relleno dichos datos al registrarse el resultado será 0)");
-		Label lblResultado = new Label(String.valueOf(PesajeDAO.calculoCalorias(1, con)));
+		Label lblResultado = new Label(String.valueOf(UsuarioDAO.calculoCalorias(1, con)));
 
 		panelImc.add(lblExplicacion, 0, 0);
 		panelImc.add(lblNota, 0, 1);

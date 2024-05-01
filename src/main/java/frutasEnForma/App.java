@@ -1,6 +1,9 @@
 package frutasEnForma;
 
+import java.sql.Connection;
+
 import frutasEnForma.panel.PanelPrincipal;
+import frutasEnForma.utils.UtilsFEF;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,6 +12,8 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
+
+	public static Connection con = UtilsFEF.conectarBD();
 
 	@Override
 	public void start(Stage stage) {
