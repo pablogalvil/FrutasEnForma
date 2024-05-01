@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 public class UsuarioDAO {
+
+	public static int idUsuario;
+
 	/**
 	 * Funcion que busca en la base de datos al usuario introducido en el textField
 	 * y compara las contraseñas para saber si la contraseña es correcta o no.
@@ -18,7 +21,7 @@ public class UsuarioDAO {
 	 */
 	public static boolean login(String nombre, String contrasenia, Connection con) {
 		try {
-			String query = "SELECT CONTRASENIA FROM USUARIO WHERE NOMBRE = ?";
+			String query = "SELECT CONTRASENIA, IDUSUARIO FROM USUARIO WHERE NOMBRE = ?";
 
 			PreparedStatement pstmt = con.prepareStatement(query);
 
@@ -26,12 +29,15 @@ public class UsuarioDAO {
 
 			ResultSet rs = pstmt.executeQuery();
 
+			// Bucle que pasa por todos los usuarios con el mismo nombre para ver si
+			// coincide la contraseña
 			while (rs.next()) {
 				String tempContrasenia = rs.getString(1);
 
-				if (tempContrasenia.equals(contrasenia))
+				if (tempContrasenia.equals(contrasenia)) {
+					idUsuario = rs.getInt(2);
 					return true;
-				else
+				} else
 					continue;
 			}
 			return false;

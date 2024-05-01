@@ -58,13 +58,13 @@ public class PanelInicioSesion extends GridPane {
 		usuario = new TextField();
 		contrasenia = new TextField();
 
-		Button confirmar = new Button("Confirm");
+		Button btnConfirmar = new Button("Confirm");
 
 		panelInicio.add(lblUsuario, 0, 0);
 		panelInicio.add(usuario, 1, 0);
 		panelInicio.add(lblContrasenia, 0, 1);
 		panelInicio.add(contrasenia, 1, 1);
-		panelInicio.add(confirmar, 0, 2);
+		panelInicio.add(btnConfirmar, 0, 2);
 
 		Scene scene = new Scene(panelInicio, 600, 600);
 
@@ -73,12 +73,15 @@ public class PanelInicioSesion extends GridPane {
 		inicioStage.show();
 
 		// Añadimos un evento al boton del formulario
-		confirmar.setOnAction(e -> {
+		btnConfirmar.setOnAction(e -> {
 			String txtUsuario = usuario.getText();
 			String txtContrasenia = contrasenia.getText();
-			UsuarioDAO.login(txtUsuario, txtContrasenia, App.con);
-
-			inicioStage.close();
+			if (UsuarioDAO.login(txtUsuario, txtContrasenia, App.con))
+				inicioStage.close();
+			else {
+				PanelInicioSesion panelInicioAgain = new PanelInicioSesion();
+				inicioStage.close();
+			}
 		});
 	}
 

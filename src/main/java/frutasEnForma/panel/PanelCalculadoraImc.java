@@ -1,16 +1,13 @@
 package frutasEnForma.panel;
 
-import java.sql.Connection;
-
+import frutasEnForma.App;
 import frutasEnForma.model.UsuarioDAO;
-import frutasEnForma.utils.UtilsFEF;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class PanelCalculadoraImc extends GridPane {
-	private static Connection con = UtilsFEF.conectarBD();
 
 	public PanelCalculadoraImc() {
 		Stage ventanaEmergente = new Stage();
@@ -21,7 +18,7 @@ public class PanelCalculadoraImc extends GridPane {
 				"Hemos calculado su IMC usando el peso y la altura previamente introducida al registrarse");
 		Label lblNota = new Label(
 				"(Tenga en cuenta que si no relleno dichos datos al registrarse el resultado será 0)");
-		Label lblResultado = new Label(String.valueOf(UsuarioDAO.calculoImc(1, con)));
+		Label lblResultado = new Label(String.valueOf(UsuarioDAO.calculoImc(UsuarioDAO.idUsuario, App.con)));
 
 		panelImc.add(lblExplicacion, 0, 0);
 		panelImc.add(lblNota, 0, 1);
