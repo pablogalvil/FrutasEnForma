@@ -1,7 +1,13 @@
 /*Clase general para todas las escenas*/
 .body {
-	-fx-background-color: rgb(242, 243, 159);
+	-fx-background-image: url(../img/FrutasEnForma.png);
+	-fx-background-size: cover;
 	-fx-font-size: large;
+}
+.menubar{
+	-fx-background-color: #a1a1c5;
+	-fx-border-radius: 5px;
+	-fx-border-color: purple;
 }
 /*Labels de la pagina principal*/
 #labelPrincipal{

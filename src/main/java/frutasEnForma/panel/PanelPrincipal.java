@@ -15,6 +15,7 @@ public class PanelPrincipal extends GridPane {
 	public PanelPrincipal() {
 
 		MenuBar menu = new MenuBar();
+		menu.getStyleClass().add("menubar");
 
 		Menu mUser = new Menu("Cuenta");
 		MenuItem iInicioSesion = new MenuItem("Iniciar sesion");
