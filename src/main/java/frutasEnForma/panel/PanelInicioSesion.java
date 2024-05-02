@@ -4,7 +4,9 @@ import frutasEnForma.App;
 import frutasEnForma.model.UsuarioDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -13,6 +15,7 @@ public class PanelInicioSesion extends GridPane {
 
 	private TextField usuario;
 	private TextField contrasenia;
+	private PasswordField contraseniaEscondida;
 	private TextField peso;
 	private TextField altura;
 	private TextField edad;
@@ -57,13 +60,28 @@ public class PanelInicioSesion extends GridPane {
 
 		usuario = new TextField();
 		contrasenia = new TextField();
+		contraseniaEscondida = new PasswordField();
 
+		CheckBox checkMostrar = new CheckBox("Mostrar contraseña");
 		Button btnConfirmar = new Button("Confirm");
+
+		checkMostrar.setOnAction(e -> {
+			boolean mostrar = checkMostrar.isSelected();
+			contraseniaEscondida.setVisible(!mostrar);
+			contrasenia.setVisible(mostrar);
+			if (!mostrar) {
+				contraseniaEscondida.setText(contrasenia.getText());
+			} else {
+				contrasenia.setText(contraseniaEscondida.getText());
+			}
+		});
 
 		panelInicio.add(lblUsuario, 0, 0);
 		panelInicio.add(usuario, 1, 0);
 		panelInicio.add(lblContrasenia, 0, 1);
 		panelInicio.add(contrasenia, 1, 1);
+		panelInicio.add(contraseniaEscondida, 1, 1);
+		panelInicio.add(checkMostrar, 2, 1);
 		panelInicio.add(btnConfirmar, 0, 2);
 
 		Scene scene = new Scene(panelInicio, 600, 600);

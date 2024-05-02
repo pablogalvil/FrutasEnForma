@@ -18,7 +18,7 @@ public class PanelCalculadoraImc extends GridPane {
 				"Hemos calculado su IMC usando el peso y la altura previamente introducida al registrarse");
 		Label lblNota = new Label(
 				"(Tenga en cuenta que si no relleno dichos datos al registrarse el resultado será 0)");
-		Label lblResultado = new Label(String.valueOf(UsuarioDAO.calculoImc(UsuarioDAO.idUsuario, App.con)));
+		Label lblResultado = new Label(String.valueOf(UsuarioDAO.calculoImc(1, App.con)));
 
 		panelImc.add(lblExplicacion, 0, 0);
 		panelImc.add(lblNota, 0, 1);

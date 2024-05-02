@@ -1,5 +1,6 @@
 package frutasEnForma.panel;
 
+import javafx.geometry.HPos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -20,11 +21,35 @@ public class PanelPrincipal extends GridPane {
 		Label lblAyuda = new Label(
 				"Para mas información, le dejamos abajo un manual y un acerca de con un enlace a nuestro github");
 
+		lblInicio.setId("labelPrincipal");
+		lblAviso.setId("labelPrincipal");
+		lblCalculadoraImc.setId("labelPrincipal");
+		lblCalculadoraCalorias.setId("labelPrincipal");
+		lblAyuda.setId("labelPrincipal");
+
+		this.setHalignment(lblInicio, HPos.CENTER);
+		this.setHalignment(lblAviso, HPos.CENTER);
+		this.setHalignment(lblCalculadoraImc, HPos.CENTER);
+		this.setHalignment(lblCalculadoraCalorias, HPos.CENTER);
+		this.setHalignment(lblAyuda, HPos.CENTER);
+
 		Button btnInicio = new Button("Ir al inicio de sesion");
 		Button btnListaDietas = new Button("Ver Dietas");
 		Button btnCalculadoraImc = new Button("Calcular imc");
 		Button btnCalculadoraCalorias = new Button("Calcular calorias");
 		Button btnAcercaDe = new Button("Acerca de");
+
+		btnInicio.setId("buttonPrincipal");
+		btnListaDietas.setId("buttonPrincipal");
+		btnCalculadoraImc.setId("buttonPrincipal");
+		btnCalculadoraCalorias.setId("buttonPrincipal");
+		btnAcercaDe.setId("buttonPrincipal");
+
+		this.setHalignment(btnInicio, HPos.CENTER);
+		this.setHalignment(btnListaDietas, HPos.CENTER);
+		this.setHalignment(btnCalculadoraImc, HPos.CENTER);
+		this.setHalignment(btnCalculadoraCalorias, HPos.CENTER);
+		this.setHalignment(btnAcercaDe, HPos.CENTER);
 
 		this.add(lblInicio, 0, 0);
 		this.add(btnInicio, 0, 1);

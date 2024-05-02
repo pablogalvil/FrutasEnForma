@@ -60,7 +60,7 @@ public class UsuarioDAO {
 
 			// Variables de peso y altura
 			double peso = 0;
-			int altura = 0;
+			double altura = 0;
 
 			PreparedStatement pstmt = con.prepareStatement(query);
 
@@ -84,7 +84,7 @@ public class UsuarioDAO {
 			double imc = peso / altura;
 
 			// Creamos un DecimalFormat para que el double solo tenga 1 decimal
-			DecimalFormat df = new DecimalFormat("##.#");
+			DecimalFormat df = new DecimalFormat("##,##");
 			// Creamos una string para formatearlo
 			String result = df.format(imc);
 

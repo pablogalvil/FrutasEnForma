@@ -6,12 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ListaDietasDAO {
-	
+
 	public static int id;
 	public static String nombre;
 	public static int numCom;
 
-	public static void getListaDietas(Connection con, int idListaDietas) {
+	/**
+	 * Coge la lista de dietas
+	 * 
+	 * @param con
+	 * @param idListaDietas
+	 */
+	public static ListaDietasDO getListaDietas(Connection con, int idListaDietas) {
 
 		try {
 
@@ -28,19 +34,19 @@ public class ListaDietasDAO {
 			// Ejecutamos la query y los resultados
 			// quedan en el resulset
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			rs.next();
-			
+
 			id = rs.getInt(1);
 			nombre = rs.getString(2);
 			numCom = rs.getInt(3);
-			
-			
+			ListaDietasDO temp = new ListaDietasDO(id, nombre, numCom);
+			return temp;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-
+			return null;
 		}
 
 	}
@@ -89,4 +95,37 @@ public class ListaDietasDAO {
 		}
 	}
 
+	public static boolean SeleccionDietas(Connection con, RegistroDietasDO registro) {
+		try {
+			String NombreRegristro;
+
+			String query = "SELECT NOMBRE FROM LISTADIETAS";
+
+			PreparedStatement pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, nombre);
+
+			ResultSet rs = pstmt.executeQuery();
+			ListaDietasDO temp = getListaDietas(con, id);
+
+			pstmt.setString(1, temp.getNombre());
+			pstmt.setInt(1, registro.getIdRegistroDietas());
+
+			while (rs.next()) {
+				String tempNombre = rs.getString(2);
+
+				if (tempNombre.equals(nombre)) {
+					NombreRegristro = rs.getString(2);
+				} else
+					continue;
+			}
+
+			String Regris = "INSERT INTO registroDietas (diasRealizados, fechaincio, fechafin, nombre) VALUES (?,?,?,?,?)";
+			PreparedStatement ps = con.prepareStatement(Regris);
+
+		} catch (SQLException e) {
+
+		}
+		return false;
+	}
 }

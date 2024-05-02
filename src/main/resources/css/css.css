@@ -1,0 +1,23 @@
+.body {
+	-fx-background-color: rgb(242, 243, 159);
+}
+#labelPrincipal{
+	-fx-padding: 10px;
+	-fx-text-fill: red;
+}
+
+#buttonPrincipal{
+	-fx-padding: 3px;
+}
+
+.Calculadora{
+	-fx-text-fill: blue;
+}
+
+#labelCalculadora{
+	-fx-padding: 4px;
+}
+
+#labelResultadoCalculadora{
+	-fx-padding: 4px;
+}
