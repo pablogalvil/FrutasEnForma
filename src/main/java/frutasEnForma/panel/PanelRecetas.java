@@ -103,29 +103,45 @@ public class PanelRecetas extends GridPane {
 		Scene scene = new Scene(panelInsertarRecetas, 200, 200);
 
 		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Añadir Receta");
+		ventanaEmergente.setTitle("Aniadir Receta");
 		ventanaEmergente.show();
 
 	}
 
 	// BORRAR
+	public void BorrarRecetas() {
+		Stage ventanaEmergente = new Stage();
 
-	/*
-	 * Stage ventanaEmergente = new Stage();
-	 * 
-	 * GridPane panelBorrarRecetas = new GridPane();
-	 * 
-	 * Label lblBorrarNombre = new
-	 * Label("Borramos a partir del nombre que tenga la receta");
-	 * 
-	 * TextField txtBorrarNombre = new TextField();
-	 * 
-	 * BorrarNombre=Integer.valueOf(txtBorrarNombre.getText());
-	 * 
-	 * // Botones de confirmar y salir
-	 * 
-	 * Button Confirmar = new Button("Confirmar"); Button Salir = new
-	 * Button("Salir");
-	 */
+		GridPane panelBorrarRecetas = new GridPane();
 
+		Label lblBorrarNombre = new Label("Borramos a partir del nombre que tenga la receta");
+
+		TextField txtBorrarNombre = new TextField();
+
+		String BorrarNombre = txtBorrarNombre.getText();
+
+		// Botones de confirmar y salir
+
+		Button Confirmar = new Button("Confirmar");
+		Button Salir = new Button("Salir");
+
+		// Label
+
+		panelBorrarRecetas.add(lblBorrarNombre, 0, 0);
+		panelBorrarRecetas.add(txtBorrarNombre, 0, 1);
+		panelBorrarRecetas.add(Confirmar, 0, 2);
+		panelBorrarRecetas.add(Salir, 0, 3);
+
+		panelBorrarRecetas.setMargin(lblBorrarNombre, new Insets(5, 10, 5, 10));
+		panelBorrarRecetas.setMargin(txtBorrarNombre, new Insets(5, 10, 5, 10));
+		panelBorrarRecetas.setMargin(Confirmar, new Insets(5, 10, 5, 10));
+		panelBorrarRecetas.setMargin(Salir, new Insets(5, 10, 5, 10));
+
+		Scene scene = new Scene(panelBorrarRecetas, 200, 200);
+
+		ventanaEmergente.setScene(scene);
+		ventanaEmergente.setTitle("Borrar Receta");
+		ventanaEmergente.show();
+
+	}
 }

@@ -3,20 +3,23 @@ package frutasEnForma.model;
 public class RegistroDietasDO {
 	private int idRegistroDietas;
 	private int diasRealizados;
-	private int fechaInicio;
-	private int fechaFin;
+	private String fechaInicio;
+	private String fechaFin;
+	public static String nombre;
 
 	public RegistroDietasDO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public RegistroDietasDO(int idRegistroDietas, int diasRealizados, int fechaInicio, int fechaFin) {
+	public RegistroDietasDO(int idRegistroDietas, int diasRealizados, String fechaInicio, String fechaFin,
+			String nombre) {
 		super();
 		this.idRegistroDietas = idRegistroDietas;
 		this.diasRealizados = diasRealizados;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
+		this.nombre = nombre;
 
 	}
 
@@ -36,19 +39,27 @@ public class RegistroDietasDO {
 		this.diasRealizados = diasRealizados;
 	}
 
-	public int getFechaInicio() {
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(int fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public int getFechaFin() {
+	public String getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(int fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

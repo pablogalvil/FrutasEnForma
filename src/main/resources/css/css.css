@@ -1,23 +1,98 @@
+/*Clase general para todas las escenas*/
 .body {
 	-fx-background-color: rgb(242, 243, 159);
+	-fx-font-size: large;
 }
+/*Labels de la pagina principal*/
 #labelPrincipal{
 	-fx-padding: 10px;
 	-fx-text-fill: red;
 }
-
+/*Botones de la pagina principal*/
 #buttonPrincipal{
-	-fx-padding: 3px;
+	-fx-padding: 2px;
+	-fx-border-color: rgb(179, 179, 179);
+	-fx-border-radius: 5px;
+	-fx-border-width: 2px;
 }
-
-.Calculadora{
-	-fx-text-fill: blue;
+/*:Hover del boton principal*/
+#buttonPrincipal:hover{
+	-fx-background-color: lightgray;
+	-fx-border-color: rgb(255, 125, 125);
 }
-
+/*Labels inicio sesion*/
+#labelInicioSesion{
+	-fx-padding: 4px;
+	-fx-text-fill: rgb(76, 76, 76);
+}
+/*TextFields y PasswordFields inicio sesion*/
+#txtInicioSesion{
+	-fx-padding: 4px;
+	-fx-background-color: rgb(160,159,243);
+	-fx-border-radius: 5px;
+	-fx-border-color: rgb(99, 240, 253);
+}
+/*CheckBox inicio sesion*/
+.checkBoxInicioSesion{
+	-fx-padding: 4px;
+}
+/*Boton del CheckBox*/
+.checkBoxInicioSesion .box{
+	-fx-border-style: solid;
+	-fx-border-width: 3px;
+	-fx-border-color: lightgrey;
+	-fx-background-color: rgb(99, 240, 253);
+}
+/*Buttons inicio sesion*/
+#buttonInicioSesion{
+	-fx-padding: 4px;
+	-fx-background-color: rgb(220, 182, 182);
+	-fx-border-radius: 5px;
+	-fx-border-color: rgb(99, 240, 253);
+}
+/*Labels de lista dietas*/
+#labelListaDietas{
+	
+}
+/*TextFields de lista dietas*/
+#txtListaDietas{
+	
+}
+/*Buttons de lista dietas*/
+#buttonListaDietas{
+	
+}
+/*Labels de las calculadoras*/
 #labelCalculadora{
 	-fx-padding: 4px;
+	-fx-text-fill: rgb(76, 76, 76);
 }
-
+/*Labels con el resultado de las calculadoras*/
 #labelResultadoCalculadora{
 	-fx-padding: 4px;
+	-fx-text-fill: rgb(255, 125, 125);
+}
+/*Labels de registro dietas*/
+#labelRegistroDietas{
+	
+}
+/*TextFields de registro dietas*/
+#txtRegistroDietas{
+	
+}
+/*Buttons de registro dietas*/
+#buttonRegistroDietas{
+	
+}
+/*Labels de las recetas*/
+#labelRecetas{
+	
+}
+/*TextFields de las recetas*/
+#txtRecetas{
+	
+}
+/*Buttons de las recetas*/
+#buttonRecetas{
+	
 }

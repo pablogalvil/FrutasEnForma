@@ -51,16 +51,16 @@ public class ListaDietasDAO {
 
 	}
 
-	public static boolean AniadirLista(Connection con, ListaDietasDO dietas) {
+	public static boolean aniadirLista(Connection con, ListaDietasDO dietas) {
 
 		try {
 			int numAff = -1;
 			// Creamos la query con los datos de la lista
-			String query = "INSERT INTO listaDietas ( nombre, numComidas  ) VALUES(?,?,?)";
+			String query = "INSERT INTO listaDietas ( nombre, numComidas  ) VALUES(?,?)";
 
 			PreparedStatement pstmt = con.prepareStatement(query);
-			pstmt.setString(2, dietas.getNombre());
-			pstmt.setInt(3, dietas.getNumComidas());
+			pstmt.setString(1, dietas.getNombre());
+			pstmt.setInt(2, dietas.getNumComidas());
 
 			// Ejecutamos la query
 			numAff = pstmt.executeUpdate();
@@ -95,37 +95,4 @@ public class ListaDietasDAO {
 		}
 	}
 
-	public static boolean SeleccionDietas(Connection con, RegistroDietasDO registro) {
-		try {
-			String NombreRegristro;
-
-			String query = "SELECT NOMBRE FROM LISTADIETAS";
-
-			PreparedStatement pstmt = con.prepareStatement(query);
-
-			pstmt.setString(1, nombre);
-
-			ResultSet rs = pstmt.executeQuery();
-			ListaDietasDO temp = getListaDietas(con, id);
-
-			pstmt.setString(1, temp.getNombre());
-			pstmt.setInt(1, registro.getIdRegistroDietas());
-
-			while (rs.next()) {
-				String tempNombre = rs.getString(2);
-
-				if (tempNombre.equals(nombre)) {
-					NombreRegristro = rs.getString(2);
-				} else
-					continue;
-			}
-
-			String Regris = "INSERT INTO registroDietas (diasRealizados, fechaincio, fechafin, nombre) VALUES (?,?,?,?,?)";
-			PreparedStatement ps = con.prepareStatement(Regris);
-
-		} catch (SQLException e) {
-
-		}
-		return false;
-	}
 }

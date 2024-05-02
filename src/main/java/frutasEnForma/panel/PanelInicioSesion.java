@@ -1,8 +1,16 @@
 package frutasEnForma.panel;
 
+import java.sql.Connection;
+
 import frutasEnForma.App;
 import frutasEnForma.model.UsuarioDAO;
+import frutasEnForma.model.UsuarioDO;
+import frutasEnForma.utils.UtilsFEF;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -30,20 +38,31 @@ public class PanelInicioSesion extends GridPane {
 		Button registro = new Button("Sign up");
 
 		panelSesion.add(inicioSesion, 0, 0);
-		panelSesion.add(registro, 1, 0);
+		panelSesion.add(registro, 0, 1);
 
-		Scene scene = new Scene(panelSesion, 600, 600);
+		Scene sceneSesion = new Scene(panelSesion, 600, 600);
 
-		sesionStage.setScene(scene);
+		sceneSesion.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+		sceneSesion.getRoot().getStyleClass().add("body");
+
+		panelSesion.setAlignment(Pos.TOP_CENTER);
+
+		panelSesion.setHalignment(inicioSesion, HPos.CENTER);
+		panelSesion.setHalignment(registro, HPos.CENTER);
+
+		inicioSesion.setId("buttonInicioSesion");
+		registro.setId("buttonInicioSesion");
+
+		sesionStage.setScene(sceneSesion);
 		sesionStage.setTitle("Inicio de sesion");
 		sesionStage.show();
 
-		inicioSesion.setOnAction(event -> {
+		inicioSesion.setOnAction(e -> {
 			sesionStage.close();
 			inSesion();
 		});
 
-		registro.setOnAction(event -> {
+		registro.setOnAction(e -> {
 			sesionStage.close();
 			upSesion();
 		});
@@ -77,16 +96,36 @@ public class PanelInicioSesion extends GridPane {
 		});
 
 		panelInicio.add(lblUsuario, 0, 0);
-		panelInicio.add(usuario, 1, 0);
-		panelInicio.add(lblContrasenia, 0, 1);
-		panelInicio.add(contrasenia, 1, 1);
-		panelInicio.add(contraseniaEscondida, 1, 1);
-		panelInicio.add(checkMostrar, 2, 1);
-		panelInicio.add(btnConfirmar, 0, 2);
+		panelInicio.add(usuario, 0, 1);
+		panelInicio.add(lblContrasenia, 0, 2);
+		panelInicio.add(contrasenia, 0, 3);
+		panelInicio.add(contraseniaEscondida, 0, 3);
+		panelInicio.add(checkMostrar, 0, 4);
+		panelInicio.add(btnConfirmar, 0, 5);
 
-		Scene scene = new Scene(panelInicio, 600, 600);
+		Scene sceneInicio = new Scene(panelInicio, 600, 600);
 
-		inicioStage.setScene(scene);
+		sceneInicio.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+		sceneInicio.getRoot().getStyleClass().add("body");
+
+		panelInicio.setAlignment(Pos.TOP_CENTER);
+
+		panelInicio.setHalignment(lblUsuario, HPos.CENTER);
+		panelInicio.setHalignment(usuario, HPos.CENTER);
+		panelInicio.setHalignment(lblContrasenia, HPos.CENTER);
+		panelInicio.setHalignment(contrasenia, HPos.CENTER);
+		panelInicio.setHalignment(contraseniaEscondida, HPos.CENTER);
+		panelInicio.setHalignment(btnConfirmar, HPos.CENTER);
+
+		lblUsuario.setId("labelInicioSesion");
+		usuario.setId("txtInicioSesion");
+		lblContrasenia.setId("labelInicioSesion");
+		contrasenia.setId("txtInicioSesion");
+		contraseniaEscondida.setId("txtInicioSesion");
+		checkMostrar.getStyleClass().add("checkBoxInicioSesion");
+		btnConfirmar.setId("buttonInicioSesion");
+
+		inicioStage.setScene(sceneInicio);
 		inicioStage.setTitle("Inicio de sesion");
 		inicioStage.show();
 
@@ -104,6 +143,7 @@ public class PanelInicioSesion extends GridPane {
 	}
 
 	public void upSesion() {
+		Connection con = UtilsFEF.conectarBD();
 
 		Stage registroStage = new Stage();
 
@@ -141,16 +181,44 @@ public class PanelInicioSesion extends GridPane {
 		panelRegistro.add(sexo, 1, 5);
 		panelRegistro.add(confirmar, 0, 6);
 
-		Scene scene = new Scene(panelRegistro, 600, 600);
+		Scene sceneRegistro = new Scene(panelRegistro, 600, 600);
 
-		registroStage.setScene(scene);
+		registroStage.setScene(sceneRegistro);
 		registroStage.setTitle("Registro");
 		registroStage.show();
 
 		// Añadimos un evento al boton del formulario
 		confirmar.setOnAction(e -> {
-			registroStage.close();
-			inSesion();
+			try {
+				UsuarioDO temp = new UsuarioDO();
+				temp.setNombre(usuario.getText());
+				temp.setContrasenia(contrasenia.getText());
+				temp.setPeso(Double.valueOf(peso.getText()));
+				temp.setAltura(Integer.valueOf(altura.getText()));
+				temp.setEdad(Integer.valueOf(edad.getText()));
+				temp.setSexo(sexo.getText().charAt(0));
+
+				if (UsuarioDAO.aniadirUsuario(con, temp)) {
+					registroStage.close();
+					inSesion();
+				} else {
+					alertaRegistro();
+				}
+			} catch (Exception error) {
+				error.printStackTrace();
+				alertaRegistro();
+			}
+
 		});
+	}
+
+	public void alertaRegistro() {
+		AlertType tipoAlerta = Alert.AlertType.WARNING;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Alerta!");
+		infoAlert.setHeaderText("No ha introducido correctamente los datos");
+		infoAlert.setContentText(
+				"Por favor vuelva a intentarlo, tenga en cuenta que en edad,\npeso y altura debe utilizar numeros");
+		infoAlert.showAndWait();
 	}
 }

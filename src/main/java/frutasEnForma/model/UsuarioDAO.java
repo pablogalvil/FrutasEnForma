@@ -134,8 +134,15 @@ public class UsuarioDAO {
 			if (sexo == 'h') {
 				resultado = 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad);
 			} else if (sexo == 'm') {
-				resultado = 655 + (9.6 * peso) + (5 * altura) - (4.7 * edad);
+				resultado = 65 + (9.6 * peso) + (5 * altura) - (4.7 * edad);
 			}
+
+			// Creamos un DecimalFormat para que el double solo tenga 1 decimal
+			DecimalFormat df = new DecimalFormat("####,####");
+			// Creamos una string para formatearlo
+			String result = df.format(resultado);
+
+			resultado = Double.parseDouble(result);
 
 			return resultado;
 
@@ -145,4 +152,35 @@ public class UsuarioDAO {
 			return 0;
 		}
 	}
+
+	public static boolean aniadirUsuario(Connection con, UsuarioDO usuario) {
+
+		try {
+			int numAff = -1;
+			// Creamos la query con los datos de la lista
+			String query = "INSERT INTO usuario (nombre, contrasenia, peso, altura, sexo, edad ) VALUES(?,?,?,?,?,?)";
+
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, usuario.getNombre());
+			pstmt.setString(2, usuario.getContrasenia());
+			pstmt.setDouble(3, usuario.getPeso());
+			pstmt.setInt(4, usuario.getAltura());
+			pstmt.setString(5, String.valueOf(usuario.getSexo()));
+			pstmt.setInt(6, usuario.getEdad());
+
+			// Ejecutamos la query
+			numAff = pstmt.executeUpdate();
+
+			if (numAff == 1)
+				return true;
+			else
+				return false;
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

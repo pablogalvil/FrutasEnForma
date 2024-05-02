@@ -5,11 +5,48 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 
 public class PanelPrincipal extends GridPane {
 
 	public PanelPrincipal() {
+
+		MenuBar menu = new MenuBar();
+
+		Menu mUser = new Menu("Cuenta");
+		MenuItem iInicioSesion = new MenuItem("Iniciar sesion");
+
+		mUser.getItems().addAll(iInicioSesion);
+
+		Menu mListaDietas = new Menu("Lista de Dietas");
+		MenuItem iListaDietasVer = new MenuItem("Ver Listas de Dietas");
+		MenuItem iListaDietasAniadir = new MenuItem("Añadir Listas de Dietas");
+		MenuItem iListaDietasBorrar = new MenuItem("Borrar Listas de Dietas");
+
+		mListaDietas.getItems().addAll(iListaDietasVer, iListaDietasAniadir, iListaDietasBorrar);
+
+		Menu mCalculadora = new Menu("Calculadora");
+		MenuItem iCalculadoraImc = new MenuItem("Calcular Imc");
+		MenuItem iCalculadoraCalorias = new MenuItem("Calcular Calorias");
+
+		mCalculadora.getItems().addAll(iCalculadoraImc, iCalculadoraCalorias);
+
+		Menu mRegistroDietas = new Menu("Registro");
+		MenuItem iRegistroDietasVer = new MenuItem("Ver Registro");
+		MenuItem iRegistroDietasAniadir = new MenuItem("Añadir Registro");
+
+		mRegistroDietas.getItems().addAll(iRegistroDietasVer, iRegistroDietasAniadir);
+
+		Menu mAyuda = new Menu("Ayuda");
+		MenuItem iManual = new MenuItem("Manual");
+		MenuItem iAcercaDe = new MenuItem("Acerca de");
+
+		mAyuda.getItems().addAll(iManual, iAcercaDe);
+
+		menu.getMenus().addAll(mUser, mListaDietas, mCalculadora, mRegistroDietas, mAyuda);
 
 		Label lblInicio = new Label("Bienvenido, por favor inicie sesion antes de continuar utilizando la aplicacion.");
 		Label lblAviso = new Label(
@@ -35,6 +72,7 @@ public class PanelPrincipal extends GridPane {
 
 		Button btnInicio = new Button("Ir al inicio de sesion");
 		Button btnListaDietas = new Button("Ver Dietas");
+		Button btnRegistroDietas = new Button("Ver Registros");
 		Button btnCalculadoraImc = new Button("Calcular imc");
 		Button btnCalculadoraCalorias = new Button("Calcular calorias");
 		Button btnAcercaDe = new Button("Acerca de");
@@ -51,29 +89,74 @@ public class PanelPrincipal extends GridPane {
 		this.setHalignment(btnCalculadoraCalorias, HPos.CENTER);
 		this.setHalignment(btnAcercaDe, HPos.CENTER);
 
-		this.add(lblInicio, 0, 0);
-		this.add(btnInicio, 0, 1);
-		this.add(lblAviso, 0, 2);
-		this.add(btnListaDietas, 0, 3);
-		this.add(lblCalculadoraImc, 0, 4);
-		this.add(btnCalculadoraImc, 0, 5);
-		this.add(lblCalculadoraCalorias, 0, 6);
-		this.add(btnCalculadoraCalorias, 0, 7);
-		this.add(lblAyuda, 0, 8);
-		this.add(btnAcercaDe, 0, 9);
+		this.add(menu, 0, 0);
+		this.add(lblInicio, 0, 1);
+		this.add(btnInicio, 0, 2);
+		this.add(lblAviso, 0, 3);
+		this.add(btnListaDietas, 0, 4);
+		this.add(lblCalculadoraImc, 0, 5);
+		this.add(btnCalculadoraImc, 0, 6);
+		this.add(lblCalculadoraCalorias, 0, 7);
+		this.add(btnCalculadoraCalorias, 0, 8);
+		this.add(lblAyuda, 0, 9);
+		this.add(btnAcercaDe, 0, 10);
 
+		// MenuItem inicio de sesion
+		iInicioSesion.setOnAction(e -> {
+			PanelInicioSesion panelInicio = new PanelInicioSesion();
+		});
+
+		// MenuItems de calculadora
+		iCalculadoraImc.setOnAction(e -> {
+			PanelCalculadoraImc calculoImc = new PanelCalculadoraImc();
+		});
+		iCalculadoraCalorias.setOnAction(e -> {
+			PanelCalculadoraCalorias calculoCalorias = new PanelCalculadoraCalorias();
+		});
+
+		// MenuItems de lista dietas
+		iListaDietasVer.setOnAction(e -> {
+			PanelListaDietas Listas = new PanelListaDietas();
+		});
+
+		// MenuItems de registro dietas
+		iRegistroDietasAniadir.setOnAction(e -> {
+			PanelRegistroDietas registro = new PanelRegistroDietas();
+		});
+
+		// MenuItems de ayuda
+		iAcercaDe.setOnAction(e -> {
+			acercaDe();
+		});
+
+		/*
+		 * BOTONES
+		 */
+
+		// Boton de inicio de sesion
 		btnInicio.setOnAction(e -> {
 			PanelInicioSesion panelInicio = new PanelInicioSesion();
 		});
+
+		// Botones de lista de dietas
 		btnListaDietas.setOnAction(e -> {
-			PanelListaDietas registro = new PanelListaDietas();
+			PanelListaDietas Listas = new PanelListaDietas();
 		});
+
+		// Botones de registro de dietas
+		btnListaDietas.setOnAction(e -> {
+			PanelRegistroDietas registro = new PanelRegistroDietas();
+		});
+
+		// Botones de calculadora
 		btnCalculadoraImc.setOnAction(e -> {
 			PanelCalculadoraImc calculoImc = new PanelCalculadoraImc();
 		});
 		btnCalculadoraCalorias.setOnAction(e -> {
-			PanelCalculadoraCalorias calculoCalo = new PanelCalculadoraCalorias();
+			PanelCalculadoraCalorias panelCalorias = new PanelCalculadoraCalorias();
 		});
+
+		// Botones de ayuda
 		btnAcercaDe.setOnAction(e -> {
 			acercaDe();
 		});

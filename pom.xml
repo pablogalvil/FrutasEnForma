@@ -16,6 +16,12 @@
 		    <artifactId>javafx-controls</artifactId>
 		    <version>13</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.netbeans.api/org-netbeans-libs-javafx -->
+		<dependency>
+		    <groupId>org.netbeans.api</groupId>
+		    <artifactId>org-netbeans-libs-javafx</artifactId>
+		    <version>RELEASE130</version>
+		</dependency>
         <!-- https://mvnrepository.com/artifact/eu.hansolo/Medusa -->
 		<dependency>
     		<groupId>eu.hansolo</groupId>
@@ -45,6 +51,11 @@
 		    <groupId>org.openjfx</groupId>
 		    <artifactId>javafx-graphics</artifactId>
 		    <version>13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>JavaFXAplication</artifactId>
+			<version>0.0.6</version>
 		</dependency>
     </dependencies>
     <build>
