@@ -17,7 +17,7 @@ public class PanelCalculadoraCalorias extends GridPane {
 		Stage ventanaCalorias = new Stage();
 
 		GridPane panelCalorias = new GridPane();
-		panelCalorias.setAlignment(Pos.TOP_CENTER);
+		panelCalorias.setAlignment(Pos.CENTER);
 
 		Label lblExplicacion = new Label(
 				"Hemos calculado sus calorias diarias usando el peso, la altura, la edad y el sexo previamente introducida al registrarse");

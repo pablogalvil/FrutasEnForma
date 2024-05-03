@@ -1,7 +1,7 @@
 /*Clase general para todas las escenas*/
 .body {
-	-fx-background-image: url(../img/FrutasEnForma.png);
-	-fx-background-size: cover;
+	-fx-background-image: url(../img/FrutasEnFormaClaro1000X750.png);
+	-fx-background-size: contain;
 	-fx-font-size: large;
 }
 .menubar{
@@ -35,12 +35,7 @@
 #txtInicioSesion{
 	-fx-padding: 4px;
 	-fx-background-color: rgb(160,159,243);
-	-fx-border-radius: 5px;
 	-fx-border-color: rgb(99, 240, 253);
-}
-/*CheckBox inicio sesion*/
-.checkBoxInicioSesion{
-	-fx-padding: 4px;
 }
 /*Boton del CheckBox*/
 .checkBoxInicioSesion .box{
@@ -92,13 +87,13 @@
 }
 /*Labels de las recetas*/
 #labelRecetas{
-	
+	-fx-text-fill: red;
 }
 /*TextFields de las recetas*/
 #txtRecetas{
-	
+	-fx-border-color: blue;
 }
 /*Buttons de las recetas*/
 #buttonRecetas{
-	
+	-fx-border-color: blue;
 }

@@ -15,7 +15,7 @@ public class PanelCalculadoraImc extends GridPane {
 		Stage ventanaImc = new Stage();
 
 		GridPane panelImc = new GridPane();
-		panelImc.setAlignment(Pos.TOP_CENTER);
+		panelImc.setAlignment(Pos.CENTER);
 
 		Label lblExplicacion = new Label(
 				"Hemos calculado su IMC usando el peso y la altura previamente introducida al registrarse");
@@ -31,7 +31,7 @@ public class PanelCalculadoraImc extends GridPane {
 		panelImc.add(lblNota, 0, 1);
 		panelImc.add(lblResultado, 0, 2);
 
-		Scene sceneImc = new Scene(panelImc, 600, 600);
+		Scene sceneImc = new Scene(panelImc, 800, 600);
 		sceneImc.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 		sceneImc.getRoot().getStyleClass().add("body");
 

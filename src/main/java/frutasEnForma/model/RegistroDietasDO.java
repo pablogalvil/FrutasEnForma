@@ -5,7 +5,7 @@ public class RegistroDietasDO {
 	private int diasRealizados;
 	private String fechaInicio;
 	private String fechaFin;
-	public static String nombre;
+	private String nombre;
 
 	public RegistroDietasDO() {
 		super();

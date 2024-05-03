@@ -13,7 +13,7 @@ public class RegistroDietasDAO {
 	public static int fechaFin;
 	public static String nombre;
 
-	public static ResultSet getRegistroDietas(Connection con, int idRegistroDietas) {
+	public static RegistroDietasDO getRegistroDietas(Connection con, int idRegistroDietas) {
 
 		try {
 
@@ -26,6 +26,8 @@ public class RegistroDietasDAO {
 			// Asignamos el valor del idRegistroDietas a la
 			// interrogacion
 			pstmt.setInt(1, idRegistroDietas);
+
+			RegistroDietasDO temp = new RegistroDietasDO();
 
 			// Ejecutamos la query y los resultados
 			// quedan en el resulset
@@ -40,7 +42,7 @@ public class RegistroDietasDAO {
 			nombre = rs.getString(5);
 
 			// devolvemos el resulset
-			return rs;
+			return temp;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

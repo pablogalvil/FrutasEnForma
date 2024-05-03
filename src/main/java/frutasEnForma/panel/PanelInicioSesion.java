@@ -7,6 +7,7 @@ import frutasEnForma.model.UsuarioDAO;
 import frutasEnForma.model.UsuarioDO;
 import frutasEnForma.utils.UtilsFEF;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -40,7 +41,7 @@ public class PanelInicioSesion extends GridPane {
 		panelSesion.add(inicioSesion, 0, 0);
 		panelSesion.add(registro, 0, 1);
 
-		Scene sceneSesion = new Scene(panelSesion, 600, 600);
+		Scene sceneSesion = new Scene(panelSesion, 800, 600);
 
 		sceneSesion.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 		sceneSesion.getRoot().getStyleClass().add("body");
@@ -103,10 +104,12 @@ public class PanelInicioSesion extends GridPane {
 		panelInicio.add(checkMostrar, 0, 4);
 		panelInicio.add(btnConfirmar, 0, 5);
 
-		Scene sceneInicio = new Scene(panelInicio, 600, 600);
+		Scene sceneInicio = new Scene(panelInicio, 800, 600);
 
 		sceneInicio.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 		sceneInicio.getRoot().getStyleClass().add("body");
+
+		panelInicio.setMargin(checkMostrar, new Insets(5, 10, 5, 10));
 
 		panelInicio.setAlignment(Pos.TOP_CENTER);
 
@@ -181,7 +184,7 @@ public class PanelInicioSesion extends GridPane {
 		panelRegistro.add(sexo, 1, 5);
 		panelRegistro.add(confirmar, 0, 6);
 
-		Scene sceneRegistro = new Scene(panelRegistro, 600, 600);
+		Scene sceneRegistro = new Scene(panelRegistro, 800, 600);
 
 		registroStage.setScene(sceneRegistro);
 		registroStage.setTitle("Registro");

@@ -1,6 +1,5 @@
 package frutasEnForma.panel;
 
-import frutasEnForma.model.RecetasDO;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -70,42 +69,9 @@ public class PanelRecetas extends GridPane {
 		panelRegistroRecetas.setMargin(Salir, new Insets(5, 10, 5, 10));
 
 		// La scene
-		Scene scene = new Scene(panelRegistroRecetas, 100, 100);
+		Scene scene = new Scene(panelRegistroRecetas, 800, 600);
 
 		// INSERTAR
-	}
-
-	public void InsertarLista() {
-
-		Stage ventanaEmergente = new Stage();
-
-		GridPane panelInsertarRecetas = new GridPane();
-
-		// Definimos las label
-
-		Label lblInsNombre = new Label("Insertamos el nombre");
-		Label lblInsTiempoPrep = new Label("Insertamos el tiempo Preparación");
-		Label lblInsIngred = new Label("Insertamos los ingredientes");
-		Label lblInsPasos = new Label("Insertamos los pasos");
-
-		TextField txtInsNombre = new TextField();
-		TextField txtInsTiempoPrep = new TextField();
-		TextField txtInsIngred = new TextField();
-		TextField txtInsPasos = new TextField();
-
-		String nombreTemp = txtInsNombre.getText();
-		int tiempoTemp = Integer.valueOf(txtInsTiempoPrep.getText());
-		String ingredTemp = txtInsIngred.getText();
-		String pasosTemp = txtInsPasos.getText();
-
-		RecetasDO temp = new RecetasDO(0, nombreTemp, tiempoTemp, ingredTemp, pasosTemp);
-
-		Scene scene = new Scene(panelInsertarRecetas, 200, 200);
-
-		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Aniadir Receta");
-		ventanaEmergente.show();
-
 	}
 
 	// BORRAR
@@ -137,7 +103,7 @@ public class PanelRecetas extends GridPane {
 		panelBorrarRecetas.setMargin(Confirmar, new Insets(5, 10, 5, 10));
 		panelBorrarRecetas.setMargin(Salir, new Insets(5, 10, 5, 10));
 
-		Scene scene = new Scene(panelBorrarRecetas, 200, 200);
+		Scene scene = new Scene(panelBorrarRecetas, 800, 600);
 
 		ventanaEmergente.setScene(scene);
 		ventanaEmergente.setTitle("Borrar Receta");

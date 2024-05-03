@@ -20,20 +20,24 @@ public class PanelPrincipal extends GridPane {
 		Menu mUser = new Menu("Cuenta");
 		MenuItem iInicioSesion = new MenuItem("Iniciar sesion");
 
-		mUser.getItems().addAll(iInicioSesion);
-
-		Menu mListaDietas = new Menu("Lista de Dietas");
-		MenuItem iListaDietasVer = new MenuItem("Ver Listas de Dietas");
-		MenuItem iListaDietasAniadir = new MenuItem("Añadir Listas de Dietas");
-		MenuItem iListaDietasBorrar = new MenuItem("Borrar Listas de Dietas");
-
-		mListaDietas.getItems().addAll(iListaDietasVer, iListaDietasAniadir, iListaDietasBorrar);
-
 		Menu mCalculadora = new Menu("Calculadora");
 		MenuItem iCalculadoraImc = new MenuItem("Calcular Imc");
 		MenuItem iCalculadoraCalorias = new MenuItem("Calcular Calorias");
 
 		mCalculadora.getItems().addAll(iCalculadoraImc, iCalculadoraCalorias);
+
+		mUser.getItems().addAll(iInicioSesion, mCalculadora);
+
+		Menu mListaDietas = new Menu("Lista de Dietas");
+		MenuItem iListaDietasVer = new MenuItem("Ver Listas de Dietas");
+
+		Menu mOpcionesLista = new Menu("Opciones");
+		MenuItem iListaDietasAniadir = new MenuItem("Añadir Listas de Dietas");
+		MenuItem iListaDietasBorrar = new MenuItem("Borrar Listas de Dietas");
+
+		mOpcionesLista.getItems().addAll(iListaDietasAniadir, iListaDietasBorrar);
+
+		mListaDietas.getItems().addAll(iListaDietasVer, mOpcionesLista);
 
 		Menu mRegistroDietas = new Menu("Registro");
 		MenuItem iRegistroDietasVer = new MenuItem("Ver Registro");
@@ -47,7 +51,7 @@ public class PanelPrincipal extends GridPane {
 
 		mAyuda.getItems().addAll(iManual, iAcercaDe);
 
-		menu.getMenus().addAll(mUser, mListaDietas, mCalculadora, mRegistroDietas, mAyuda);
+		menu.getMenus().addAll(mUser, mListaDietas, mRegistroDietas, mAyuda);
 
 		Label lblInicio = new Label("Bienvenido, por favor inicie sesion antes de continuar utilizando la aplicacion.");
 		Label lblAviso = new Label(
@@ -140,13 +144,15 @@ public class PanelPrincipal extends GridPane {
 		});
 
 		// Botones de lista de dietas
-		btnListaDietas.setOnAction(e -> {
-			PanelListaDietas Listas = new PanelListaDietas();
-		});
+		/*
+		 * btnListaDietas.setOnAction(e -> { PanelListaDietas Listas = new
+		 * PanelListaDietas(); });
+		 */
 
 		// Botones de registro de dietas
 		btnListaDietas.setOnAction(e -> {
-			PanelRegistroDietas registro = new PanelRegistroDietas();
+			// PanelRegistroDietas registro = new PanelRegistroDietas();
+			PanelDocumentosReceta pdr = new PanelDocumentosReceta();
 		});
 
 		// Botones de calculadora
