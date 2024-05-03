@@ -56,9 +56,11 @@ public class RegistroDietasDAO {
 	public static boolean seleccionDietas(Connection con, String nombre) {
 		try {
 			int id = 1;
+			int idLista = 0;
+			String fecha = "";
 			boolean existe = false;
 
-			String query = "SELECT NOMBRE FROM LISTADIETAS";
+			String query = "SELECT NOMBRE, CURDATE(), idListaDietas FROM LISTADIETAS";
 
 			PreparedStatement pstmt = con.prepareStatement(query);
 
@@ -68,7 +70,8 @@ public class RegistroDietasDAO {
 				String tempNombre = rs.getString(1);
 
 				if (tempNombre.equals(nombre)) {
-					nombre = rs.getString(2);
+					fecha = rs.getString(2);
+					idLista = rs.getInt(3);
 					existe = true;
 				} else
 					id++;
@@ -77,23 +80,18 @@ public class RegistroDietasDAO {
 			if (!existe)
 				return false;
 
-			String queryFecha = "SELECT CURDATE() FROM registroDietas";
-			PreparedStatement pstmt2 = con.prepareStatement(queryFecha);
-			ResultSet rs2 = pstmt2.executeQuery();
-			rs2.next();
-			String fecha = rs2.getString(1);
+			String regis = "INSERT INTO registroDietas (diasRealizados, fechaincio, fechafin, nombre, Usuario_idUsuario) VALUES (?,?,?,?,?,?)";
+			PreparedStatement pstmt2 = con.prepareStatement(regis);
 
-			String regis = "INSERT INTO registroDietas (diasRealizados, fechaincio, fechafin, nombre) VALUES (?,?,?,?,?)";
-			PreparedStatement pstmt3 = con.prepareStatement(regis);
+			pstmt2.setInt(1, 1);
+			pstmt2.setString(2, fecha);
+			pstmt2.setString(3, null);
+			pstmt2.setString(4, nombre);
+			pstmt2.setInt(5, UsuarioDAO.idUsuario);
 
-			pstmt3.setInt(1, 1);
-			pstmt3.setString(2, fecha);
-			pstmt3.setString(3, null);
-			pstmt3.setString(4, nombre);
+			int rowsAffected = pstmt2.executeUpdate();
 
-			int rowsAffected = pstmt3.executeUpdate();
-
-			if (rowsAffected == 0)
+			if (rowsAffected == 1)
 				return true;
 			else
 				return false;
@@ -102,5 +100,4 @@ public class RegistroDietasDAO {
 			return false;
 		}
 	}
-
 }

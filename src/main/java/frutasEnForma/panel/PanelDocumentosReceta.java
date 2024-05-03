@@ -4,108 +4,75 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
-import frutasEnForma.model.RecetasDO;
+import frutasEnForma.App;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class PanelDocumentosReceta extends GridPane {
+	private static String valor;
+
 	public PanelDocumentosReceta() {
 
-		Stage ventanaEmergente = new Stage();
+		Stage stageDocumentosRecetas = new Stage();
 
-		GridPane panelInsertarRecetas = new GridPane();
+		GridPane panelMostrarRecetas = new GridPane();
 
-		panelInsertarRecetas.setAlignment(Pos.CENTER);
+		panelMostrarRecetas.setAlignment(Pos.CENTER);
 
-		// Definimos las label
+		ChoiceBox chbEligeDieta = new ChoiceBox();
+		chbEligeDieta.getItems().addAll("Dieta Dash", "Dieta Frutariana", "Dieta Mediterranea");
 
-		Label lblInsNombre = new Label("Insertamos el nombre");
-		Label lblInsTiempoPrep = new Label("Insertamos el tiempo Preparación");
-		Label lblInsIngred = new Label("Insertamos los ingredientes");
-		Label lblInsPasos = new Label("Insertamos los pasos");
+		Button confirmar = new Button("Mostrar Recetas");
 
-		TextField txtInsNombre = new TextField();
-		TextField txtInsTiempoPrep = new TextField();
-		TextField txtInsIngred = new TextField();
-		TextField txtInsPasos = new TextField();
+		panelMostrarRecetas.add(chbEligeDieta, 0, 0);
+		panelMostrarRecetas.add(confirmar, 0, 1);
 
-		Button confirmar = new Button("Confirmar");
-		Button confirmar1 = new Button("Confirmar");
-		Button confirmar2 = new Button("Confirmar");
+		chbEligeDieta.setOnAction(new EventHandler<ActionEvent>() {
 
-		panelInsertarRecetas.add(lblInsNombre, 0, 1);
-		panelInsertarRecetas.add(txtInsNombre, 0, 2);
-
-		panelInsertarRecetas.add(lblInsTiempoPrep, 0, 3);
-		panelInsertarRecetas.add(txtInsTiempoPrep, 0, 4);
-
-		panelInsertarRecetas.add(lblInsIngred, 0, 5);
-		panelInsertarRecetas.add(txtInsIngred, 0, 6);
-
-		panelInsertarRecetas.add(lblInsPasos, 0, 7);
-		panelInsertarRecetas.add(txtInsPasos, 0, 8);
-
-		panelInsertarRecetas.add(confirmar, 0, 9);
-		panelInsertarRecetas.add(confirmar1, 0, 10);
-		panelInsertarRecetas.add(confirmar2, 0, 11);
+			@Override
+			public void handle(ActionEvent event) {
+				valor = (String) chbEligeDieta.getValue();
+			}
+		});
 
 		confirmar.setOnAction(event -> {
-			String nombreTemp = txtInsNombre.getText();
-			int tiempoTemp = Integer.valueOf(txtInsTiempoPrep.getText());
-			String ingredTemp = txtInsIngred.getText();
-			String pasosTemp = txtInsPasos.getText();
-
-			RecetasDO temp = new RecetasDO(0, nombreTemp, tiempoTemp, ingredTemp, pasosTemp);
-
-			abrirPDF("D:\\Programación\\FrutasEnForma\\FrutasEnForma\\src\\main\\resources\\doc\\DietaDash.pdf");
+			if (valor.equals("Dieta Dash"))
+				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaDash.pdf");
+			else if (valor.equals("Dieta Frutariana"))
+				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaFrutariana.pdf");
+			else if (valor.equals("Dieta Mediterranea"))
+				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaMediterranea.pdf");
 		});
 
-		confirmar1.setOnAction(event -> {
-			abrirPDF("D:\\Programación\\FrutasEnForma\\FrutasEnForma\\src\\main\\resources\\doc\\DietaFrutariana.pdf");
-		});
-		confirmar2.setOnAction(event -> {
-			abrirPDF(
-					"D:\\Programación\\FrutasEnForma\\FrutasEnForma\\src\\main\\resources\\doc\\DietaMediterranea.pdf");
-		});
+		Scene sceneMostrarRecetas = new Scene(panelMostrarRecetas, 800, 600);
 
-		Scene sceneInsertarRecetas = new Scene(panelInsertarRecetas, 800, 600);
+		if (App.configuracion.getTheme() == 1)
+			sceneMostrarRecetas.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneMostrarRecetas.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 
-		sceneInsertarRecetas.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
-		sceneInsertarRecetas.getRoot().getStyleClass().add("body");
+		sceneMostrarRecetas.getRoot().getStyleClass().add("body");
 
-		this.setHalignment(lblInsNombre, HPos.CENTER);
-		this.setHalignment(txtInsNombre, HPos.CENTER);
-		this.setHalignment(lblInsTiempoPrep, HPos.CENTER);
-		this.setHalignment(txtInsTiempoPrep, HPos.CENTER);
-		this.setHalignment(lblInsIngred, HPos.CENTER);
-		this.setHalignment(txtInsIngred, HPos.CENTER);
-		this.setHalignment(lblInsPasos, HPos.CENTER);
-		this.setHalignment(txtInsPasos, HPos.CENTER);
+		this.setHalignment(chbEligeDieta, HPos.CENTER);
 		this.setHalignment(confirmar, HPos.CENTER);
-		this.setHalignment(confirmar1, HPos.CENTER);
-		this.setHalignment(confirmar2, HPos.CENTER);
 
-		lblInsNombre.setId("labelRecetas");
-		txtInsNombre.setId("txtRecetas");
-		lblInsTiempoPrep.setId("labelRecetas");
-		txtInsTiempoPrep.setId("txtRecetas");
-		lblInsIngred.setId("labelRecetas");
-		txtInsIngred.setId("txtRecetas");
-		lblInsPasos.setId("labelRecetas");
-		txtInsPasos.setId("txtRecetas");
+		panelMostrarRecetas.setMargin(chbEligeDieta, new Insets(5, 10, 5, 10));
+		panelMostrarRecetas.setMargin(confirmar, new Insets(5, 10, 5, 10));
+
+		chbEligeDieta.setId("choiceBoxRecetas");
 		confirmar.setId("buttonRecetas");
-		confirmar1.setId("buttonRecetas");
-		confirmar2.setId("buttonRecetas");
 
-		ventanaEmergente.setScene(sceneInsertarRecetas);
-		ventanaEmergente.setTitle("Aniadir Receta");
-		ventanaEmergente.show();
+		stageDocumentosRecetas.setScene(sceneMostrarRecetas);
+		stageDocumentosRecetas.setTitle("Aniadir Receta");
+		stageDocumentosRecetas.show();
 
 	}
 

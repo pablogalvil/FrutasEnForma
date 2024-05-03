@@ -43,10 +43,14 @@ public class PanelInicioSesion extends GridPane {
 
 		Scene sceneSesion = new Scene(panelSesion, 800, 600);
 
-		sceneSesion.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+		if (App.configuracion.getTheme() == 1)
+			sceneSesion.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneSesion.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
 		sceneSesion.getRoot().getStyleClass().add("body");
 
-		panelSesion.setAlignment(Pos.TOP_CENTER);
+		panelSesion.setAlignment(Pos.CENTER);
 
 		panelSesion.setHalignment(inicioSesion, HPos.CENTER);
 		panelSesion.setHalignment(registro, HPos.CENTER);
@@ -106,12 +110,16 @@ public class PanelInicioSesion extends GridPane {
 
 		Scene sceneInicio = new Scene(panelInicio, 800, 600);
 
-		sceneInicio.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+		if (App.configuracion.getTheme() == 1)
+			sceneInicio.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneInicio.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
 		sceneInicio.getRoot().getStyleClass().add("body");
 
 		panelInicio.setMargin(checkMostrar, new Insets(5, 10, 5, 10));
 
-		panelInicio.setAlignment(Pos.TOP_CENTER);
+		panelInicio.setAlignment(Pos.CENTER);
 
 		panelInicio.setHalignment(lblUsuario, HPos.CENTER);
 		panelInicio.setHalignment(usuario, HPos.CENTER);
@@ -139,6 +147,7 @@ public class PanelInicioSesion extends GridPane {
 			if (UsuarioDAO.login(txtUsuario, txtContrasenia, App.con))
 				inicioStage.close();
 			else {
+				alertaInicio();
 				PanelInicioSesion panelInicioAgain = new PanelInicioSesion();
 				inicioStage.close();
 			}
@@ -152,12 +161,21 @@ public class PanelInicioSesion extends GridPane {
 
 		GridPane panelRegistro = new GridPane();
 
+		panelRegistro.setAlignment(Pos.CENTER);
+
 		Label lblUsuario = new Label("Usuario");
 		Label lblContrasenia = new Label("Contraseña");
 		Label lblPeso = new Label("Peso");
 		Label lblAltura = new Label("Altura");
 		Label lblEdad = new Label("Edad");
 		Label lblSexo = new Label("Sexo (H/M)");
+
+		this.setHalignment(lblUsuario, HPos.CENTER);
+		this.setHalignment(lblContrasenia, HPos.CENTER);
+		this.setHalignment(lblPeso, HPos.CENTER);
+		this.setHalignment(lblAltura, HPos.CENTER);
+		this.setHalignment(lblEdad, HPos.CENTER);
+		this.setHalignment(lblSexo, HPos.CENTER);
 
 		usuario = new TextField();
 		contrasenia = new TextField();
@@ -166,9 +184,16 @@ public class PanelInicioSesion extends GridPane {
 		edad = new TextField();
 		sexo = new TextField();
 
-		// int edadUsuario = Integer.valueOf(edad.getText());
+		this.setHalignment(usuario, HPos.CENTER);
+		this.setHalignment(contrasenia, HPos.CENTER);
+		this.setHalignment(peso, HPos.CENTER);
+		this.setHalignment(altura, HPos.CENTER);
+		this.setHalignment(edad, HPos.CENTER);
+		this.setHalignment(sexo, HPos.CENTER);
 
 		Button confirmar = new Button("Confirm");
+
+		this.setHalignment(confirmar, HPos.CENTER);
 
 		panelRegistro.add(lblUsuario, 0, 0);
 		panelRegistro.add(usuario, 1, 0);
@@ -185,6 +210,27 @@ public class PanelInicioSesion extends GridPane {
 		panelRegistro.add(confirmar, 0, 6);
 
 		Scene sceneRegistro = new Scene(panelRegistro, 800, 600);
+
+		if (App.configuracion.getTheme() == 1)
+			sceneRegistro.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneRegistro.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
+		sceneRegistro.getRoot().getStyleClass().add("body");
+
+		lblUsuario.setId("labelInicioSesion");
+		usuario.setId("txtInicioSesion");
+		lblContrasenia.setId("labelInicioSesion");
+		contrasenia.setId("txtInicioSesion");
+		lblPeso.setId("labelInicioSesion");
+		peso.setId("txtInicioSesion");
+		lblAltura.setId("labelInicioSesion");
+		altura.setId("txtInicioSesion");
+		lblEdad.setId("labelInicioSesion");
+		edad.setId("txtInicioSesion");
+		lblSexo.setId("labelInicioSesion");
+		sexo.setId("txtInicioSesion");
+		confirmar.setId("buttonInicioSesion");
 
 		registroStage.setScene(sceneRegistro);
 		registroStage.setTitle("Registro");
@@ -222,6 +268,15 @@ public class PanelInicioSesion extends GridPane {
 		infoAlert.setHeaderText("No ha introducido correctamente los datos");
 		infoAlert.setContentText(
 				"Por favor vuelva a intentarlo, tenga en cuenta que en edad,\npeso y altura debe utilizar numeros");
+		infoAlert.showAndWait();
+	}
+
+	public void alertaInicio() {
+		AlertType tipoAlerta = Alert.AlertType.WARNING;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Alerta!");
+		infoAlert.setHeaderText("No ha introducido correctamente los datos");
+		infoAlert.setContentText("Por favor vuelva a intentarlo o pruebe a crear una cuenta nueva");
 		infoAlert.showAndWait();
 	}
 }

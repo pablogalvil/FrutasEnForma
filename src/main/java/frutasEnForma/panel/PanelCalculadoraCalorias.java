@@ -42,7 +42,11 @@ public class PanelCalculadoraCalorias extends GridPane {
 
 		Scene sceneCalorias = new Scene(panelCalorias, 800, 600);
 
-		sceneCalorias.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+		if (App.configuracion.getTheme() == 1)
+			sceneCalorias.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneCalorias.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
 		sceneCalorias.getRoot().getStyleClass().add("body");
 
 		lblExplicacion.setId("labelCalculadora");

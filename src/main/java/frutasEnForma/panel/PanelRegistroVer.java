@@ -27,6 +27,7 @@ public class PanelRegistroVer extends GridPane {
 
 		TextField txtIdRegistro = new TextField();
 		InsIdRegistro = Integer.valueOf(txtIdRegistro.getText());
+
 		Label lblMuestraRegistro = new Label(String
 				.valueOf(RegistroDietasDAO.getRegistroDietas(App.con, RegistroDietasDAO.id).getIdRegistroDietas()));
 		Label lblMuestraNombreRegistro = new Label(
@@ -38,7 +39,7 @@ public class PanelRegistroVer extends GridPane {
 		Label lblMuestraFchFin = new Label(
 				String.valueOf(RegistroDietasDAO.getRegistroDietas(App.con, RegistroDietasDAO.id).getFechaFin()));
 
-		Button Salir = new Button("Salir");
+		Button salir = new Button("Salir");
 
 		panelRegistroDietas.add(lblRegistro, 0, 0);
 		panelRegistroDietas.add(lblMuestraRegistro, 1, 0);
@@ -55,14 +56,32 @@ public class PanelRegistroVer extends GridPane {
 		panelRegistroDietas.add(lblFechFin, 0, 4);
 		panelRegistroDietas.add(lblMuestraFchFin, 1, 4);
 
-		panelRegistroDietas.add(Salir, 0, 5);
+		panelRegistroDietas.add(salir, 0, 5);
 
-		panelRegistroDietas.setMargin(Salir, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblRegistro, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblNombreRegristro, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblDiasRealiz, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblFechIn, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblFechFin, new Insets(5, 10, 5, 10));
+
+		panelRegistroDietas.setMargin(txtIdRegistro, new Insets(5, 10, 5, 10));
+
+		panelRegistroDietas.setMargin(lblMuestraRegistro, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblMuestraNombreRegistro, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblMuestraFchIn, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblMuestraFchFin, new Insets(5, 10, 5, 10));
+
+		panelRegistroDietas.setMargin(salir, new Insets(5, 10, 5, 10));
 
 		Scene scene = new Scene(panelRegistroDietas, 600, 600);
 
 		ventanaEmergente.setScene(scene);
 		ventanaEmergente.setTitle("Regristro Dieta");
 		ventanaEmergente.show();
+
+		salir.setOnAction(e -> {
+			ventanaEmergente.close();
+
+		});
 	}
 }

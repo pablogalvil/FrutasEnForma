@@ -1,14 +1,15 @@
 package frutasEnForma.panel;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class PanelRecetas extends GridPane {
+public class PanelRecetasRegistrar extends GridPane {
 
 	private int PNLidRec;
 	private String PNLnombre;
@@ -16,10 +17,12 @@ public class PanelRecetas extends GridPane {
 	private String PNLingredientes;
 	private String PNLpasos;
 
-	public PanelRecetas() {
-		Stage ventanaEmergente = new Stage();
+	public PanelRecetasRegistrar() {
+		Stage stageRegistrarRecetas = new Stage();
 
 		GridPane panelRegistroRecetas = new GridPane();
+
+		panelRegistroRecetas.setAlignment(Pos.CENTER);
 
 		// Definimos las label
 		Label lblRecetas = new Label("Recetas");
@@ -35,9 +38,6 @@ public class PanelRecetas extends GridPane {
 		TextField txtTiempoPrep = new TextField();
 		TextField txtIngred = new TextField();
 		TextField txtPasos = new TextField();
-
-		// Ponemos el boton de salir
-		Button Salir = new Button("Confirmar");
 
 		// Hacemos el panel de registros de Recetas
 		panelRegistroRecetas.add(lblRecetas, 0, 0);
@@ -65,49 +65,37 @@ public class PanelRecetas extends GridPane {
 		panelRegistroRecetas.setMargin(txtIngred, new Insets(5, 10, 5, 10));
 		panelRegistroRecetas.setMargin(txtPasos, new Insets(5, 10, 5, 10));
 
-		// Hago el panel de salir
-		panelRegistroRecetas.setMargin(Salir, new Insets(5, 10, 5, 10));
-
 		// La scene
-		Scene scene = new Scene(panelRegistroRecetas, 800, 600);
+		Scene sceneRegistrarRecetas = new Scene(panelRegistroRecetas, 800, 600);
 
-		// INSERTAR
-	}
+		sceneRegistrarRecetas.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+		sceneRegistrarRecetas.getRoot().getStyleClass().add("body");
 
-	// BORRAR
-	public void BorrarRecetas() {
-		Stage ventanaEmergente = new Stage();
+		lblRecetas.setId("labelRecetas");
+		lblNombre.setId("labelRecetas");
+		lblTiempoPrep.setId("labelRecetas");
+		lblIngred.setId("labelRecetas");
+		lblPasos.setId("labelRecetas");
 
-		GridPane panelBorrarRecetas = new GridPane();
+		txtRecetas.setId("txtRecetas");
+		txtNombre.setId("txtRecetas");
+		txtTiempoPrep.setId("txtRecetas");
+		txtIngred.setId("txtRecetas");
+		txtPasos.setId("txtRecetas");
 
-		Label lblBorrarNombre = new Label("Borramos a partir del nombre que tenga la receta");
+		this.setHalignment(lblRecetas, HPos.CENTER);
+		this.setHalignment(lblNombre, HPos.CENTER);
+		this.setHalignment(lblTiempoPrep, HPos.CENTER);
+		this.setHalignment(lblIngred, HPos.CENTER);
+		this.setHalignment(lblPasos, HPos.CENTER);
+		this.setHalignment(txtRecetas, HPos.CENTER);
+		this.setHalignment(txtNombre, HPos.CENTER);
+		this.setHalignment(txtTiempoPrep, HPos.CENTER);
+		this.setHalignment(txtIngred, HPos.CENTER);
+		this.setHalignment(txtPasos, HPos.CENTER);
 
-		TextField txtBorrarNombre = new TextField();
-
-		String BorrarNombre = txtBorrarNombre.getText();
-
-		// Botones de confirmar y salir
-
-		Button Confirmar = new Button("Confirmar");
-		Button Salir = new Button("Salir");
-
-		// Label
-
-		panelBorrarRecetas.add(lblBorrarNombre, 0, 0);
-		panelBorrarRecetas.add(txtBorrarNombre, 0, 1);
-		panelBorrarRecetas.add(Confirmar, 0, 2);
-		panelBorrarRecetas.add(Salir, 0, 3);
-
-		panelBorrarRecetas.setMargin(lblBorrarNombre, new Insets(5, 10, 5, 10));
-		panelBorrarRecetas.setMargin(txtBorrarNombre, new Insets(5, 10, 5, 10));
-		panelBorrarRecetas.setMargin(Confirmar, new Insets(5, 10, 5, 10));
-		panelBorrarRecetas.setMargin(Salir, new Insets(5, 10, 5, 10));
-
-		Scene scene = new Scene(panelBorrarRecetas, 800, 600);
-
-		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Borrar Receta");
-		ventanaEmergente.show();
-
+		stageRegistrarRecetas.setScene(sceneRegistrarRecetas);
+		stageRegistrarRecetas.setTitle("Borrar Receta");
+		stageRegistrarRecetas.show();
 	}
 }

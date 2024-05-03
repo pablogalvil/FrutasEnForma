@@ -1,5 +1,7 @@
 package frutasEnForma.panel;
 
+import frutasEnForma.App;
+import frutasEnForma.model.ListaDietasDAO;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,18 +23,21 @@ public class PanelListaDietas extends GridPane {
 		Label lblNombreDietas = new Label("Nombre Dietas");
 		Label lblNumComidas = new Label("Numero Comidas");
 
-		Label lblMuestraDieta = new Label();
-		Label lblMuestraNombreDietas = new Label();
-		Label lblMuestraNumComidas = new Label();
+		Label lblMuestraDieta = new Label(
+				String.valueOf(ListaDietasDAO.getListaDietas(App.con, ListaDietasDAO.id).getIdListaDietas()));
+		Label lblMuestraNombreDietas = new Label(
+				String.valueOf(ListaDietasDAO.getListaDietas(App.con, ListaDietasDAO.id).getNombre()));
+		Label lblMuestraNumComidas = new Label(
+				String.valueOf(ListaDietasDAO.getListaDietas(App.con, ListaDietasDAO.id).getNumComidas()));
 
-		Button Salir = new Button("Confirm");
+		Button salir = new Button("Confirm");
 
 		panelRegistroDietas.add(lblDietas, 0, 0);
 		panelRegistroDietas.add(lblMuestraDieta, 1, 0);
 		panelRegistroDietas.add(lblNombreDietas, 0, 1);
 		panelRegistroDietas.add(lblMuestraNombreDietas, 1, 1);
 		panelRegistroDietas.add(lblNumComidas, 0, 2);
-		panelRegistroDietas.add(Salir, 0, 3);
+		panelRegistroDietas.add(salir, 0, 3);
 
 		panelRegistroDietas.setMargin(lblDietas, new Insets(5, 10, 5, 10));
 		panelRegistroDietas.setMargin(lblNombreDietas, new Insets(5, 10, 5, 10));
@@ -42,12 +47,18 @@ public class PanelListaDietas extends GridPane {
 		panelRegistroDietas.setMargin(lblMuestraNombreDietas, new Insets(5, 10, 5, 10));
 		panelRegistroDietas.setMargin(lblNumComidas, new Insets(5, 10, 5, 10));
 
-		panelRegistroDietas.setMargin(Salir, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(salir, new Insets(5, 10, 5, 10));
 
 		Scene scene = new Scene(panelRegistroDietas, 600, 600);
 
 		ventanaEmergente.setScene(scene);
 		ventanaEmergente.setTitle("Regristro Dieta");
 		ventanaEmergente.show();
+
+		salir.setOnAction(e -> {
+			ventanaEmergente.close();
+
+		});
 	}
+
 }

@@ -32,7 +32,12 @@ public class PanelCalculadoraImc extends GridPane {
 		panelImc.add(lblResultado, 0, 2);
 
 		Scene sceneImc = new Scene(panelImc, 800, 600);
-		sceneImc.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
+		if (App.configuracion.getTheme() == 1)
+			sceneImc.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneImc.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
 		sceneImc.getRoot().getStyleClass().add("body");
 
 		lblExplicacion.setId("labelCalculadora");

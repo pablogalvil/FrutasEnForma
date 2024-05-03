@@ -1,11 +1,10 @@
 /*Clase general para todas las escenas*/
 .body {
-	-fx-background-image: url(../img/FrutasEnFormaClaro1000X750.png);
+	-fx-background-image: url(../img/FrutasEnFormaOscuro1000X750.png);
 	-fx-background-size: contain;
 	-fx-font-size: large;
 }
 .menubar{
-	-fx-max-width: 390px;
 	-fx-background-color: #a1a1c5;
 	-fx-border-radius: 5px;
 	-fx-border-color: purple;
