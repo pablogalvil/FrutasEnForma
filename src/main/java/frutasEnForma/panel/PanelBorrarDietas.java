@@ -2,7 +2,6 @@ package frutasEnForma.panel;
 
 import frutasEnForma.App;
 import frutasEnForma.model.ListaDietasDAO;
-import frutasEnForma.model.ListaDietasDO;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,14 +18,17 @@ public class PanelBorrarDietas extends GridPane {
 
 	public static int InsId;
 
-	public void PanelBorrarDietas() {
+	/**
+	 * Panel que borra dietas a partir de su id.
+	 */
+	public PanelBorrarDietas() {
 
 		Stage stageListaBorrar = new Stage();
 
 		GridPane panelListaBorrar = new GridPane();
 		panelListaBorrar.setAlignment(Pos.CENTER);
 
-		Label lblInsId = new Label("Inserta el Id de la dieta");
+		Label lblInsId = new Label("Inserta el numero de la dieta\n(usa la funcion de ver para saberlo)");
 
 		TextField txtInsId = new TextField();
 
@@ -47,6 +49,7 @@ public class PanelBorrarDietas extends GridPane {
 
 		Scene sceneListaBorrar = new Scene(panelListaBorrar, 600, 600);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
 			sceneListaBorrar.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else
@@ -60,16 +63,14 @@ public class PanelBorrarDietas extends GridPane {
 
 		confirmar.setOnAction(e -> {
 			try {
-				ListaDietasDO temp = new ListaDietasDO();
-				temp.setNumComidas(Integer.valueOf(txtInsId.getText()));
-
-				if (ListaDietasDAO.aniadirLista(App.con, temp)) {
+				// Si es true se cierra la ventana, si es false salta una alerta
+				if (ListaDietasDAO.borrarDieta(App.con, Integer.valueOf(txtInsId.getText()))) {
 					stageListaBorrar.close();
-
 				} else {
 					alertaBorrar();
 				}
 			} catch (Exception error) {
+				// En el error muestra la alerta tambien.
 				error.printStackTrace();
 				alertaBorrar();
 			}
@@ -77,6 +78,9 @@ public class PanelBorrarDietas extends GridPane {
 		});
 	}
 
+	/**
+	 * Alerta que salta si hay problemas al borrar la dieta
+	 */
 	public void alertaBorrar() {
 		AlertType tipoAlerta = Alert.AlertType.WARNING;
 		Alert infoAlert = new Alert(tipoAlerta);

@@ -7,25 +7,34 @@ import java.sql.SQLException;
 
 public class RegistroDietasDAO {
 
-	public static int id;
-	public static int diasRealizados;
-	public static int fechaInicio;
-	public static int fechaFin;
-	public static String nombre;
-
-	public static RegistroDietasDO getRegistroDietas(Connection con, int idRegistroDietas) {
+	/**
+	 * Funcion que muestra los registros de dietas
+	 * 
+	 * @param con
+	 * @param insNombre
+	 * @return Devuelve los resgistros si todo funciona correctamente y devuelve
+	 *         null en caso de que no funcione
+	 *
+	 */
+	public static RegistroDietasDO getRegistroDietas(Connection con, String insNombre) {
 
 		try {
+			int id = 0;
+			int diasRealizados = 0;
+			String fechaInicio = "";
+			String fechaFin = "";
+			String nombre = "";
 
 			// Creamos la sentencia a ejecutar
-			String query = "SELECT * FROM RegistroDietas WHERE idRegistroDietas=?";
+			String query = "SELECT * FROM RegistroDietas WHERE nombre = ? AND Usuario_idUsuario = ?";
 
 			// Primer paso creo un statement
 			PreparedStatement pstmt = con.prepareStatement(query);
 
 			// Asignamos el valor del idRegistroDietas a la
 			// interrogacion
-			pstmt.setInt(1, idRegistroDietas);
+			pstmt.setString(1, insNombre);
+			pstmt.setInt(2, UsuarioDAO.idUsuario);
 
 			RegistroDietasDO temp = new RegistroDietasDO();
 
@@ -37,9 +46,19 @@ public class RegistroDietasDAO {
 
 			id = rs.getInt(1);
 			diasRealizados = rs.getInt(2);
-			fechaInicio = rs.getInt(3);
-			fechaFin = rs.getInt(4);
+			fechaInicio = rs.getString(3);
+			fechaFin = rs.getString(4);
 			nombre = rs.getString(5);
+
+			// Para que se vea mas bonito, si la fechaFin es null, lo pasamos al valor 0.
+			if (fechaFin == null)
+				fechaFin = "0";
+
+			temp.setIdRegistroDietas(id);
+			temp.setDiasRealizados(diasRealizados);
+			temp.setFechaInicio(fechaInicio);
+			temp.setFechaFin(fechaFin);
+			temp.setNombre(nombre);
 
 			// devolvemos el resulset
 			return temp;
@@ -52,6 +71,15 @@ public class RegistroDietasDAO {
 		}
 
 	}
+
+	/**
+	 * Funcion que inserta los registros de dietas
+	 * 
+	 * @param con
+	 * @param nombre Recoge los datos insertados en los textfields
+	 * @return true si todo va bien, false si no
+	 *
+	 */
 
 	public static boolean seleccionDietas(Connection con, String nombre) {
 		try {
@@ -66,9 +94,11 @@ public class RegistroDietasDAO {
 
 			ResultSet rs = pstmt.executeQuery();
 
+			// Mientras hayan rows en la base de datos sueguirá el ciclo
 			while (rs.next()) {
 				String tempNombre = rs.getString(1);
-
+				// Si el nombre que hemos sacado de la base de datos coincide con el que se haya
+				// puesto te mostrará el registro
 				if (tempNombre.equals(nombre)) {
 					fecha = rs.getString(2);
 					idLista = rs.getInt(3);
@@ -77,10 +107,11 @@ public class RegistroDietasDAO {
 					id++;
 				continue;
 			}
+			// En caso de que no exista el nombre en la base de datos se devolverá false
 			if (!existe)
 				return false;
 
-			String regis = "INSERT INTO registroDietas (diasRealizados, fechaincio, fechafin, nombre, Usuario_idUsuario) VALUES (?,?,?,?,?,?)";
+			String regis = "INSERT INTO registroDietas (diasRealizados, fechainicio, fechafin, nombre, Usuario_idUsuario) VALUES (?,?,?,?,?)";
 			PreparedStatement pstmt2 = con.prepareStatement(regis);
 
 			pstmt2.setInt(1, 1);
@@ -90,7 +121,7 @@ public class RegistroDietasDAO {
 			pstmt2.setInt(5, UsuarioDAO.idUsuario);
 
 			int rowsAffected = pstmt2.executeUpdate();
-
+			// Si se cambia una línea en el base de datos devolverá true, si no false
 			if (rowsAffected == 1)
 				return true;
 			else

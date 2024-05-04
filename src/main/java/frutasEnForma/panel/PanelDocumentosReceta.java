@@ -19,21 +19,38 @@ import javafx.stage.Stage;
 public class PanelDocumentosReceta extends GridPane {
 	private static String valor;
 
+	/**
+	 * Panel que muestra los documentos de las recetas que tenemos en nuestra base
+	 * de datos por defecto.
+	 */
 	public PanelDocumentosReceta() {
+
+		// Creamos el Stage y el GridPane de mostrar Recetas
 
 		Stage stageDocumentosRecetas = new Stage();
 
 		GridPane panelMostrarRecetas = new GridPane();
 
+		// Creamos el panelMostrarRecetas y lo alineamos en el centro
+
 		panelMostrarRecetas.setAlignment(Pos.CENTER);
+
+		// Hacemos el ChoiceBox, que eligirá entre las distintas dietas que tenemos.
 
 		ChoiceBox chbEligeDieta = new ChoiceBox();
 		chbEligeDieta.getItems().addAll("Dieta Dash", "Dieta Frutariana", "Dieta Mediterranea");
 
+		// Creamos el boton de confirmar , que mostrará las recetas
+
 		Button confirmar = new Button("Mostrar Recetas");
+
+		// Ponemos los paneles .add
 
 		panelMostrarRecetas.add(chbEligeDieta, 0, 0);
 		panelMostrarRecetas.add(confirmar, 0, 1);
+
+		// Hacemos un setOnAction para coger el valor del choiceBox cuando lo
+		// seleccionan.
 
 		chbEligeDieta.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -44,6 +61,7 @@ public class PanelDocumentosReceta extends GridPane {
 		});
 
 		confirmar.setOnAction(event -> {
+			// Cambiamos la ruta dependiendo del pdf que queramos mostrar
 			if (valor.equals("Dieta Dash"))
 				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaDash.pdf");
 			else if (valor.equals("Dieta Frutariana"))
@@ -73,8 +91,11 @@ public class PanelDocumentosReceta extends GridPane {
 
 	}
 
-	// ABRIR UN ARCHIVO PDF
-
+	/**
+	 * Funcion que abre el pdf
+	 * 
+	 * @param ruta dada dependiendo del valor del choicebox
+	 */
 	public static void abrirPDF(String ruta) {
 
 		// RUTA DEL PDF
@@ -84,6 +105,7 @@ public class PanelDocumentosReceta extends GridPane {
 		try {
 
 			File file = new File(pdfManual);
+			// Si el archivo existe, lo muestra, si no, dice que no existe.
 			if (file.exists()) {
 				Desktop.getDesktop().open(file);
 			} else {

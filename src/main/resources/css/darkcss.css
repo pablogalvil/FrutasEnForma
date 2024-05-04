@@ -7,40 +7,45 @@
 }
 .menubar{
 	-fx-max-width: 500px;
-	-fx-background-color: #a1a1c5;
-	-fx-border-color: purple;
+	-fx-background-color: lightgray;
+	-fx-border-color: rgb(105, 185, 104);
 }
 /*Labels de la pagina*/
 .body .label{
 	-fx-padding: 10px;
 	-fx-font-weight: bold;
-	-fx-text-fill: red;
+	-fx-text-fill: rgb(213, 236, 109);
 }
 /*Botones de la pagina*/
 .body .button{
 	-fx-padding: 2px;
-	-fx-background-color: rgb(225, 250, 130);
-	-fx-border-color: rgb(179, 179, 179);
+	-fx-text-fill: rgb(213, 236, 109);
+	-fx-background-color: rgb(77, 82, 77);
+	-fx-border-color: rgb(225, 250, 130);
 	-fx-border-radius: 5px;
 	-fx-border-width: 2px;
 }
 /*:Hover del boton principal*/
 .body .button:hover{
-	-fx-background-color: lightgray;
+	-fx-background-color: black;
 	-fx-border-color: rgb(255, 125, 125);
 }
 /*TextFields de la pagina*/
 .body .text-field{
 	-fx-padding: 4px;
-	-fx-background-color: rgb(160,159,243);
-	-fx-border-color: rgb(99, 240, 253);
+	-fx-background-color: lightgray;
+	-fx-border-color: rgb(56, 104, 203);
 }
 /*Checkbox de la pagina*/
+.body .check-box{
+	-fx-text-fill: rgb(213, 236, 109);
+}
+/*Caja del CheckBox*/
 .body .check-box .box{
 	-fx-border-style: solid;
 	-fx-border-width: 3px;
 	-fx-border-color: lightgrey;
-	-fx-background-color: rgb(99, 240, 253);
+	-fx-background-color: rgb(225, 250, 130);
 }
 /*Choicebox de la pagina*/
 .body .choice-box{
@@ -49,7 +54,11 @@
 }
 /*Label de los choicebox*/
 .body .choice-box .label{
-	-fx-text-fill: red;
+	-fx-text-fill: rgb(204, 108, 29);
+	-fx-background-color: lightgray;
+}
+.body .choice-box .menu-item{
+	-fx-background-color: lightgray;
 }
 /*Flecha de los choicebox*/
 .body .choice-box .arrow{
@@ -59,18 +68,24 @@
 .menubar .label{
 	-fx-font-size: large;
 	-fx-font-weight: normal;
-	-fx-text-fill: red;
+	-fx-text-fill: rgb(204, 108, 29);
+}
+.menubar .menu{
+	-fx-background-color: lightgray;
+}
+.menubar .menu-item{
+	-fx-background-color: lightgray;
 }
 /*Labels con el resultado de las calculadoras*/
 #labelResultadoCalculadora{
 	-fx-padding: 4px;
-	-fx-text-fill: rgb(255, 125, 125);
+	-fx-text-fill: rgb(204, 108, 29);
 }
 /*Iconos*/
 .iconos{
 	-fx-max-width: 200px;
-	-fx-background-color: lightgray;
+	-fx-background-color: rgb(77, 82, 77);
 }
 .iconos .menu{
-	-fx-background-color: lightgray;
+	-fx-background-color: rgb(77, 82, 77);
 }

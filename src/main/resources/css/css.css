@@ -61,6 +61,12 @@
 	-fx-font-weight: normal;
 	-fx-text-fill: red;
 }
+.menubar .menu{
+	-fx-background-color: #a1a1c5;
+}
+.menubar .menu-item{
+	-fx-background-color: #a1a1c5;
+}
 /*Labels con el resultado de las calculadoras*/
 #labelResultadoCalculadora{
 	-fx-padding: 4px;
@@ -69,8 +75,8 @@
 /*Iconos*/
 .iconos{
 	-fx-max-width: 200px;
-	-fx-background-color: lightgray;
+	-fx-background-color: rgb(225, 250, 130);
 }
 .iconos .menu{
-	-fx-background-color: lightgray;
+	-fx-background-color: rgb(225, 250, 130);
 }

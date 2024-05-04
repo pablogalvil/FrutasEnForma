@@ -6,8 +6,13 @@ import java.sql.SQLException;
 
 public class RecetasDAO {
 
-	// INSERTAR
-
+	/**
+	 * Funcion que inserta recetas
+	 * 
+	 * @param con
+	 * @param recetas recogiendo los datos insertados en los textfields
+	 * @return true si todo va bien, false si no
+	 */
 	public static boolean insertRecetas(Connection con, RecetasDO recetas) {
 
 		try {
@@ -16,18 +21,18 @@ public class RecetasDAO {
 
 			// Creamos la query con los datos que tenemos
 
-			String query = ("INSERT INTO Recetas (idRecetas, nombre, tiempoPreparacion, ingredientes, pasos) VALUES(?,?,?)");
+			String query = ("INSERT INTO Recetas (nombre, tiempoPreparacion, ingredientes, pasos) VALUES(?,?,?,?)");
 
 			PreparedStatement pstmt = con.prepareStatement(query);
-			pstmt.setString(2, recetas.getNombre());
-			pstmt.setInt(3, recetas.getTiempoPreparacion());
-			pstmt.setString(4, recetas.getIngredientes());
-			pstmt.setString(5, recetas.getPasos());
+			pstmt.setString(1, recetas.getNombre());
+			pstmt.setInt(2, recetas.getTiempoPreparacion());
+			pstmt.setString(3, recetas.getIngredientes());
+			pstmt.setString(4, recetas.getPasos());
 
 			// Ejecutamos la query
 			numAff = pstmt.executeUpdate();
 
-			if (numAff == 0)
+			if (numAff == 1)
 				return true;
 			else
 				return false;
@@ -40,17 +45,23 @@ public class RecetasDAO {
 
 	}
 
-	// ELIMINAR
-	public static boolean borrarRecetas(Connection con, int idrecetas) {
+	/**
+	 * Funcion que borra recetas
+	 * 
+	 * @param con
+	 * @param nombre insertado en el textfield
+	 * @return true si todo va bien, false si no
+	 */
+	public static boolean borrarRecetas(Connection con, String nombre) {
 
 		try {
-			String query = "DELETE FROM Recetas WHERE idRecetas = ?";
+			String query = "DELETE FROM Recetas WHERE nombre = ?";
 
 			PreparedStatement pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, idrecetas);
+			pstmt.setString(1, nombre);
 			int Affected = pstmt.executeUpdate();
 
-			if (Affected == 0)
+			if (Affected == 1)
 				return true;
 			else
 				return false;

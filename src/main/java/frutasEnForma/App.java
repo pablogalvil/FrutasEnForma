@@ -28,6 +28,7 @@ public class App extends Application {
 
 		scene = new Scene(panelPrin, 1000, 750);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (configuracion.getTheme() == 1)
 			scene.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else
@@ -39,8 +40,11 @@ public class App extends Application {
 		stage.setScene(scene);
 		stage.show();
 
+		// Aplicamos la escala usando la configuracion que dejo el usuario justo cuando
+		// iniciamos la aplicacion
 		panelPrin.applyScale(stage);
 
+		// Guardamos la configuracion.
 		stage.setOnCloseRequest(e -> {
 			configuracion.setScale(PanelPrincipal.numEscala);
 			ConfiguracionUsuario.escribirConfig(configuracion.getTheme(), configuracion.getScale());

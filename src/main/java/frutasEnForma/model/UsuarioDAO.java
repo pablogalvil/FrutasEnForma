@@ -34,6 +34,8 @@ public class UsuarioDAO {
 			while (rs.next()) {
 				String tempContrasenia = rs.getString(1);
 
+				// Si las contraseñas coinciden, guardamos el id para llamar al resto de
+				// funciones y devolvemos true, si no devolvemos false.
 				if (tempContrasenia.equals(contrasenia)) {
 					idUsuario = rs.getInt(2);
 					return true;
@@ -153,6 +155,13 @@ public class UsuarioDAO {
 		}
 	}
 
+	/**
+	 * Funcion para insertar usuarios en la base de datos al registrarse.
+	 * 
+	 * @param con
+	 * @param usuario con datos introducidos en los textfields.
+	 * @return true si todo va bien, false si no.
+	 */
 	public static boolean aniadirUsuario(Connection con, UsuarioDO usuario) {
 
 		try {
@@ -171,6 +180,8 @@ public class UsuarioDAO {
 			// Ejecutamos la query
 			numAff = pstmt.executeUpdate();
 
+			// Si el numero de filas afectadas es 1, devolvemos true, si no devolvemos
+			// false.
 			if (numAff == 1)
 				return true;
 			else
@@ -183,6 +194,16 @@ public class UsuarioDAO {
 		}
 	}
 
+	/**
+	 * Funcion que actualiza la base de datos de un usuario, modificando su peso,
+	 * edad y altura en funcion de los cambios que ponga el usuario.
+	 * 
+	 * @param con
+	 * @param peso   introducido en el textfield.
+	 * @param altura introducida en el textfield.
+	 * @param edad   introducida en el textfield.
+	 * @return true si todo ha ido bien, false si no.
+	 */
 	public static boolean updateUsuario(Connection con, double peso, int altura, int edad) {
 		try {
 			String query = "UPDATE USUARIO SET peso=?, altura=?, edad=? WHERE idUsuario = ?";
@@ -196,6 +217,8 @@ public class UsuarioDAO {
 
 			int numAff = pstmt.executeUpdate();
 
+			// Si el numero de filas afectadas es 1 devolvemos true, si no devolvemos
+			// false
 			if (numAff == 1)
 				return true;
 			else

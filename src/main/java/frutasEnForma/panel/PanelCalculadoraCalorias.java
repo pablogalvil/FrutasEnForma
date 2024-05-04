@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 public class PanelCalculadoraCalorias extends GridPane {
 
+	/**
+	 * Panel que calcula las calorias que debe consumir el usuario segun los datos
+	 * guardados en nuestra base de datos.
+	 */
 	public PanelCalculadoraCalorias() {
 		double resultado = UsuarioDAO.calculoCalorias(UsuarioDAO.idUsuario, App.con);
 
@@ -42,6 +46,7 @@ public class PanelCalculadoraCalorias extends GridPane {
 
 		Scene sceneCalorias = new Scene(panelCalorias, 800, 600);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
 			sceneCalorias.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else

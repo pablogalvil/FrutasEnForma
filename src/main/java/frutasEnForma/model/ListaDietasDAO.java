@@ -12,24 +12,26 @@ public class ListaDietasDAO {
 	public static int numCom;
 
 	/**
-	 * Coge la lista de dietas
+	 * Funcion que muestra las listas de dietas
 	 * 
 	 * @param con
-	 * @param idListaDietas
+	 * @param nombre
+	 * @return Devuelve la listas si todo funciona correctamente y devuelve null en
+	 *         caso de que no funcione
 	 */
-	public static ListaDietasDO getListaDietas(Connection con, int idListaDietas) {
+	public static ListaDietasDO getListaDietas(Connection con, String nombre) {
 
 		try {
 
 			// Creamos la sentencia a ejecutar
-			String query = "SELECT * FROM listaDietas WHERE idListaDietas=?";
+			String query = "SELECT * FROM listaDietas WHERE nombre=?";
 
 			// Primer paso creo un statement
 			PreparedStatement pstmt = con.prepareStatement(query);
 
 			// Asignamos el valor del idListaDietas a la
 			// interrogacion
-			pstmt.setInt(1, idListaDietas);
+			pstmt.setString(1, nombre);
 
 			// Ejecutamos la query y los resultados
 			// quedan en el resulset
@@ -51,6 +53,15 @@ public class ListaDietasDAO {
 
 	}
 
+	/**
+	 * Funcion que inserta los registros de dietas
+	 * 
+	 * @param con
+	 * @param dietas Recoge los datos insertados en los textfields
+	 * @return true si todo va bien, false si no
+	 *
+	 */
+
 	public static boolean aniadirLista(Connection con, ListaDietasDO dietas) {
 
 		try {
@@ -64,8 +75,8 @@ public class ListaDietasDAO {
 
 			// Ejecutamos la query
 			numAff = pstmt.executeUpdate();
-
-			if (numAff == 0)
+			// Si se cambia una línea en el base de datos devolverá true, si no false
+			if (numAff == 1)
 				return true;
 			else
 				return false;
@@ -77,6 +88,15 @@ public class ListaDietasDAO {
 		}
 	}
 
+	/**
+	 * Funcion que inserta los registros de dietas
+	 * 
+	 * @param con
+	 * @param idListaDietas Recoge el id para borrar una dieta
+	 * @return true si todo va bien, false si no
+	 *
+	 */
+
 	// Eliminar Lista de Dietas
 	public static boolean borrarDieta(Connection con, int idListaDietas) {
 		try {
@@ -84,8 +104,8 @@ public class ListaDietasDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, idListaDietas);
 			int rowsAffected = ps.executeUpdate();
-
-			if (rowsAffected == 0)
+			// Si se cambia una línea en el base de datos devolverá true, si no false
+			if (rowsAffected == 1)
 				return true;
 			else
 				return false;

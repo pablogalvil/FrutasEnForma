@@ -30,6 +30,11 @@ public class PanelPrincipal extends GridPane {
 	public static Scale escala = new Scale(numEscala, numEscala);
 	private int zoomLevel = 100;
 
+	/**
+	 * Panel principal de la aplicacion
+	 * 
+	 * @param stage
+	 */
 	public PanelPrincipal(Stage stage) {
 
 		// ***************************************************
@@ -218,11 +223,12 @@ public class PanelPrincipal extends GridPane {
 		mRegistroDietas.getItems().addAll(iRegistroDietasVer, iRegistroDietasAniadir);
 
 		Menu mRecetas = new Menu("Recetas");
+		MenuItem iRegistrarComidas = new MenuItem("Registrar comidas");
 		MenuItem iMostrarRecetas = new MenuItem("Mostrar recetas");
 		MenuItem iRegistrarRecetas = new MenuItem("Registrar recetas");
 		MenuItem iBorrarRecetas = new MenuItem("Borrar recetas");
 
-		mRecetas.getItems().addAll(iMostrarRecetas, iRegistrarRecetas, iBorrarRecetas);
+		mRecetas.getItems().addAll(iRegistrarComidas, iMostrarRecetas, iRegistrarRecetas, iBorrarRecetas);
 
 		Menu mAyuda = new Menu("Ayuda");
 		MenuItem iManual = new MenuItem("Manual");
@@ -231,6 +237,10 @@ public class PanelPrincipal extends GridPane {
 		mAyuda.getItems().addAll(iManual, iAcercaDe);
 
 		menu.getMenus().addAll(mUser, mListaDietas, mRegistroDietas, mRecetas, mAyuda);
+
+		// ***************************************************
+		// ****************VARIABLES MIEMBRO******************
+		// ***************************************************
 
 		Label lblInicio = new Label("Bienvenido, por favor inicie sesion antes de continuar utilizando la aplicacion.");
 		Label lblAviso = new Label(
@@ -273,6 +283,10 @@ public class PanelPrincipal extends GridPane {
 		this.setMargin(botonLogOut, new Insets(5, 10, 5, 10));
 		this.setMargin(botonFondo, new Insets(5, 10, 5, 10));
 
+		// ***************************************************
+		// *******************MENU ITEMS**********************
+		// ***************************************************
+
 		// MenuItem inicio de sesion
 		iInicioSesion.setOnAction(e -> {
 			PanelInicioSesion panelInicio = new PanelInicioSesion();
@@ -288,18 +302,27 @@ public class PanelPrincipal extends GridPane {
 
 		// MenuItems de lista dietas
 		iListaDietasVer.setOnAction(e -> {
-			PanelListaDietas Listas = new PanelListaDietas();
+			PanelListaDietas mostrarListas = new PanelListaDietas();
 		});
 		iListaDietasAniadir.setOnAction(e -> {
-			PanelListaDietas Listas = new PanelListaDietas();
+			PanelAniadirLista aniadirListas = new PanelAniadirLista();
+		});
+		iListaDietasBorrar.setOnAction(e -> {
+			PanelBorrarDietas borrarDietas = new PanelBorrarDietas();
 		});
 
 		// MenuItems de registro dietas
 		iRegistroDietasAniadir.setOnAction(e -> {
-			PanelRegistroDietas registro = new PanelRegistroDietas();
+			PanelRegistroDietas aniadirRegistro = new PanelRegistroDietas();
+		});
+		iRegistroDietasVer.setOnAction(e -> {
+			PanelRegistroVer verRegistro = new PanelRegistroVer();
 		});
 
 		// MenuItems de recetas
+		iRegistrarComidas.setOnAction(e -> {
+			PanelInsertarComidas registrarComida = new PanelInsertarComidas();
+		});
 		iMostrarRecetas.setOnAction(e -> {
 			PanelDocumentosReceta mostrarReceta = new PanelDocumentosReceta();
 		});
@@ -327,9 +350,9 @@ public class PanelPrincipal extends GridPane {
 			acercaDe();
 		});
 
-		/*
-		 * ICONOS
-		 */
+		// ***************************************************
+		// *********************ICONOS************************
+		// ***************************************************
 
 		botonLogIn.setOnAction(e -> {
 			PanelInicioSesion panelInicio = new PanelInicioSesion();
@@ -348,15 +371,16 @@ public class PanelPrincipal extends GridPane {
 				App.scene.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 			}
 		});
-
 		botonZoomIn.setOnAction(e -> {
 			try {
+				// Si la escala supera el 1.2 saltara una alerta y si no se ejecutara la funcion
+				// que hace el zoom.
 				if (numEscala < 1.2) {
 					numEscala *= 1.1;
 
 					applyScale(stage);
 				} else {
-					alertaZoom();
+					alertaZoomIn();
 				}
 			} catch (Exception exp) {
 				exp.printStackTrace();
@@ -365,10 +389,15 @@ public class PanelPrincipal extends GridPane {
 		botonZoomOut.setOnAction(e -> {
 
 			try {
+				// Si la escala es menor del 0.5 saltara una alerta y si no se ejecutara la
+				// funcion que hace el zoom.
+				if (numEscala > 0.5) {
+					numEscala /= 1.1;
 
-				numEscala /= 1.1;
-
-				applyScale(stage);
+					applyScale(stage);
+				} else {
+					alertaZoomOut();
+				}
 
 			} catch (Exception exp) {
 				exp.printStackTrace();
@@ -393,9 +422,9 @@ public class PanelPrincipal extends GridPane {
 			stage.close();
 		});
 
-		/*
-		 * BOTONES
-		 */
+		// ***************************************************
+		// *********************Botones***********************
+		// ***************************************************
 
 		// Botones de lista de dietas
 		btnListaDietas.setOnAction(e -> {
@@ -436,43 +465,63 @@ public class PanelPrincipal extends GridPane {
 		infoAlert.showAndWait();
 	}
 
+	/**
+	 * Funcion para cambiar el zoom
+	 * 
+	 * @param stage
+	 */
 	public void applyScale(Stage stage) {
+		// Creditos a Sergio Pinto, que me ha explicado como se hace esta funcion.
+
+		// Sacamos la longitud de la escena
 		double sceneWidth = stage.getScene().getWidth();
 		double sceneHeight = stage.getScene().getHeight();
 
-		// Obtener las coordenadas del centro de la escena
+		// Sacamos las coordenadas del centro
 		double sceneCenterX = sceneWidth / 2;
 		double sceneCenterY = sceneHeight / 2;
 
-		// Actualizar el factor de escala en el objeto
-		// Scale
+		// Modifico la escala en funcion de la variable que guarda el valor de esta
 		escala.setX(numEscala);
 		escala.setY(numEscala);
 
-		// Calcular la nueva posición del centro de la
-		// imagen después del escalado
+		// Calculamos la posicion del centro después de cambiar la escala.
 		double newCenterX = sceneCenterX * numEscala;
 		double newCenterY = sceneCenterY * numEscala;
 
-		// Calcular el cambio en la posición del centro de
-		// la imagen
+		// Calculamos cuanto ha cambiado el centro
 		double deltaX = sceneCenterX - newCenterX;
 		double deltaY = sceneCenterY - newCenterY;
 
-		// Aplicar el escalamiento a toda la aplicación
-		// con el centro de la imagen como pivote
+		// Usamos el cambio del centro de la imagen para ajustar la escala en toda la
+		// pagina.
 		stage.getScene().getRoot().getTransforms().clear();
 		stage.getScene().getRoot().getTransforms().add(escala);
 		stage.getScene().getRoot().setTranslateX(deltaX);
 		stage.getScene().getRoot().setTranslateY(deltaY);
 	}
 
-	public void alertaZoom() {
+	/**
+	 * Alerta que salta si haces mas zoom del que permitimos.
+	 */
+	public void alertaZoomIn() {
 		AlertType tipoAlerta = Alert.AlertType.INFORMATION;
 		Alert infoAlert = new Alert(tipoAlerta);
 		infoAlert.setTitle("Alerta!");
 		infoAlert.setHeaderText("No puedes aumentar más.");
 		infoAlert.setContentText("Lo sentimos, nuestra aplicacion no permite más zoom.");
+		infoAlert.showAndWait();
+	}
+
+	/**
+	 * Alerta que salta si haces mas zoom out del que permitimos.
+	 */
+	public void alertaZoomOut() {
+		AlertType tipoAlerta = Alert.AlertType.INFORMATION;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Alerta!");
+		infoAlert.setHeaderText("No puedes disminuir más.");
+		infoAlert.setContentText("Lo sentimos, nuestra aplicacion no permite menos zoom.");
 		infoAlert.showAndWait();
 	}
 }

@@ -13,6 +13,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class PanelEditUser extends GridPane {
+	/**
+	 * Panel que usa el icono de editar usuario, con el se edita en la base de datos
+	 * el peso, la altura y la edad.
+	 */
 	public PanelEditUser() {
 		Stage ventanaEditUser = new Stage();
 
@@ -51,6 +55,7 @@ public class PanelEditUser extends GridPane {
 
 		Scene sceneEditUser = new Scene(panelEditUser, 800, 600);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
 			sceneEditUser.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else
@@ -63,6 +68,7 @@ public class PanelEditUser extends GridPane {
 		ventanaEditUser.show();
 
 		confirmar.setOnAction(e -> {
+			// Se hace el cambio y cierra la ventana
 			UsuarioDAO.updateUsuario(App.con, Double.valueOf(txtPeso.getText()), Integer.valueOf(txtAltura.getText()),
 					Integer.valueOf(txtEdad.getText()));
 			ventanaEditUser.close();

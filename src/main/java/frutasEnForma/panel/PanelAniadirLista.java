@@ -20,7 +20,11 @@ public class PanelAniadirLista extends GridPane {
 	public static String InsNom;
 	public static int InsCom;
 
-	public void PanelAniadirLista() {
+	/**
+	 * Panel que añade una dieta a la lista pidiendo el nombre de la dieta y su
+	 * numero de comidas.
+	 */
+	public PanelAniadirLista() {
 
 		Stage stageListaAniadir = new Stage();
 
@@ -34,14 +38,12 @@ public class PanelAniadirLista extends GridPane {
 		TextField txtInsCom = new TextField();
 
 		Button confirmar = new Button("Confirm");
-		Button salir = new Button("Salir");
 
 		panelListaAniadir.add(lblInsNom, 0, 0);
 		panelListaAniadir.add(txtInsNom, 1, 0);
 		panelListaAniadir.add(lblInsCom, 0, 1);
 		panelListaAniadir.add(txtInsCom, 1, 1);
 		panelListaAniadir.add(confirmar, 0, 2);
-		panelListaAniadir.add(salir, 1, 2);
 
 		panelListaAniadir.setMargin(lblInsNom, new Insets(5, 10, 5, 10));
 		panelListaAniadir.setMargin(lblInsCom, new Insets(5, 10, 5, 10));
@@ -50,7 +52,6 @@ public class PanelAniadirLista extends GridPane {
 		panelListaAniadir.setMargin(txtInsCom, new Insets(5, 10, 5, 10));
 
 		panelListaAniadir.setMargin(confirmar, new Insets(5, 10, 5, 10));
-		panelListaAniadir.setMargin(salir, new Insets(5, 10, 5, 10));
 
 		panelListaAniadir.setHalignment(lblInsNom, HPos.CENTER);
 		panelListaAniadir.setHalignment(lblInsCom, HPos.CENTER);
@@ -59,10 +60,10 @@ public class PanelAniadirLista extends GridPane {
 		panelListaAniadir.setHalignment(txtInsCom, HPos.CENTER);
 
 		panelListaAniadir.setHalignment(confirmar, HPos.CENTER);
-		panelListaAniadir.setHalignment(salir, HPos.CENTER);
 
 		Scene sceneListaAniadir = new Scene(panelListaAniadir, 800, 600);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
 			sceneListaAniadir.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else
@@ -80,13 +81,14 @@ public class PanelAniadirLista extends GridPane {
 				temp.setNombre(txtInsNom.getText());
 				temp.setNumComidas(Integer.valueOf(txtInsCom.getText()));
 
+				// Si da true se cierra la ventana, si da false salta una alerta.
 				if (ListaDietasDAO.aniadirLista(App.con, temp)) {
 					stageListaAniadir.close();
-
 				} else {
 					alertaRegistro();
 				}
 			} catch (Exception error) {
+				// Si salta la excepcion tambien salta la alerta
 				error.printStackTrace();
 				alertaRegistro();
 			}
@@ -94,6 +96,9 @@ public class PanelAniadirLista extends GridPane {
 		});
 	}
 
+	/**
+	 * Alerta que salta cuando hay problemas al intentar añadir una dieta.
+	 */
 	public void alertaRegistro() {
 		AlertType tipoAlerta = Alert.AlertType.WARNING;
 		Alert infoAlert = new Alert(tipoAlerta);

@@ -30,6 +30,9 @@ public class PanelInicioSesion extends GridPane {
 	private TextField edad;
 	private TextField sexo;
 
+	/**
+	 * Panel que te da a elegir entre registrarte o iniciar sesion
+	 */
 	public PanelInicioSesion() {
 		Stage sesionStage = new Stage();
 
@@ -43,6 +46,7 @@ public class PanelInicioSesion extends GridPane {
 
 		Scene sceneSesion = new Scene(panelSesion, 800, 600);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
 			sceneSesion.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else
@@ -70,6 +74,9 @@ public class PanelInicioSesion extends GridPane {
 		});
 	}
 
+	/**
+	 * Panel de inicio de sesion
+	 */
 	public void inSesion() {
 
 		Stage inicioStage = new Stage();
@@ -86,6 +93,9 @@ public class PanelInicioSesion extends GridPane {
 		CheckBox checkMostrar = new CheckBox("Mostrar contraseña");
 		Button btnConfirmar = new Button("Confirm");
 
+		// SetOnAction que utiliza un boolean y en caso de que seleccionen el checkbox
+		// mostrar, cambie el tipo de textField de PasswordField(oculto) a
+		// TextField(visible) y viceversa.
 		checkMostrar.setOnAction(e -> {
 			boolean mostrar = checkMostrar.isSelected();
 			contraseniaEscondida.setVisible(!mostrar);
@@ -107,6 +117,7 @@ public class PanelInicioSesion extends GridPane {
 
 		Scene sceneInicio = new Scene(panelInicio, 800, 600);
 
+		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
 			sceneInicio.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
 		else
@@ -129,10 +140,11 @@ public class PanelInicioSesion extends GridPane {
 		inicioStage.setTitle("Inicio de sesion");
 		inicioStage.show();
 
-		// Añadimos un evento al boton del formulario
 		btnConfirmar.setOnAction(e -> {
 			String txtUsuario = usuario.getText();
 			String txtContrasenia = contrasenia.getText();
+			// Si la funcion de login da true, se cierra, si da false salta la alerta y te
+			// devuelve al inicio del inicio de sesion.
 			if (UsuarioDAO.login(txtUsuario, txtContrasenia, App.con))
 				inicioStage.close();
 			else {
@@ -143,6 +155,9 @@ public class PanelInicioSesion extends GridPane {
 		});
 	}
 
+	/**
+	 * Panel que registra al usuario en la base de datos
+	 */
 	public void upSesion() {
 		Connection con = UtilsFEF.conectarBD();
 
@@ -222,6 +237,8 @@ public class PanelInicioSesion extends GridPane {
 				temp.setEdad(Integer.valueOf(edad.getText()));
 				temp.setSexo(sexo.getText().charAt(0));
 
+				// Si da true cerramos la ventana y le mandamos al inicio de sesion, si da false
+				// salta una alerta.
 				if (UsuarioDAO.aniadirUsuario(con, temp)) {
 					registroStage.close();
 					inSesion();
@@ -236,6 +253,9 @@ public class PanelInicioSesion extends GridPane {
 		});
 	}
 
+	/**
+	 * Alerta que salta si hay problemas al registrarse
+	 */
 	public void alertaRegistro() {
 		AlertType tipoAlerta = Alert.AlertType.WARNING;
 		Alert infoAlert = new Alert(tipoAlerta);
@@ -246,6 +266,9 @@ public class PanelInicioSesion extends GridPane {
 		infoAlert.showAndWait();
 	}
 
+	/**
+	 * Alerta que salta si hay problemas al iniciar sesion
+	 */
 	public void alertaInicio() {
 		AlertType tipoAlerta = Alert.AlertType.WARNING;
 		Alert infoAlert = new Alert(tipoAlerta);

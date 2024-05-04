@@ -7,8 +7,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ConfiguracionUsuario {
+	// Quiero dar creditos a Alejandro Morilla que me ha explicado como hacerlo (sin
+	// su ayuda probablemente no habria sabido hacerlo).
+
+	// Definimos la ruta de nuestro archivo de configuracion.
 	public static final String CONFIGURACION = "C:\\Programación\\FrutasEnForma\\src\\main\\java\\frutasEnForma\\utils\\Configuracion.txt";
 
+	/**
+	 * Funcion que reescribe el documento configuracion.txt según la configuracion
+	 * antes de cerrar la aplicacion.
+	 * 
+	 * @param theme valor del tema de fondo antes de cerrar la app.
+	 * @param scale valor de la escala antes de cerrar la app.
+	 */
 	public static void escribirConfig(int theme, double scale) {
 		try {
 			BufferedWriter bwConfig = new BufferedWriter(new FileWriter(CONFIGURACION));
@@ -23,6 +34,12 @@ public class ConfiguracionUsuario {
 		}
 	}
 
+	/**
+	 * Funcion que lee los valores del documento configuracion.txt y los devuelve
+	 * para aplicarlos en la app al iniciarla.
+	 * 
+	 * @return objeto Config con los valores del documento.
+	 */
 	public static Config insertarConfig() {
 		try {
 			BufferedReader brConfig = new BufferedReader(new FileReader(CONFIGURACION));
@@ -35,16 +52,19 @@ public class ConfiguracionUsuario {
 
 			return new Config(theme, scale);
 		} catch (NumberFormatException e) {
-			// Pongo el light mode como default
+			// Pongo en caso de error el light mode y el zoom normal como default
 			e.printStackTrace();
 			return new Config(0, 1.0);
 		} catch (IOException e) {
-			// Pongo el light mode como default
+			// Pongo en caso de error el light mode y el zoom normal como default
 			e.printStackTrace();
 			return new Config(0, 1.0);
 		}
 	}
 
+	/**
+	 * Objeto Config que guarda los valores de la configuración.
+	 */
 	public static class Config {
 		private int theme;
 		private double scale;
