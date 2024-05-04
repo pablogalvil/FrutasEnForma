@@ -2,109 +2,75 @@
 .body {
 	-fx-background-image: url(../img/FrutasEnFormaOscuro1000X750.png);
 	-fx-background-size: contain;
-	-fx-font-size: large;
+	-fx-font-size: larger;
+	-fx-max-width: 500px;
 }
 .menubar{
+	-fx-max-width: 500px;
 	-fx-background-color: #a1a1c5;
-	-fx-border-radius: 5px;
 	-fx-border-color: purple;
 }
-/*Labels de la pagina principal*/
-#labelPrincipal{
+/*Labels de la pagina*/
+.body .label{
 	-fx-padding: 10px;
+	-fx-font-weight: bold;
 	-fx-text-fill: red;
 }
-/*Botones de la pagina principal*/
-#buttonPrincipal{
+/*Botones de la pagina*/
+.body .button{
 	-fx-padding: 2px;
+	-fx-background-color: rgb(225, 250, 130);
 	-fx-border-color: rgb(179, 179, 179);
 	-fx-border-radius: 5px;
 	-fx-border-width: 2px;
 }
 /*:Hover del boton principal*/
-#buttonPrincipal:hover{
+.body .button:hover{
 	-fx-background-color: lightgray;
 	-fx-border-color: rgb(255, 125, 125);
 }
-/*Labels inicio sesion*/
-#labelInicioSesion{
-	-fx-padding: 4px;
-	-fx-text-fill: rgb(76, 76, 76);
-}
-/*TextFields y PasswordFields inicio sesion*/
-#txtInicioSesion{
+/*TextFields de la pagina*/
+.body .text-field{
 	-fx-padding: 4px;
 	-fx-background-color: rgb(160,159,243);
 	-fx-border-color: rgb(99, 240, 253);
 }
-/*Boton del CheckBox*/
-.checkBoxInicioSesion .box{
+/*Checkbox de la pagina*/
+.body .check-box .box{
 	-fx-border-style: solid;
 	-fx-border-width: 3px;
 	-fx-border-color: lightgrey;
 	-fx-background-color: rgb(99, 240, 253);
 }
-/*Buttons inicio sesion*/
-#buttonInicioSesion{
-	-fx-padding: 4px;
-	-fx-background-color: rgb(220, 182, 182);
-	-fx-border-radius: 5px;
-	-fx-border-color: rgb(99, 240, 253);
+/*Choicebox de la pagina*/
+.body .choice-box{
+	-fx-border-color: blue;
+	-fx-background-color: lightgray;
 }
-/*Labels de lista dietas*/
-#labelListaDietas{
-	
+/*Label de los choicebox*/
+.body .choice-box .label{
+	-fx-text-fill: red;
 }
-/*TextFields de lista dietas*/
-#txtListaDietas{
-	
+/*Flecha de los choicebox*/
+.body .choice-box .arrow{
+	-fx-background-color: blue;
 }
-/*Buttons de lista dietas*/
-#buttonListaDietas{
-	
-}
-/*Labels de las calculadoras*/
-#labelCalculadora{
-	-fx-padding: 4px;
-	-fx-text-fill: rgb(76, 76, 76);
+/*Labels menubar*/
+.menubar .label{
+	-fx-font-size: large;
+	-fx-font-weight: normal;
+	-fx-text-fill: red;
 }
 /*Labels con el resultado de las calculadoras*/
 #labelResultadoCalculadora{
 	-fx-padding: 4px;
 	-fx-text-fill: rgb(255, 125, 125);
 }
-/*Labels de registro dietas*/
-#labelRegistroDietas{
-	
-}
-/*TextFields de registro dietas*/
-#txtRegistroDietas{
-	
-}
-/*Buttons de registro dietas*/
-#buttonRegistroDietas{
-	
-}
-/*Labels de las recetas*/
-#labelRecetas{
-	-fx-text-fill: red;
-}
-/*TextFields de las recetas*/
-#txtRecetas{
-	-fx-border-color: blue;
-}
-/*Buttons de las recetas*/
-#buttonRecetas{
-	-fx-border-color: blue;
-}
-/*ChoiceBox de las recetas*/
-#choiceBoxRecetas{
-	-fx-border-color: blue;
+/*Iconos*/
+.iconos{
+	-fx-max-width: 200px;
 	-fx-background-color: lightgray;
 }
-#choiceBoxRecetas .label{
-	-fx-text-fill: red;
-}
-#choiceBoxRecetas .arrow{
-	-fx-background-color: blue;
+.iconos .menu{
+	-fx-background-color: lightgray;
 }

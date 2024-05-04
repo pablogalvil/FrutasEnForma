@@ -1,9 +1,13 @@
 package frutasEnForma.panel;
 
+import frutasEnForma.App;
+import frutasEnForma.model.RecetasDAO;
+import frutasEnForma.model.RecetasDO;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -18,6 +22,7 @@ public class PanelRecetasRegistrar extends GridPane {
 	private String PNLpasos;
 
 	public PanelRecetasRegistrar() {
+		// Creamos el Stage y el GridPane
 		Stage stageRegistrarRecetas = new Stage();
 
 		GridPane panelRegistroRecetas = new GridPane();
@@ -39,6 +44,8 @@ public class PanelRecetasRegistrar extends GridPane {
 		TextField txtIngred = new TextField();
 		TextField txtPasos = new TextField();
 
+		Button confirmar = new Button("Confirmar");
+
 		// Hacemos el panel de registros de Recetas
 		panelRegistroRecetas.add(lblRecetas, 0, 0);
 		panelRegistroRecetas.add(lblNombre, 0, 1);
@@ -51,6 +58,8 @@ public class PanelRecetasRegistrar extends GridPane {
 		panelRegistroRecetas.add(txtTiempoPrep, 1, 2);
 		panelRegistroRecetas.add(txtIngred, 1, 3);
 		panelRegistroRecetas.add(txtPasos, 1, 4);
+
+		panelRegistroRecetas.add(txtPasos, 0, 5);
 
 		// Hacemos los setMargin
 		panelRegistroRecetas.setMargin(lblRecetas, new Insets(5, 10, 5, 10));
@@ -65,37 +74,43 @@ public class PanelRecetasRegistrar extends GridPane {
 		panelRegistroRecetas.setMargin(txtIngred, new Insets(5, 10, 5, 10));
 		panelRegistroRecetas.setMargin(txtPasos, new Insets(5, 10, 5, 10));
 
+		panelRegistroRecetas.setMargin(confirmar, new Insets(5, 10, 5, 10));
+
 		// La scene
 		Scene sceneRegistrarRecetas = new Scene(panelRegistroRecetas, 800, 600);
 
 		sceneRegistrarRecetas.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 		sceneRegistrarRecetas.getRoot().getStyleClass().add("body");
 
-		lblRecetas.setId("labelRecetas");
-		lblNombre.setId("labelRecetas");
-		lblTiempoPrep.setId("labelRecetas");
-		lblIngred.setId("labelRecetas");
-		lblPasos.setId("labelRecetas");
-
-		txtRecetas.setId("txtRecetas");
-		txtNombre.setId("txtRecetas");
-		txtTiempoPrep.setId("txtRecetas");
-		txtIngred.setId("txtRecetas");
-		txtPasos.setId("txtRecetas");
+		// Ponemos los setHalignment alineados en el centro
 
 		this.setHalignment(lblRecetas, HPos.CENTER);
 		this.setHalignment(lblNombre, HPos.CENTER);
 		this.setHalignment(lblTiempoPrep, HPos.CENTER);
 		this.setHalignment(lblIngred, HPos.CENTER);
 		this.setHalignment(lblPasos, HPos.CENTER);
+
 		this.setHalignment(txtRecetas, HPos.CENTER);
 		this.setHalignment(txtNombre, HPos.CENTER);
 		this.setHalignment(txtTiempoPrep, HPos.CENTER);
 		this.setHalignment(txtIngred, HPos.CENTER);
 		this.setHalignment(txtPasos, HPos.CENTER);
 
+		this.setHalignment(confirmar, HPos.CENTER);
+
 		stageRegistrarRecetas.setScene(sceneRegistrarRecetas);
 		stageRegistrarRecetas.setTitle("Borrar Receta");
 		stageRegistrarRecetas.show();
+
+		RecetasDO temp = new RecetasDO();
+
+		temp.setNombre(txtNombre.getText());
+		temp.setTiempoPreparacion(Integer.valueOf(txtTiempoPrep.getText()));
+		temp.setIngredientes(txtIngred.getText());
+		temp.setPasos(txtPasos.getText());
+
+		confirmar.setOnAction(e -> {
+			RecetasDAO.insertRecetas(App.con, temp);
+		});
 	}
 }

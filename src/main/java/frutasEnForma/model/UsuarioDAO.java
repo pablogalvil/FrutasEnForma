@@ -183,4 +183,27 @@ public class UsuarioDAO {
 		}
 	}
 
+	public static boolean updateUsuario(Connection con, double peso, int altura, int edad) {
+		try {
+			String query = "UPDATE USUARIO SET peso=?, altura=?, edad=? WHERE idUsuario = ?";
+
+			PreparedStatement pstmt = con.prepareStatement(query);
+
+			pstmt.setDouble(1, peso);
+			pstmt.setInt(2, altura);
+			pstmt.setInt(3, edad);
+			pstmt.setInt(4, idUsuario);
+
+			int numAff = pstmt.executeUpdate();
+
+			if (numAff == 1)
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

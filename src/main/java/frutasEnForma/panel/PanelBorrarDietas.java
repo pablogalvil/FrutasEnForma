@@ -3,7 +3,9 @@ package frutasEnForma.panel;
 import frutasEnForma.App;
 import frutasEnForma.model.ListaDietasDAO;
 import frutasEnForma.model.ListaDietasDO;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -19,34 +21,42 @@ public class PanelBorrarDietas extends GridPane {
 
 	public void PanelBorrarDietas() {
 
-		Stage ventanaEmergente = new Stage();
+		Stage stageListaBorrar = new Stage();
 
 		GridPane panelListaBorrar = new GridPane();
+		panelListaBorrar.setAlignment(Pos.CENTER);
 
 		Label lblInsId = new Label("Inserta el Id de la dieta");
 
 		TextField txtInsId = new TextField();
 
 		Button confirmar = new Button("Confirm");
-		Button salir = new Button("Salir");
 
 		panelListaBorrar.add(lblInsId, 0, 0);
 		panelListaBorrar.add(txtInsId, 1, 0);
 		panelListaBorrar.add(confirmar, 0, 2);
-		panelListaBorrar.add(salir, 1, 2);
 
 		panelListaBorrar.setMargin(lblInsId, new Insets(5, 10, 5, 10));
+		panelListaBorrar.setHalignment(lblInsId, HPos.CENTER);
 
 		panelListaBorrar.setMargin(txtInsId, new Insets(5, 10, 5, 10));
+		panelListaBorrar.setHalignment(txtInsId, HPos.CENTER);
 
 		panelListaBorrar.setMargin(confirmar, new Insets(5, 10, 5, 10));
-		panelListaBorrar.setMargin(salir, new Insets(5, 10, 5, 10));
+		panelListaBorrar.setHalignment(confirmar, HPos.CENTER);
 
-		Scene scene = new Scene(panelListaBorrar, 600, 600);
+		Scene sceneListaBorrar = new Scene(panelListaBorrar, 600, 600);
 
-		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Borrar Dieta");
-		ventanaEmergente.show();
+		if (App.configuracion.getTheme() == 1)
+			sceneListaBorrar.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneListaBorrar.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
+		sceneListaBorrar.getRoot().getStyleClass().add("body");
+
+		stageListaBorrar.setScene(sceneListaBorrar);
+		stageListaBorrar.setTitle("Borrar Dieta");
+		stageListaBorrar.show();
 
 		confirmar.setOnAction(e -> {
 			try {
@@ -54,20 +64,20 @@ public class PanelBorrarDietas extends GridPane {
 				temp.setNumComidas(Integer.valueOf(txtInsId.getText()));
 
 				if (ListaDietasDAO.aniadirLista(App.con, temp)) {
-					ventanaEmergente.close();
+					stageListaBorrar.close();
 
 				} else {
-					alertaRegistro();
+					alertaBorrar();
 				}
 			} catch (Exception error) {
 				error.printStackTrace();
-				alertaRegistro();
+				alertaBorrar();
 			}
 
 		});
 	}
 
-	public void alertaRegistro() {
+	public void alertaBorrar() {
 		AlertType tipoAlerta = Alert.AlertType.WARNING;
 		Alert infoAlert = new Alert(tipoAlerta);
 		infoAlert.setTitle("Alerta!");

@@ -23,7 +23,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) {
 
-		PanelPrincipal panelPrin = new PanelPrincipal();
+		PanelPrincipal panelPrin = new PanelPrincipal(stage);
 		panelPrin.setAlignment(Pos.TOP_CENTER);
 
 		scene = new Scene(panelPrin, 1000, 750);
@@ -39,8 +39,11 @@ public class App extends Application {
 		stage.setScene(scene);
 		stage.show();
 
+		panelPrin.applyScale(stage);
+
 		stage.setOnCloseRequest(e -> {
-			ConfiguracionUsuario.escribirConfig(configuracion.getTheme());
+			configuracion.setScale(PanelPrincipal.numEscala);
+			ConfiguracionUsuario.escribirConfig(configuracion.getTheme(), configuracion.getScale());
 		});
 	}
 

@@ -2,7 +2,9 @@ package frutasEnForma.panel;
 
 import frutasEnForma.App;
 import frutasEnForma.model.RegistroDietasDAO;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,9 +17,10 @@ public class PanelRegistroVer extends GridPane {
 	public int InsIdRegistro;
 
 	public PanelRegistroVer() {
-		Stage ventanaEmergente = new Stage();
+		Stage stageRegistroDietas = new Stage();
 
 		GridPane panelRegistroDietas = new GridPane();
+		panelRegistroDietas.setAlignment(Pos.CENTER);
 
 		Label lblRegistro = new Label("Registro");
 		Label lblNombreRegristro = new Label("Nombre Registro");
@@ -73,15 +76,36 @@ public class PanelRegistroVer extends GridPane {
 
 		panelRegistroDietas.setMargin(salir, new Insets(5, 10, 5, 10));
 
-		Scene scene = new Scene(panelRegistroDietas, 600, 600);
+		panelRegistroDietas.setHalignment(lblRegistro, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblNombreRegristro, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblDiasRealiz, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblFechIn, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblFechFin, HPos.CENTER);
 
-		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Regristro Dieta");
-		ventanaEmergente.show();
+		panelRegistroDietas.setHalignment(txtIdRegistro, HPos.CENTER);
+
+		panelRegistroDietas.setHalignment(lblMuestraRegistro, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblMuestraNombreRegistro, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblMuestraFchIn, HPos.CENTER);
+		panelRegistroDietas.setHalignment(lblMuestraFchFin, HPos.CENTER);
+
+		panelRegistroDietas.setHalignment(salir, HPos.CENTER);
+
+		Scene sceneRegistroDietas = new Scene(panelRegistroDietas, 800, 600);
+
+		if (App.configuracion.getTheme() == 1)
+			sceneRegistroDietas.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneRegistroDietas.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
+		sceneRegistroDietas.getRoot().getStyleClass().add("body");
+
+		stageRegistroDietas.setScene(sceneRegistroDietas);
+		stageRegistroDietas.setTitle("Regristro Dieta");
+		stageRegistroDietas.show();
 
 		salir.setOnAction(e -> {
-			ventanaEmergente.close();
-
+			stageRegistroDietas.close();
 		});
 	}
 }

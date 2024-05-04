@@ -3,7 +3,9 @@ package frutasEnForma.panel;
 import frutasEnForma.App;
 import frutasEnForma.model.ListaDietasDAO;
 import frutasEnForma.model.ListaDietasDO;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -20,9 +22,10 @@ public class PanelAniadirLista extends GridPane {
 
 	public void PanelAniadirLista() {
 
-		Stage ventanaEmergente = new Stage();
+		Stage stageListaAniadir = new Stage();
 
 		GridPane panelListaAniadir = new GridPane();
+		panelListaAniadir.setAlignment(Pos.CENTER);
 
 		Label lblInsNom = new Label("Inserta el nombre de la dieta");
 		Label lblInsCom = new Label("Inserta el numero de comidas de la dieta");
@@ -49,11 +52,27 @@ public class PanelAniadirLista extends GridPane {
 		panelListaAniadir.setMargin(confirmar, new Insets(5, 10, 5, 10));
 		panelListaAniadir.setMargin(salir, new Insets(5, 10, 5, 10));
 
-		Scene scene = new Scene(panelListaAniadir, 600, 600);
+		panelListaAniadir.setHalignment(lblInsNom, HPos.CENTER);
+		panelListaAniadir.setHalignment(lblInsCom, HPos.CENTER);
 
-		ventanaEmergente.setScene(scene);
-		ventanaEmergente.setTitle("Aniadir Dieta");
-		ventanaEmergente.show();
+		panelListaAniadir.setHalignment(txtInsNom, HPos.CENTER);
+		panelListaAniadir.setHalignment(txtInsCom, HPos.CENTER);
+
+		panelListaAniadir.setHalignment(confirmar, HPos.CENTER);
+		panelListaAniadir.setHalignment(salir, HPos.CENTER);
+
+		Scene sceneListaAniadir = new Scene(panelListaAniadir, 800, 600);
+
+		if (App.configuracion.getTheme() == 1)
+			sceneListaAniadir.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+		else
+			sceneListaAniadir.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+
+		sceneListaAniadir.getRoot().getStyleClass().add("body");
+
+		stageListaAniadir.setScene(sceneListaAniadir);
+		stageListaAniadir.setTitle("Aniadir Dieta");
+		stageListaAniadir.show();
 
 		confirmar.setOnAction(e -> {
 			try {
@@ -62,7 +81,7 @@ public class PanelAniadirLista extends GridPane {
 				temp.setNumComidas(Integer.valueOf(txtInsCom.getText()));
 
 				if (ListaDietasDAO.aniadirLista(App.con, temp)) {
-					ventanaEmergente.close();
+					stageListaAniadir.close();
 
 				} else {
 					alertaRegistro();

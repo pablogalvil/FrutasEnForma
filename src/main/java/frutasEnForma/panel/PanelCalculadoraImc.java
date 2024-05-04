@@ -40,8 +40,6 @@ public class PanelCalculadoraImc extends GridPane {
 
 		sceneImc.getRoot().getStyleClass().add("body");
 
-		lblExplicacion.setId("labelCalculadora");
-		lblNota.setId("labelCalculadora");
 		lblResultado.setId("labelResultadoCalculadora");
 
 		ventanaImc.setScene(sceneImc);

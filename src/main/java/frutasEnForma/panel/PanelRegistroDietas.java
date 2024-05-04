@@ -16,7 +16,7 @@ public class PanelRegistroDietas extends GridPane {
 
 		Stage ventanaEmergente = new Stage();
 
-		GridPane panelListaAniadir = new GridPane();
+		GridPane panelRegistroDietas = new GridPane();
 
 		Label lblInsNom = new Label("Inserta el nombre de una dieta");
 
@@ -27,19 +27,19 @@ public class PanelRegistroDietas extends GridPane {
 		Button confirmar = new Button("Confirm");
 		Button salir = new Button("Salir");
 
-		panelListaAniadir.add(lblInsNom, 0, 0);
-		panelListaAniadir.add(txtInsNom, 1, 0);
-		panelListaAniadir.add(confirmar, 0, 1);
-		panelListaAniadir.add(salir, 1, 1);
+		panelRegistroDietas.add(lblInsNom, 0, 0);
+		panelRegistroDietas.add(txtInsNom, 1, 0);
+		panelRegistroDietas.add(confirmar, 0, 1);
+		panelRegistroDietas.add(salir, 1, 1);
 
-		panelListaAniadir.setMargin(lblInsNom, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(lblInsNom, new Insets(5, 10, 5, 10));
 
-		panelListaAniadir.setMargin(txtInsNom, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(txtInsNom, new Insets(5, 10, 5, 10));
 
-		panelListaAniadir.setMargin(confirmar, new Insets(5, 10, 5, 10));
-		panelListaAniadir.setMargin(salir, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(confirmar, new Insets(5, 10, 5, 10));
+		panelRegistroDietas.setMargin(salir, new Insets(5, 10, 5, 10));
 
-		Scene scene = new Scene(panelListaAniadir, 600, 600);
+		Scene scene = new Scene(panelRegistroDietas, 800, 600);
 
 		ventanaEmergente.setScene(scene);
 		ventanaEmergente.setTitle("Aniadir Registro");

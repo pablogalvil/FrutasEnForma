@@ -4,8 +4,13 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 
+import com.jfoenix.controls.JFXButton;
+
 import frutasEnForma.App;
+import frutasEnForma.model.UsuarioDAO;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -13,11 +18,172 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
 
 public class PanelPrincipal extends GridPane {
 
-	public PanelPrincipal() {
+	public static double numEscala = App.configuracion.getScale();
+	public static Scale escala = new Scale(numEscala, numEscala);
+	private int zoomLevel = 100;
+
+	public PanelPrincipal(Stage stage) {
+
+		// ***************************************************
+		// *********************ICONOS************************
+		// ***************************************************
+
+		MenuBar iconos = new MenuBar();
+		iconos.getStyleClass().add("iconos");
+		this.setHalignment(iconos, HPos.CENTER);
+
+		// Icono de logIn
+		JFXButton botonLogIn = new JFXButton();
+		Menu mLogIn = new Menu();
+		mLogIn.setGraphic(botonLogIn);
+		iconos.getMenus().add(mLogIn);
+
+		String imgLogIn = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/inicioSesion.jpg";
+
+		Image iconLogIn = new Image(imgLogIn);
+		ImageView iconLogInView = new ImageView(iconLogIn);
+		iconLogInView.setFitWidth(16);
+		iconLogInView.setFitHeight(16);
+
+		botonLogIn.setGraphic(iconLogInView);
+
+		botonLogIn.setAlignment(Pos.CENTER);
+		botonLogIn.setId("iconos");
+
+		// Icono de logOut
+		JFXButton botonLogOut = new JFXButton();
+		Menu mLogOut = new Menu();
+		mLogOut.setGraphic(botonLogOut);
+		iconos.getMenus().add(mLogOut);
+
+		String imgLogOut = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/logOut.jpg";
+
+		Image iconLogOut = new Image(imgLogOut);
+		ImageView iconLogOutView = new ImageView(iconLogOut);
+		iconLogOutView.setFitWidth(16);
+		iconLogOutView.setFitHeight(16);
+
+		botonLogOut.setGraphic(iconLogOutView);
+
+		botonLogOut.setAlignment(Pos.CENTER);
+		botonLogOut.setId("iconos");
+
+		// Icono de fondo
+		JFXButton botonFondo = new JFXButton();
+		Menu mFondo = new Menu();
+		mFondo.setGraphic(botonFondo);
+		iconos.getMenus().add(mFondo);
+
+		String imgFondo = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/fondo.jpg";
+
+		Image iconFondo = new Image(imgFondo);
+		ImageView iconFondoView = new ImageView(iconFondo);
+		iconFondoView.setFitWidth(16);
+		iconFondoView.setFitHeight(16);
+
+		botonFondo.setGraphic(iconFondoView);
+
+		botonFondo.setAlignment(Pos.CENTER);
+
+		// Icono de zoom in
+		JFXButton botonZoomIn = new JFXButton();
+		Menu mZoomIn = new Menu();
+		mZoomIn.setGraphic(botonZoomIn);
+		iconos.getMenus().add(mZoomIn);
+
+		String imgZoomIn = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/+.jpg";
+
+		Image iconZoomIn = new Image(imgZoomIn);
+		ImageView iconZoomInView = new ImageView(iconZoomIn);
+		iconZoomInView.setFitWidth(16);
+		iconZoomInView.setFitHeight(16);
+
+		botonZoomIn.setGraphic(iconZoomInView);
+
+		botonZoomIn.setAlignment(Pos.CENTER);
+
+		// Icono de zoom out
+		JFXButton botonZoomOut = new JFXButton();
+		Menu mZoomOut = new Menu();
+		mZoomOut.setGraphic(botonZoomOut);
+		iconos.getMenus().add(mZoomOut);
+
+		String imgZoomOut = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/-.jpg";
+
+		Image iconZoomOut = new Image(imgZoomOut);
+		ImageView iconZoomOutView = new ImageView(iconZoomOut);
+		iconZoomOutView.setFitWidth(16);
+		iconZoomOutView.setFitHeight(16);
+
+		botonZoomOut.setGraphic(iconZoomOutView);
+
+		botonZoomOut.setAlignment(Pos.CENTER);
+
+		// Icono de cambiar datos user
+		JFXButton botonEditUser = new JFXButton();
+		Menu mEditUser = new Menu();
+		mEditUser.setGraphic(botonEditUser);
+		iconos.getMenus().add(mEditUser);
+
+		String imgEditUser = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/EDITAR.jpg";
+
+		Image iconEditUser = new Image(imgEditUser);
+		ImageView iconEditUserView = new ImageView(iconEditUser);
+		iconEditUserView.setFitWidth(16);
+		iconEditUserView.setFitHeight(16);
+
+		botonEditUser.setGraphic(iconEditUserView);
+
+		botonEditUser.setAlignment(Pos.CENTER);
+		botonEditUser.setId("iconos");
+
+		// Icono de manual
+		JFXButton botonManual = new JFXButton();
+		Menu mManual = new Menu();
+		mManual.setGraphic(botonManual);
+		iconos.getMenus().add(mManual);
+
+		String imgManual = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/AJUSTES.jpg";
+
+		Image iconManual = new Image(imgManual);
+		ImageView iconManualView = new ImageView(iconManual);
+		iconManualView.setFitWidth(16);
+		iconManualView.setFitHeight(16);
+
+		botonManual.setGraphic(iconManualView);
+
+		botonManual.setAlignment(Pos.CENTER);
+		botonManual.setId("iconos");
+
+		// Icono de exit
+		JFXButton botonExit = new JFXButton();
+		Menu mExit = new Menu();
+		mExit.setGraphic(botonExit);
+		iconos.getMenus().add(mExit);
+
+		String imgExit = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/EXIT.jpg";
+
+		Image iconExit = new Image(imgExit);
+		ImageView iconExitView = new ImageView(iconExit);
+		iconExitView.setFitWidth(16);
+		iconExitView.setFitHeight(16);
+
+		botonExit.setGraphic(iconExitView);
+
+		botonExit.setAlignment(Pos.CENTER);
+		botonExit.setId("iconos");
+
+		// ***************************************************
+		// **********************MENU*************************
+		// ***************************************************
 
 		MenuBar menu = new MenuBar();
 		menu.getStyleClass().add("menubar");
@@ -68,69 +234,33 @@ public class PanelPrincipal extends GridPane {
 
 		Label lblInicio = new Label("Bienvenido, por favor inicie sesion antes de continuar utilizando la aplicacion.");
 		Label lblAviso = new Label(
-				"Tenga en cuenta que al no iniciar sesion no podra usar algunas partes de la aplicacion.");
+				"Tenga en cuenta que al no iniciar sesion no podra usar algunas partes\nde la aplicacion.");
 		Label lblCalculadoraImc = new Label(
-				"En nuestra aplicacion disponemos de una calculadora para saber cual es su índice de masa corporal (IMC)");
+				"En nuestra aplicacion disponemos de una calculadora para saber cual es\nsu índice de masa corporal (IMC)");
 		Label lblCalculadoraCalorias = new Label(
-				"Por otro lado, disponemos de una calculadora para saber las calorias diarias que puede consumir");
+				"Por otro lado, disponemos de una calculadora para saber las calorias\ndiarias que puede consumir");
 		Label lblMostrarRecetas = new Label("En esta parte mostraremos las recetas que tenemos.");
-		Label lblRegistrarRecetas = new Label("Y en este panel podras registrar recetas.");
-		Label lblBorrarRecetas = new Label("Tambien podras borrar las recetas que insertes.");
-		Label lblAyuda = new Label(
-				"Para mas información, le dejamos abajo un manual y un acerca de con un enlace a nuestro github");
-
-		lblInicio.setId("labelPrincipal");
-		lblAviso.setId("labelPrincipal");
-		lblCalculadoraImc.setId("labelPrincipal");
-		lblCalculadoraCalorias.setId("labelPrincipal");
-		lblMostrarRecetas.setId("labelPrincipal");
-		lblRegistrarRecetas.setId("labelPrincipal");
-		lblBorrarRecetas.setId("labelPrincipal");
-		lblAyuda.setId("labelPrincipal");
 
 		this.setHalignment(lblInicio, HPos.CENTER);
 		this.setHalignment(lblAviso, HPos.CENTER);
 		this.setHalignment(lblCalculadoraImc, HPos.CENTER);
 		this.setHalignment(lblCalculadoraCalorias, HPos.CENTER);
 		this.setHalignment(lblMostrarRecetas, HPos.CENTER);
-		this.setHalignment(lblRegistrarRecetas, HPos.CENTER);
-		this.setHalignment(lblBorrarRecetas, HPos.CENTER);
-		this.setHalignment(lblAyuda, HPos.CENTER);
 
-		Button btnInicio = new Button("Ir al inicio de sesion");
 		Button btnListaDietas = new Button("Ver Dietas");
 		Button btnRegistroDietas = new Button("Ver Registros");
 		Button btnCalculadoraImc = new Button("Calcular imc");
 		Button btnCalculadoraCalorias = new Button("Calcular calorias");
 		Button btnMostrarRecetas = new Button("Mostrar recetas");
-		Button btnRegistrarRecetas = new Button("Registrar recetas");
-		Button btnBorrarRecetas = new Button("Borrar recetas");
-		Button btnManual = new Button("Manual");
-		Button btnAcercaDe = new Button("Acerca de");
 
-		btnInicio.setId("buttonPrincipal");
-		btnListaDietas.setId("buttonPrincipal");
-		btnCalculadoraImc.setId("buttonPrincipal");
-		btnCalculadoraCalorias.setId("buttonPrincipal");
-		btnMostrarRecetas.setId("buttonPrincipal");
-		btnRegistrarRecetas.setId("buttonPrincipal");
-		btnBorrarRecetas.setId("buttonPrincipal");
-		btnManual.setId("buttonPrincipal");
-		btnAcercaDe.setId("buttonPrincipal");
-
-		this.setHalignment(btnInicio, HPos.CENTER);
 		this.setHalignment(btnListaDietas, HPos.CENTER);
 		this.setHalignment(btnCalculadoraImc, HPos.CENTER);
 		this.setHalignment(btnCalculadoraCalorias, HPos.CENTER);
 		this.setHalignment(btnMostrarRecetas, HPos.CENTER);
-		this.setHalignment(btnRegistrarRecetas, HPos.CENTER);
-		this.setHalignment(btnBorrarRecetas, HPos.CENTER);
-		this.setHalignment(btnManual, HPos.CENTER);
-		this.setHalignment(btnAcercaDe, HPos.CENTER);
 
 		this.add(menu, 0, 0);
-		this.add(lblInicio, 0, 1);
-		this.add(btnInicio, 0, 2);
+		this.add(iconos, 0, 1);
+		this.add(lblInicio, 0, 2);
 		this.add(lblAviso, 0, 3);
 		this.add(btnListaDietas, 0, 4);
 		this.add(lblCalculadoraImc, 0, 5);
@@ -139,13 +269,9 @@ public class PanelPrincipal extends GridPane {
 		this.add(btnCalculadoraCalorias, 0, 8);
 		this.add(lblMostrarRecetas, 0, 9);
 		this.add(btnMostrarRecetas, 0, 10);
-		this.add(lblRegistrarRecetas, 0, 11);
-		this.add(btnRegistrarRecetas, 0, 12);
-		this.add(lblBorrarRecetas, 0, 13);
-		this.add(btnBorrarRecetas, 0, 14);
-		this.add(lblAyuda, 0, 15);
-		this.add(btnManual, 0, 16);
-		this.add(btnAcercaDe, 0, 17);
+
+		this.setMargin(botonLogOut, new Insets(5, 10, 5, 10));
+		this.setMargin(botonFondo, new Insets(5, 10, 5, 10));
 
 		// MenuItem inicio de sesion
 		iInicioSesion.setOnAction(e -> {
@@ -154,15 +280,6 @@ public class PanelPrincipal extends GridPane {
 
 		// MenuItems de calculadora
 		iCalculadoraImc.setOnAction(e -> {
-			if (App.configuracion.getTheme() == 0) {
-				App.configuracion.setTheme(1);
-				App.scene.getStylesheets().remove(getClass().getResource("/css/css.css").toExternalForm());
-				App.scene.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
-			} else if (App.configuracion.getTheme() == 1) {
-				App.configuracion.setTheme(0);
-				App.scene.getStylesheets().remove(getClass().getResource("/css/darkcss.css").toExternalForm());
-				App.scene.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
-			}
 			PanelCalculadoraImc calculoImc = new PanelCalculadoraImc();
 		});
 		iCalculadoraCalorias.setOnAction(e -> {
@@ -211,13 +328,74 @@ public class PanelPrincipal extends GridPane {
 		});
 
 		/*
-		 * BOTONES
+		 * ICONOS
 		 */
 
-		// Boton de inicio de sesion
-		btnInicio.setOnAction(e -> {
+		botonLogIn.setOnAction(e -> {
 			PanelInicioSesion panelInicio = new PanelInicioSesion();
 		});
+		botonLogOut.setOnAction(e -> {
+			UsuarioDAO.idUsuario = 0;
+		});
+		botonFondo.setOnAction(e -> {
+			if (App.configuracion.getTheme() == 0) {
+				App.configuracion.setTheme(1);
+				App.scene.getStylesheets().remove(getClass().getResource("/css/css.css").toExternalForm());
+				App.scene.getStylesheets().add(getClass().getResource("/css/darkcss.css").toExternalForm());
+			} else if (App.configuracion.getTheme() == 1) {
+				App.configuracion.setTheme(0);
+				App.scene.getStylesheets().remove(getClass().getResource("/css/darkcss.css").toExternalForm());
+				App.scene.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
+			}
+		});
+
+		botonZoomIn.setOnAction(e -> {
+			try {
+				if (numEscala < 1.2) {
+					numEscala *= 1.1;
+
+					applyScale(stage);
+				} else {
+					alertaZoom();
+				}
+			} catch (Exception exp) {
+				exp.printStackTrace();
+			}
+		});
+		botonZoomOut.setOnAction(e -> {
+
+			try {
+
+				numEscala /= 1.1;
+
+				applyScale(stage);
+
+			} catch (Exception exp) {
+				exp.printStackTrace();
+			}
+		});
+		botonEditUser.setOnAction(e -> {
+			PanelEditUser editarUsuario = new PanelEditUser();
+		});
+		botonManual.setOnAction(e -> {
+			try {
+				// Buscamos el documento html y lo añadimos a un File
+				File html = new File("C:\\Programación\\FrutasEnForma\\doc\\index.html");
+				// Pasamos la file a url
+				URI uri = html.toURI();
+				// Abrimos el html en el buscador
+				Desktop.getDesktop().browse(uri);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
+		botonExit.setOnAction(e -> {
+			stage.close();
+		});
+
+		/*
+		 * BOTONES
+		 */
 
 		// Botones de lista de dietas
 		btnListaDietas.setOnAction(e -> {
@@ -241,27 +419,6 @@ public class PanelPrincipal extends GridPane {
 		btnMostrarRecetas.setOnAction(e -> {
 			PanelDocumentosReceta mostrarReceta = new PanelDocumentosReceta();
 		});
-		btnRegistrarRecetas.setOnAction(e -> {
-			PanelRecetasRegistrar registrarReceta = new PanelRecetasRegistrar();
-		});
-		btnBorrarRecetas.setOnAction(e -> {
-			PanelRecetasBorrar borrarReceta = new PanelRecetasBorrar();
-		});
-
-		// Botones de ayuda
-		btnManual.setOnAction(e -> {
-			try {
-				File html = new File("C:\\Programación\\FrutasEnForma\\doc\\index.html");
-				// Abrir la URL en Google Chrome
-				URI uri = html.toURI();
-				Desktop.getDesktop().browse(uri);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		});
-		btnAcercaDe.setOnAction(e -> {
-			acercaDe();
-		});
 	}
 
 	/**
@@ -276,6 +433,46 @@ public class PanelPrincipal extends GridPane {
 		String url = "https://github.com/pablogalvil/FrutasEnForma";
 
 		infoAlert.setContentText(url);
+		infoAlert.showAndWait();
+	}
+
+	public void applyScale(Stage stage) {
+		double sceneWidth = stage.getScene().getWidth();
+		double sceneHeight = stage.getScene().getHeight();
+
+		// Obtener las coordenadas del centro de la escena
+		double sceneCenterX = sceneWidth / 2;
+		double sceneCenterY = sceneHeight / 2;
+
+		// Actualizar el factor de escala en el objeto
+		// Scale
+		escala.setX(numEscala);
+		escala.setY(numEscala);
+
+		// Calcular la nueva posición del centro de la
+		// imagen después del escalado
+		double newCenterX = sceneCenterX * numEscala;
+		double newCenterY = sceneCenterY * numEscala;
+
+		// Calcular el cambio en la posición del centro de
+		// la imagen
+		double deltaX = sceneCenterX - newCenterX;
+		double deltaY = sceneCenterY - newCenterY;
+
+		// Aplicar el escalamiento a toda la aplicación
+		// con el centro de la imagen como pivote
+		stage.getScene().getRoot().getTransforms().clear();
+		stage.getScene().getRoot().getTransforms().add(escala);
+		stage.getScene().getRoot().setTranslateX(deltaX);
+		stage.getScene().getRoot().setTranslateY(deltaY);
+	}
+
+	public void alertaZoom() {
+		AlertType tipoAlerta = Alert.AlertType.INFORMATION;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Alerta!");
+		infoAlert.setHeaderText("No puedes aumentar más.");
+		infoAlert.setContentText("Lo sentimos, nuestra aplicacion no permite más zoom.");
 		infoAlert.showAndWait();
 	}
 }

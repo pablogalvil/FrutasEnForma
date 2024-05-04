@@ -20,7 +20,7 @@ public class PanelCalculadoraCalorias extends GridPane {
 		panelCalorias.setAlignment(Pos.CENTER);
 
 		Label lblExplicacion = new Label(
-				"Hemos calculado sus calorias diarias usando el peso, la altura, la edad y el sexo previamente introducida al registrarse");
+				"Hemos calculado sus calorias diarias usando el peso, la altura, la edad y el sexo previamente introducida al\nregistrarse");
 		Label lblNota = new Label(
 				"(Tenga en cuenta que si no relleno dichos datos al registrarse el resultado será 0)");
 		Label lblResultado = new Label(String.valueOf(resultado));
@@ -49,10 +49,7 @@ public class PanelCalculadoraCalorias extends GridPane {
 
 		sceneCalorias.getRoot().getStyleClass().add("body");
 
-		lblExplicacion.setId("labelCalculadora");
-		lblNota.setId("labelCalculadora");
 		lblResultado.setId("labelResultadoCalculadora");
-		lblAdelgazar.setId("labelCalculadora");
 		lblRango.setId("labelResultadoCalculadora");
 
 		ventanaCalorias.setScene(sceneCalorias);

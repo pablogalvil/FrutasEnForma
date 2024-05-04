@@ -55,9 +55,6 @@ public class PanelInicioSesion extends GridPane {
 		panelSesion.setHalignment(inicioSesion, HPos.CENTER);
 		panelSesion.setHalignment(registro, HPos.CENTER);
 
-		inicioSesion.setId("buttonInicioSesion");
-		registro.setId("buttonInicioSesion");
-
 		sesionStage.setScene(sceneSesion);
 		sesionStage.setTitle("Inicio de sesion");
 		sesionStage.show();
@@ -127,14 +124,6 @@ public class PanelInicioSesion extends GridPane {
 		panelInicio.setHalignment(contrasenia, HPos.CENTER);
 		panelInicio.setHalignment(contraseniaEscondida, HPos.CENTER);
 		panelInicio.setHalignment(btnConfirmar, HPos.CENTER);
-
-		lblUsuario.setId("labelInicioSesion");
-		usuario.setId("txtInicioSesion");
-		lblContrasenia.setId("labelInicioSesion");
-		contrasenia.setId("txtInicioSesion");
-		contraseniaEscondida.setId("txtInicioSesion");
-		checkMostrar.getStyleClass().add("checkBoxInicioSesion");
-		btnConfirmar.setId("buttonInicioSesion");
 
 		inicioStage.setScene(sceneInicio);
 		inicioStage.setTitle("Inicio de sesion");
@@ -217,20 +206,6 @@ public class PanelInicioSesion extends GridPane {
 			sceneRegistro.getStylesheets().add(getClass().getResource("/css/css.css").toExternalForm());
 
 		sceneRegistro.getRoot().getStyleClass().add("body");
-
-		lblUsuario.setId("labelInicioSesion");
-		usuario.setId("txtInicioSesion");
-		lblContrasenia.setId("labelInicioSesion");
-		contrasenia.setId("txtInicioSesion");
-		lblPeso.setId("labelInicioSesion");
-		peso.setId("txtInicioSesion");
-		lblAltura.setId("labelInicioSesion");
-		altura.setId("txtInicioSesion");
-		lblEdad.setId("labelInicioSesion");
-		edad.setId("txtInicioSesion");
-		lblSexo.setId("labelInicioSesion");
-		sexo.setId("txtInicioSesion");
-		confirmar.setId("buttonInicioSesion");
 
 		registroStage.setScene(sceneRegistro);
 		registroStage.setTitle("Registro");
