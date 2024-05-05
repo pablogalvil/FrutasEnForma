@@ -14,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -459,9 +460,17 @@ public class PanelPrincipal extends GridPane {
 		infoAlert.setTitle("Acerca de");
 		infoAlert.setHeaderText("©FrutasEnForma");
 
-		String url = "https://github.com/pablogalvil/FrutasEnForma";
+		Hyperlink github = new Hyperlink("https://github.com/pablogalvil/FrutasEnForma");
 
-		infoAlert.setContentText(url);
+		github.setOnAction(e -> {
+			try {
+				// Abrimos el github en el buscador
+				Desktop.getDesktop().browse(new URI("https://github.com/pablogalvil/FrutasEnForma"));
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
+		infoAlert.getDialogPane().setContent(github);
 		infoAlert.showAndWait();
 	}
 
