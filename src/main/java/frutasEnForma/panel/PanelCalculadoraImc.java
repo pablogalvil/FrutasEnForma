@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 
 public class PanelCalculadoraImc extends GridPane {
 
-	public static double imcRe = Double.valueOf(UsuarioDAO.calculoImc(UsuarioDAO.idUsuario, App.con));
-
 	/**
 	 * Panel que calcula el imc del usuario en funcion de los datos guardados en la
 	 * base de datos.
@@ -49,6 +47,8 @@ public class PanelCalculadoraImc extends GridPane {
 		// Tambien cambia de color si pasas de un limite
 
 		Gauge gauge = new Gauge();
+
+		double imcRe = Double.valueOf(UsuarioDAO.calculoImc(UsuarioDAO.idUsuario, App.con));
 
 		gauge.setSkin(new ModernSkin(gauge));
 		// Cambiamos el texto en funcion del valor del IMC
