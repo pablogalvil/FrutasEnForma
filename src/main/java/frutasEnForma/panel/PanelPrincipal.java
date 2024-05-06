@@ -338,7 +338,7 @@ public class PanelPrincipal extends GridPane {
 		iManual.setOnAction(e -> {
 			try {
 				// Buscamos el documento html y lo añadimos a un File
-				File html = new File("C:\\Programación\\FrutasEnForma\\doc\\index.html");
+				File html = new File("doc/index.html");
 				// Pasamos la file a url
 				URI uri = html.toURI();
 				// Abrimos el html en el buscador
@@ -410,7 +410,7 @@ public class PanelPrincipal extends GridPane {
 		botonManual.setOnAction(e -> {
 			try {
 				// Buscamos el documento html y lo añadimos a un File
-				File html = new File("C:\\Programación\\FrutasEnForma\\doc\\index.html");
+				File html = new File("doc/index.html");
 				// Pasamos la file a url
 				URI uri = html.toURI();
 				// Abrimos el html en el buscador
