@@ -63,11 +63,11 @@ public class PanelDocumentosReceta extends GridPane {
 		confirmar.setOnAction(event -> {
 			// Cambiamos la ruta dependiendo del pdf que queramos mostrar
 			if (valor.equals("Dieta Dash"))
-				abrirPDF("resources/doc/DietaDash.pdf");
+				abrirPDF("docRecetas/DietaDash.pdf");
 			else if (valor.equals("Dieta Frutariana"))
-				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaFrutariana.pdf");
+				abrirPDF("docRecetas/DietaFrutariana.pdf");
 			else if (valor.equals("Dieta Mediterranea"))
-				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaMediterranea.pdf");
+				abrirPDF("docRecetas/DietaMediterranea.pdf");
 		});
 
 		Scene sceneMostrarRecetas = new Scene(panelMostrarRecetas, 800, 600);

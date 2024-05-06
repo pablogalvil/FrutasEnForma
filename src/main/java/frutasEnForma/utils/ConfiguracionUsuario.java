@@ -11,7 +11,7 @@ public class ConfiguracionUsuario {
 	// su ayuda probablemente no habria sabido hacerlo).
 
 	// Definimos la ruta de nuestro archivo de configuracion.
-	public static final String CONFIGURACION = "D:\\Programación\\FrutasEnForma\\FrutasEnForma\\src\\main\\java\\frutasEnForma\\utils\\Configuracion.txt";
+	public static final String CONFIGURACION = "Configuracion.txt";
 
 	/**
 	 * Funcion que reescribe el documento configuracion.txt según la configuracion
