@@ -52,9 +52,9 @@ public class PanelPrincipal extends GridPane {
 		mLogIn.setGraphic(botonLogIn);
 		iconos.getMenus().add(mLogIn);
 
-		String imgLogIn = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/inicioSesion.jpg";
+		String imgLogIn = "/img/inicioSesion.jpg";
 
-		Image iconLogIn = new Image(imgLogIn);
+		Image iconLogIn = new Image(PanelPrincipal.class.getResourceAsStream(imgLogIn));
 		ImageView iconLogInView = new ImageView(iconLogIn);
 		iconLogInView.setFitWidth(16);
 		iconLogInView.setFitHeight(16);
@@ -70,9 +70,9 @@ public class PanelPrincipal extends GridPane {
 		mLogOut.setGraphic(botonLogOut);
 		iconos.getMenus().add(mLogOut);
 
-		String imgLogOut = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/logOut.jpg";
+		String imgLogOut = "/img/logOut.jpg";
 
-		Image iconLogOut = new Image(imgLogOut);
+		Image iconLogOut = new Image(PanelPrincipal.class.getResourceAsStream(imgLogOut));
 		ImageView iconLogOutView = new ImageView(iconLogOut);
 		iconLogOutView.setFitWidth(16);
 		iconLogOutView.setFitHeight(16);
@@ -88,9 +88,9 @@ public class PanelPrincipal extends GridPane {
 		mFondo.setGraphic(botonFondo);
 		iconos.getMenus().add(mFondo);
 
-		String imgFondo = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/fondo.jpg";
+		String imgFondo = "/img/fondo.jpg";
 
-		Image iconFondo = new Image(imgFondo);
+		Image iconFondo = new Image(PanelPrincipal.class.getResourceAsStream(imgFondo));
 		ImageView iconFondoView = new ImageView(iconFondo);
 		iconFondoView.setFitWidth(16);
 		iconFondoView.setFitHeight(16);
@@ -105,9 +105,9 @@ public class PanelPrincipal extends GridPane {
 		mZoomIn.setGraphic(botonZoomIn);
 		iconos.getMenus().add(mZoomIn);
 
-		String imgZoomIn = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/+.jpg";
+		String imgZoomIn = "/img/+.jpg";
 
-		Image iconZoomIn = new Image(imgZoomIn);
+		Image iconZoomIn = new Image(PanelPrincipal.class.getResourceAsStream(imgZoomIn));
 		ImageView iconZoomInView = new ImageView(iconZoomIn);
 		iconZoomInView.setFitWidth(16);
 		iconZoomInView.setFitHeight(16);
@@ -122,9 +122,9 @@ public class PanelPrincipal extends GridPane {
 		mZoomOut.setGraphic(botonZoomOut);
 		iconos.getMenus().add(mZoomOut);
 
-		String imgZoomOut = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/-.jpg";
+		String imgZoomOut = "/img/-.jpg";
 
-		Image iconZoomOut = new Image(imgZoomOut);
+		Image iconZoomOut = new Image(PanelPrincipal.class.getResourceAsStream(imgZoomOut));
 		ImageView iconZoomOutView = new ImageView(iconZoomOut);
 		iconZoomOutView.setFitWidth(16);
 		iconZoomOutView.setFitHeight(16);
@@ -139,9 +139,9 @@ public class PanelPrincipal extends GridPane {
 		mEditUser.setGraphic(botonEditUser);
 		iconos.getMenus().add(mEditUser);
 
-		String imgEditUser = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/EDITAR.jpg";
+		String imgEditUser = "/img/EDITAR.jpg";
 
-		Image iconEditUser = new Image(imgEditUser);
+		Image iconEditUser = new Image(PanelPrincipal.class.getResourceAsStream(imgEditUser));
 		ImageView iconEditUserView = new ImageView(iconEditUser);
 		iconEditUserView.setFitWidth(16);
 		iconEditUserView.setFitHeight(16);
@@ -157,9 +157,9 @@ public class PanelPrincipal extends GridPane {
 		mManual.setGraphic(botonManual);
 		iconos.getMenus().add(mManual);
 
-		String imgManual = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/AJUSTES.jpg";
+		String imgManual = "/img/AJUSTES.jpg";
 
-		Image iconManual = new Image(imgManual);
+		Image iconManual = new Image(PanelPrincipal.class.getResourceAsStream(imgManual));
 		ImageView iconManualView = new ImageView(iconManual);
 		iconManualView.setFitWidth(16);
 		iconManualView.setFitHeight(16);
@@ -175,9 +175,9 @@ public class PanelPrincipal extends GridPane {
 		mExit.setGraphic(botonExit);
 		iconos.getMenus().add(mExit);
 
-		String imgExit = "file:///C:/Programación/FrutasEnForma/src/main/resources/img/EXIT.jpg";
+		String imgExit = "/img/EXIT.jpg";
 
-		Image iconExit = new Image(imgExit);
+		Image iconExit = new Image(PanelPrincipal.class.getResourceAsStream(imgExit));
 		ImageView iconExitView = new ImageView(iconExit);
 		iconExitView.setFitWidth(16);
 		iconExitView.setFitHeight(16);

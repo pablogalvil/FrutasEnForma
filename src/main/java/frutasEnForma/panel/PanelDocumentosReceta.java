@@ -63,7 +63,7 @@ public class PanelDocumentosReceta extends GridPane {
 		confirmar.setOnAction(event -> {
 			// Cambiamos la ruta dependiendo del pdf que queramos mostrar
 			if (valor.equals("Dieta Dash"))
-				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaDash.pdf");
+				abrirPDF("resources/doc/DietaDash.pdf");
 			else if (valor.equals("Dieta Frutariana"))
 				abrirPDF("C:\\Programación\\FrutasEnForma\\src\\main\\resources\\doc\\DietaFrutariana.pdf");
 			else if (valor.equals("Dieta Mediterranea"))
