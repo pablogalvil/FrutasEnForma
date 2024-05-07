@@ -142,7 +142,7 @@ public class PanelInicioSesion extends GridPane {
 
 		btnConfirmar.setOnAction(e -> {
 			String txtUsuario = usuario.getText();
-			String txtContrasenia = contrasenia.getText();
+			String txtContrasenia = contraseniaEscondida.getText();
 			// Si la funcion de login da true, se cierra, si da false salta la alerta y te
 			// devuelve al inicio del inicio de sesion.
 			if (UsuarioDAO.login(txtUsuario, txtContrasenia, App.con))
