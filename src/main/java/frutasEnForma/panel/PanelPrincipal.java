@@ -221,8 +221,9 @@ public class PanelPrincipal extends GridPane {
 		Menu mRegistroDietas = new Menu("Registro");
 		MenuItem iRegistroDietasVer = new MenuItem("Ver Registro");
 		MenuItem iRegistroDietasAniadir = new MenuItem("Añadir Registro");
+		MenuItem iRegistroFechaFin = new MenuItem("Cambiar fecha de finalizacion");
 
-		mRegistroDietas.getItems().addAll(iRegistroDietasVer, iRegistroDietasAniadir);
+		mRegistroDietas.getItems().addAll(iRegistroDietasVer, iRegistroDietasAniadir, iRegistroFechaFin);
 
 		Menu mRecetas = new Menu("Recetas");
 		MenuItem iRegistrarComidas = new MenuItem("Registrar comidas");
@@ -319,6 +320,9 @@ public class PanelPrincipal extends GridPane {
 		});
 		iRegistroDietasVer.setOnAction(e -> {
 			PanelRegistroVer verRegistro = new PanelRegistroVer();
+		});
+		iRegistroFechaFin.setOnAction(e -> {
+			PanelRegistroFechaFin fechaFinRegistro = new PanelRegistroFechaFin();
 		});
 
 		// MenuItems de recetas

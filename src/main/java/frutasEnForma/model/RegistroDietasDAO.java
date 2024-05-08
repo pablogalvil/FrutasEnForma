@@ -131,4 +131,36 @@ public class RegistroDietasDAO {
 			return false;
 		}
 	}
+
+	public static boolean insertFechaFin(Connection con, String fechafin, String nombre) {
+
+		try {
+
+			int numAff = -1;
+
+			// Creamos la query con los datos que tenemos
+
+			String query = ("UPDATE REGISTRODIETAS SET fechaFin = ? WHERE nombre = ? AND Usuario_idUsuario = ?");
+
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, fechafin);
+			pstmt.setString(2, nombre);
+			pstmt.setInt(3, UsuarioDAO.idUsuario);
+
+			// Ejecutamos la query
+			numAff = pstmt.executeUpdate();
+
+			if (numAff == 1)
+				return true;
+			else
+				return false;
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
 }
