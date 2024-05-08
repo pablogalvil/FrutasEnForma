@@ -47,7 +47,7 @@ public class PanelBorrarDietas extends GridPane {
 		panelListaBorrar.setMargin(confirmar, new Insets(5, 10, 5, 10));
 		panelListaBorrar.setHalignment(confirmar, HPos.CENTER);
 
-		Scene sceneListaBorrar = new Scene(panelListaBorrar, 600, 600);
+		Scene sceneListaBorrar = new Scene(panelListaBorrar, 800, 600);
 
 		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)

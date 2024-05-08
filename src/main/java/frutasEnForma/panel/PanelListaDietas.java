@@ -56,7 +56,7 @@ public class PanelListaDietas extends GridPane {
 
 		panelRegistroListaDietas.setHalignment(confirmar, HPos.CENTER);
 
-		Scene sceneRegistroListaDietas = new Scene(panelRegistroListaDietas, 600, 600);
+		Scene sceneRegistroListaDietas = new Scene(panelRegistroListaDietas, 800, 600);
 
 		// Ponemos el css usando la configuracion del usuario
 		if (App.configuracion.getTheme() == 1)
