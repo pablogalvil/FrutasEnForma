@@ -58,6 +58,7 @@ public class PanelRegistroDietas extends GridPane {
 
 		sceneRegistroDietas.getRoot().getStyleClass().add("body");
 
+		stageRegistroDietas.setResizable(false);
 		stageRegistroDietas.setScene(sceneRegistroDietas);
 		stageRegistroDietas.setTitle("Aniadir Registro");
 		stageRegistroDietas.show();

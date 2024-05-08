@@ -57,6 +57,7 @@ public class PanelBorrarDietas extends GridPane {
 
 		sceneListaBorrar.getRoot().getStyleClass().add("body");
 
+		stageListaBorrar.setResizable(false);
 		stageListaBorrar.setScene(sceneListaBorrar);
 		stageListaBorrar.setTitle("Borrar Dieta");
 		stageListaBorrar.show();

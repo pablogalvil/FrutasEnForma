@@ -96,6 +96,7 @@ public class PanelCalculadoraImc extends GridPane {
 
 		lblResultado.setId("labelResultadoCalculadora");
 
+		ventanaImc.setResizable(false);
 		ventanaImc.setScene(sceneImc);
 		ventanaImc.setTitle("Calculadora IMC");
 		ventanaImc.show();

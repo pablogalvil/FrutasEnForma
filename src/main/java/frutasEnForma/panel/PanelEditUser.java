@@ -63,6 +63,7 @@ public class PanelEditUser extends GridPane {
 
 		sceneEditUser.getRoot().getStyleClass().add("body");
 
+		ventanaEditUser.setResizable(false);
 		ventanaEditUser.setScene(sceneEditUser);
 		ventanaEditUser.setTitle("Editar usuario");
 		ventanaEditUser.show();

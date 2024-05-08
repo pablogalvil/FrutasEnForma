@@ -80,6 +80,7 @@ public class PanelInsertarComidas extends GridPane {
 
 		sceneInsertarComidas.getRoot().getStyleClass().add("body");
 
+		ventanaInsertarComidas.setResizable(false);
 		ventanaInsertarComidas.setScene(sceneInsertarComidas);
 		ventanaInsertarComidas.setTitle("Insertar comidas");
 		ventanaInsertarComidas.show();

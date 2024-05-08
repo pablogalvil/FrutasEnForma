@@ -66,6 +66,7 @@ public class PanelListaDietas extends GridPane {
 
 		sceneRegistroListaDietas.getRoot().getStyleClass().add("body");
 
+		stageRegistroListaDietas.setResizable(false);
 		stageRegistroListaDietas.setScene(sceneRegistroListaDietas);
 		stageRegistroListaDietas.setTitle("Mostrar Dieta");
 		stageRegistroListaDietas.show();

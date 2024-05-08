@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 
 import frutasEnForma.App;
 import frutasEnForma.model.UsuarioDAO;
+import frutasEnForma.utils.ConfiguracionUsuario;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -421,6 +422,8 @@ public class PanelPrincipal extends GridPane {
 		});
 		botonExit.setOnAction(e -> {
 			stage.close();
+			App.configuracion.setScale(PanelPrincipal.numEscala);
+			ConfiguracionUsuario.escribirConfig(App.configuracion.getTheme(), App.configuracion.getScale());
 		});
 
 		// ***************************************************

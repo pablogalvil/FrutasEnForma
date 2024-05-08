@@ -59,6 +59,7 @@ public class PanelInicioSesion extends GridPane {
 		panelSesion.setHalignment(inicioSesion, HPos.CENTER);
 		panelSesion.setHalignment(registro, HPos.CENTER);
 
+		sesionStage.setResizable(false);
 		sesionStage.setScene(sceneSesion);
 		sesionStage.setTitle("Inicio de sesion");
 		sesionStage.show();
@@ -136,6 +137,7 @@ public class PanelInicioSesion extends GridPane {
 		panelInicio.setHalignment(contraseniaEscondida, HPos.CENTER);
 		panelInicio.setHalignment(btnConfirmar, HPos.CENTER);
 
+		inicioStage.setResizable(false);
 		inicioStage.setScene(sceneInicio);
 		inicioStage.setTitle("Inicio de sesion");
 		inicioStage.show();
@@ -222,34 +224,38 @@ public class PanelInicioSesion extends GridPane {
 
 		sceneRegistro.getRoot().getStyleClass().add("body");
 
+		registroStage.setResizable(false);
 		registroStage.setScene(sceneRegistro);
 		registroStage.setTitle("Registro");
 		registroStage.show();
 
 		// Añadimos un evento al boton del formulario
 		confirmar.setOnAction(e -> {
-			try {
-				UsuarioDO temp = new UsuarioDO();
-				temp.setNombre(usuario.getText());
-				temp.setContrasenia(contrasenia.getText());
-				temp.setPeso(Double.valueOf(peso.getText()));
-				temp.setAltura(Integer.valueOf(altura.getText()));
-				temp.setEdad(Integer.valueOf(edad.getText()));
-				temp.setSexo(sexo.getText().charAt(0));
+			if (contrasenia.getText().length() < 7) {
+				alertaContrasenia();
+			} else {
+				try {
+					UsuarioDO temp = new UsuarioDO();
+					temp.setNombre(usuario.getText());
+					temp.setContrasenia(contrasenia.getText());
+					temp.setPeso(Double.valueOf(peso.getText()));
+					temp.setAltura(Integer.valueOf(altura.getText()));
+					temp.setEdad(Integer.valueOf(edad.getText()));
+					temp.setSexo(sexo.getText().charAt(0));
 
-				// Si da true cerramos la ventana y le mandamos al inicio de sesion, si da false
-				// salta una alerta.
-				if (UsuarioDAO.aniadirUsuario(con, temp)) {
-					registroStage.close();
-					inSesion();
-				} else {
+					// Si da true cerramos la ventana y le mandamos al inicio de sesion, si da false
+					// salta una alerta.
+					if (UsuarioDAO.aniadirUsuario(con, temp)) {
+						registroStage.close();
+						inSesion();
+					} else {
+						alertaRegistro();
+					}
+				} catch (Exception error) {
+					error.printStackTrace();
 					alertaRegistro();
 				}
-			} catch (Exception error) {
-				error.printStackTrace();
-				alertaRegistro();
 			}
-
 		});
 	}
 
@@ -275,6 +281,18 @@ public class PanelInicioSesion extends GridPane {
 		infoAlert.setTitle("Alerta!");
 		infoAlert.setHeaderText("No ha introducido correctamente los datos");
 		infoAlert.setContentText("Por favor vuelva a intentarlo o pruebe a crear una cuenta nueva");
+		infoAlert.showAndWait();
+	}
+
+	/**
+	 * Alerta que salta si tu contraseña tiene menos de 7 caracteres
+	 */
+	public void alertaContrasenia() {
+		AlertType tipoAlerta = Alert.AlertType.WARNING;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Alerta!");
+		infoAlert.setHeaderText("Su contraseña es demasiado corta!");
+		infoAlert.setContentText("Por favor vuelva a intentarlo introduciendo más de 7 caracteres en su contraseña.");
 		infoAlert.showAndWait();
 	}
 }
