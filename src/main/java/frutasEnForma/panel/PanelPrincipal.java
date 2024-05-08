@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 
 import frutasEnForma.App;
 import frutasEnForma.model.UsuarioDAO;
+import frutasEnForma.utils.ConfiguracionUsuario;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -360,6 +361,7 @@ public class PanelPrincipal extends GridPane {
 		});
 		botonLogOut.setOnAction(e -> {
 			UsuarioDAO.idUsuario = 0;
+			alertaLogOut();
 		});
 		botonFondo.setOnAction(e -> {
 			if (App.configuracion.getTheme() == 0) {
@@ -421,6 +423,8 @@ public class PanelPrincipal extends GridPane {
 		});
 		botonExit.setOnAction(e -> {
 			stage.close();
+			App.configuracion.setScale(PanelPrincipal.numEscala);
+			ConfiguracionUsuario.escribirConfig(App.configuracion.getTheme(), App.configuracion.getScale());
 		});
 
 		// ***************************************************
@@ -531,6 +535,18 @@ public class PanelPrincipal extends GridPane {
 		infoAlert.setTitle("Alerta!");
 		infoAlert.setHeaderText("No puedes disminuir más.");
 		infoAlert.setContentText("Lo sentimos, nuestra aplicacion no permite menos zoom.");
+		infoAlert.showAndWait();
+	}
+
+	/**
+	 * Alerta que salta si presionas el boton de logOut.
+	 */
+	public void alertaLogOut() {
+		AlertType tipoAlerta = Alert.AlertType.INFORMATION;
+		Alert infoAlert = new Alert(tipoAlerta);
+		infoAlert.setTitle("Alerta!");
+		infoAlert.setHeaderText("Su sesion ha sido cerrada correctamente.");
+		infoAlert.setContentText("Le recordamos que para usar ciertas funciones es obligatorio iniciar sesion.");
 		infoAlert.showAndWait();
 	}
 }

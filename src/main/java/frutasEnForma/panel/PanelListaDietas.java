@@ -25,7 +25,7 @@ public class PanelListaDietas extends GridPane {
 		ChoiceBox chbEligeDieta = new ChoiceBox();
 		chbEligeDieta.getItems().addAll("Dieta Dash", "Dieta Frutariana", "Dieta Mediterranea");
 
-		Button confirmar = new Button("Mostrar Recetas");
+		Button confirmar = new Button("Mostrar Dietas");
 
 		Label lblDietas = new Label("Dietas");
 		Label lblNombreDietas = new Label("Nombre Dietas");
@@ -66,6 +66,7 @@ public class PanelListaDietas extends GridPane {
 
 		sceneRegistroListaDietas.getRoot().getStyleClass().add("body");
 
+		stageRegistroListaDietas.setResizable(false);
 		stageRegistroListaDietas.setScene(sceneRegistroListaDietas);
 		stageRegistroListaDietas.setTitle("Mostrar Dieta");
 		stageRegistroListaDietas.show();

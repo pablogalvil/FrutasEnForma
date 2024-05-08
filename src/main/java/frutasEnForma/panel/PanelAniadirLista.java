@@ -71,6 +71,7 @@ public class PanelAniadirLista extends GridPane {
 
 		sceneListaAniadir.getRoot().getStyleClass().add("body");
 
+		stageListaAniadir.setResizable(false);
 		stageListaAniadir.setScene(sceneListaAniadir);
 		stageListaAniadir.setTitle("Aniadir Dieta");
 		stageListaAniadir.show();

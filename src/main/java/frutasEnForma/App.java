@@ -36,6 +36,7 @@ public class App extends Application {
 
 		scene.getRoot().getStyleClass().add("body");
 
+		stage.setResizable(false);
 		stage.setTitle("FrutasEnForma");
 		stage.setScene(scene);
 		stage.show();

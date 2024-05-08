@@ -94,6 +94,7 @@ public class PanelRecetasRegistrar extends GridPane {
 
 		this.setHalignment(confirmar, HPos.CENTER);
 
+		stageRegistrarRecetas.setResizable(false);
 		stageRegistrarRecetas.setScene(sceneRegistrarRecetas);
 		stageRegistrarRecetas.setTitle("Registrar receta");
 		stageRegistrarRecetas.show();

@@ -57,6 +57,7 @@ public class PanelCalculadoraCalorias extends GridPane {
 		lblResultado.setId("labelResultadoCalculadora");
 		lblRango.setId("labelResultadoCalculadora");
 
+		ventanaCalorias.setResizable(false);
 		ventanaCalorias.setScene(sceneCalorias);
 		ventanaCalorias.setTitle("Calculadora calorias");
 		ventanaCalorias.show();

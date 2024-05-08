@@ -21,7 +21,7 @@ public class PanelRegistroVer extends GridPane {
 	 * Panel que muestra los registros del usuario
 	 */
 	public PanelRegistroVer() {
-		Stage stageRegistroDietas = new Stage();
+		Stage stageRegistroDietasVer = new Stage();
 
 		GridPane panelRegistroDietas = new GridPane();
 		panelRegistroDietas.setAlignment(Pos.CENTER);
@@ -79,9 +79,10 @@ public class PanelRegistroVer extends GridPane {
 
 		sceneRegistroDietas.getRoot().getStyleClass().add("body");
 
-		stageRegistroDietas.setScene(sceneRegistroDietas);
-		stageRegistroDietas.setTitle("Mostrar registro");
-		stageRegistroDietas.show();
+		stageRegistroDietasVer.setResizable(false);
+		stageRegistroDietasVer.setScene(sceneRegistroDietas);
+		stageRegistroDietasVer.setTitle("Mostrar registro");
+		stageRegistroDietasVer.show();
 
 		// Al presionar el boton añadimos labels con todos los campos que da de
 		// resultado la funcion

@@ -66,6 +66,7 @@ public class PanelRecetasBorrar extends GridPane {
 		this.setHalignment(txtBorrarNombre, HPos.CENTER);
 		this.setHalignment(confirmar, HPos.CENTER);
 
+		stageBorrarRecetas.setResizable(false);
 		stageBorrarRecetas.setScene(sceneBorrarRecetas);
 		stageBorrarRecetas.setTitle("Borrar Receta");
 		stageBorrarRecetas.show();

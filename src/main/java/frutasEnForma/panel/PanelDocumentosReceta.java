@@ -85,6 +85,7 @@ public class PanelDocumentosReceta extends GridPane {
 		panelMostrarRecetas.setMargin(chbEligeDieta, new Insets(5, 10, 5, 10));
 		panelMostrarRecetas.setMargin(confirmar, new Insets(5, 10, 5, 10));
 
+		stageDocumentosRecetas.setResizable(false);
 		stageDocumentosRecetas.setScene(sceneMostrarRecetas);
 		stageDocumentosRecetas.setTitle("Aniadir Receta");
 		stageDocumentosRecetas.show();
